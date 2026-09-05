@@ -6,13 +6,14 @@
 # 1. Bỏ qua WordPress Core (Không commit mã nguồn gốc của WordPress)
 wp-admin/
 wp-includes/
-*.php
+/*.php
 !wp-config-sample.php
 
 # Giữ lại thư mục wp-content nhưng loại trừ các thành phần không cần thiết
 wp-content/*
 !wp-content/themes/
 !wp-content/themes/event-child/
+!wp-content/themes/event-child/**
 
 # 2. Bỏ qua file cấu hình nhạy cảm và thông tin máy chủ
 wp-config.php
