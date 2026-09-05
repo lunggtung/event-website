@@ -45,8 +45,16 @@ Desktop.ini
 
 # 7. Cho phép theo dõi các thư mục quan trọng nộp bài
 !database/
-!docs/
 !README.md
-!CONTRIBUTING.md
 !LICENSES.md
-!KE_HOACH_DU_AN_NHOM_2.md
+
+# 8. Bỏ qua tài liệu nội bộ, kế hoạch dự án và cấu hình Agent (Không đưa lên GitHub)
+__Bai tap nhom-ma nguon mo.md
+KE_HOACH_DU_AN_NHOM_2.md
+CONTRIBUTING.md
+docs/
+.agents/
+.ai/
+ai/
+*.tmp
+*.docx

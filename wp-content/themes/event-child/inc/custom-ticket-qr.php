@@ -2,10 +2,6 @@
 /**
  * Ticket Registration & QR Code Generation Module
  *
- * Lập trình viên phụ trách: TV3 (PHP Logic & Secure Coding)
- * Chức năng: Xử lý sự kiện gửi biểu mẫu đăng ký, tự động sinh mã định danh vé duy nhất,
- *            tạo ảnh mã QR Code và đính kèm vào email gửi cho người tham dự.
- *
  * @package Event_Child_Theme
  */
 
@@ -14,22 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * HOOK VÀO QUÁ TRÌNH GỬI MAIL CỦA CONTACT FORM 7
- * Action: 'wpcf7_mail_components'
- *
- * Áp dụng Lập trình an toàn:
- * - Sanitization: sanitize_text_field(), sanitize_email() cho thông tin khách đăng ký.
- * - Validation: Kiểm tra định dạng email hợp lệ bằng is_email().
- * - Escaping: esc_url(), esc_html() khi đưa vào nội dung email định dạng HTML.
+ * Tự động tạo mã vé và chèn mã QR vào email xác nhận khi khách gửi Contact Form 7
  */
 function event_child_attach_qr_to_email( $components, $form, $mail ) {
-    // Lấy dữ liệu gửi lên từ biểu mẫu người dùng
     $submission = WPCF7_Submission::get_instance();
 
     if ( $submission ) {
         $posted_data = $submission->get_posted_data();
 
-        // 1. SANITIZATION & VALIDATION DỮ LIỆU ĐẦU VÀO
+        // Lọc dữ liệu đầu vào
         $attendee_name  = isset( $posted_data['your-name'] ) ? sanitize_text_field( $posted_data['your-name'] ) : 'Quý khách';
         $attendee_email = isset( $posted_data['your-email'] ) ? sanitize_email( $posted_data['your-email'] ) : '';
         $ticket_type    = isset( $posted_data['ticket-type'] ) ? sanitize_text_field( $posted_data['ticket-type'] ) : 'Vé Tiêu Chuẩn';
