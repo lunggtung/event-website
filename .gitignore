@@ -1,0 +1,51 @@
+# ==========================================
+# .gitignore chuẩn cho Dự án WordPress Nhóm 2
+# Môn học: Mã nguồn mở
+# ==========================================
+
+# 1. Bỏ qua WordPress Core (Không commit mã nguồn gốc của WordPress)
+wp-admin/
+wp-includes/
+*.php
+!wp-config-sample.php
+
+# Giữ lại thư mục wp-content nhưng loại trừ các thành phần không cần thiết
+wp-content/*
+!wp-content/themes/
+!wp-content/themes/event-child/
+
+# 2. Bỏ qua file cấu hình nhạy cảm và thông tin máy chủ
+wp-config.php
+.htaccess
+*.log
+*.sql.gz
+*.bak
+
+# 3. Bỏ qua thư mục upload dữ liệu đa phương tiện (ảnh, video tải lên qua admin)
+wp-content/uploads/
+
+# 4. Bỏ qua các plugin cài thêm (Các plugin này được liệt kê trong LICENSES.md)
+wp-content/plugins/
+wp-content/mu-plugins/
+
+# 5. Bỏ qua các theme mặc định hoặc theme cha (Astra tải từ kho WordPress)
+wp-content/themes/twenty*/
+wp-content/themes/astra/
+
+# 6. Bỏ qua cache & file tạm
+wp-content/cache/
+wp-content/upgrade/
+node_modules/
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 7. Cho phép theo dõi các thư mục quan trọng nộp bài
+!database/
+!docs/
+!README.md
+!CONTRIBUTING.md
+!LICENSES.md
+!KE_HOACH_DU_AN_NHOM_2.md
