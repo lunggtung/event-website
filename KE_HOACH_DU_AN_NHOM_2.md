@@ -123,15 +123,17 @@ TỔNG ĐIỂM DỰ ÁN: 100% (10 ĐIỂM)
 
 ---
 
-## 👥 III. BẢNG PHÂN CÔNG CÔNG VIỆC (WBS) & MA TRẬN COMMIT CHO 5 THÀNH VIÊN
+## 👥 III. BẢNG PHÂN CÔNG CÔNG VIỆC (WBS) CÂN BẰNG CHO 5 THÀNH VIÊN
+*(Nguyên tắc: Mỗi thành viên đều có **1 Phần Web & Code + 1 Phần Kỹ thuật & Bảo mật + 1 Phần Báo cáo & Slide** để đảm bảo 100% đều có commit và khối lượng đóng góp tương đương 20% dự án).*
 
-| Thành viên | Vai trò | Trách nhiệm chính | Tệp phụ trách & Commit trên Git | Nhánh Git (Branch) |
+| Thành viên | Trách nhiệm Web & Code (Git) | Trách nhiệm Kỹ thuật / Nghiệp vụ | Trách nhiệm Báo cáo & Tài liệu | Nhánh Git (Branch) |
 | :---: | :--- | :--- | :--- | :--- |
-| **TV1** | **Trưởng nhóm & Security** | • Quản lý Repo GitHub, xét duyệt PR.<br>• Viết tài liệu `README.md` (hướng dẫn cài đặt).<br>• Thực hiện Hardening (đổi URL login, phân quyền).<br>• Chạy WPScan và viết báo cáo Phần 3. | • `README.md`<br>• `.gitignore`<br>• `.htaccess`<br>• `docs/wpscan-report.md` | `feature/hardening-and-docs` |
-| **TV2** | **Core Backend Theme** | • Khởi tạo thư mục Child Theme (`event-child`).<br>• Khai báo `style.css` chuẩn WordPress.<br>• Viết hàm nạp Stylesheet/Scripts trong `functions.php`.<br>• Tinh chỉnh cấu trúc trang chủ. | • `style.css`<br>• `functions.php` | `feature/child-theme-core` |
-| **TV3** | **PHP / Logic Developer** | • Lập trình các Custom Shortcodes trong `inc/`:<br>  - Shortcode hộp thông báo sự kiện khẩn cấp.<br>  - Shortcode thẻ vé & đăng ký sự kiện.<br>• Áp dụng hàm `sanitize_text_field()` và `esc_html()`. | • `inc/custom-shortcodes.php`<br>• `inc/secure-helpers.php` | `feature/custom-shortcodes` |
-| **TV4** | **Frontend & UI Effects** | • Viết JavaScript cho **Countdown Timer** thời gian thực.<br>• Viết JS hiệu ứng nút **Back-to-top** và cuộn trang.<br>• Viết CSS tùy biến banner, bảng lịch trình, thẻ diễn giả. | • `assets/js/countdown.js`<br>• `assets/js/main.js`<br>• `assets/css/event-custom.css` | `feature/frontend-countdown` |
-| **TV5** | **Data, License & OS Report** | • Soạn thảo nội dung **Báo cáo Phần 1 (Ubuntu vs Win 11)**.<br>• Nhập liệu mẫu: Lịch trình 3 phòng, 3 Diễn giả mẫu.<br>• Lập bảng kiểm kê giấy phép `LICENSES.md`.<br>• Xuất bản sao lưu cơ sở dữ liệu `database.sql`. | • `LICENSES.md`<br>• `database.sql`<br>• `docs/bao-cao-phan-1-os.md` | `feature/licenses-and-database` |
+| **TV1**<br>*(Trưởng nhóm & Security)* | • Quản lý Repo Git, xét duyệt PR/Merge.<br>• Viết code Hardening trong `functions.php`.<br>• Cấu hình tệp bảo mật `.htaccess`. | • Cài đặt đổi URL Login (`/event-portal-admin/`).<br>• Chạy lệnh rà quét **WPScan**.<br>• Phân quyền file máy chủ `644/755/440`. | • Soạn **Chương 3 Báo cáo** (Hardening & WPScan).<br>• Viết và hoàn thiện `README.md`. | `feature/hardening-and-docs` |
+| **TV2**<br>*(Frontend 1: Countdown & Map)* | • Viết code JS **Countdown Timer** (`countdown.js`).<br>• Viết CSS Khối đếm ngược trong `event-custom.css`.<br>• Khai báo Child Theme trong `style.css`. | • Dựng trang chủ & nhúng **Bản đồ địa điểm** (Venue Map) OpenStreetMap / Google Maps.<br>• Cài đặt Parent Theme Astra & Child Theme. | • Viết mô tả Countdown & Bản đồ trong Báo cáo.<br>• Soạn Slide thuyết trình (phần Countdown & Map). | `feature/countdown-and-map` |
+| **TV3**<br>*(Backend PHP & Secure Code)* | • Lập trình các **Custom Shortcodes** (`custom-shortcodes.php`).<br>• Lập trình Form sinh mã vé QR qua email (`custom-ticket-qr.php`). | • Cấu hình gửi mail **WP Mail SMTP**.<br>• Chứng minh kỹ thuật **Sanitization & Escaping** trong code PHP. | • Soạn mục "Lập trình an toàn & Code tự viết" trong Chương 2 Báo cáo.<br>• Chuẩn bị slide về Vé QR & Shortcode. | `feature/custom-shortcodes-and-qr` |
+| **TV4**<br>*(Frontend 2: Agenda & Speakers)* | • Viết code JS nút **Back-to-top** & cuộn trang (`main.js`).<br>• Viết CSS giao diện cho **Bảng lịch trình** & **Thẻ diễn giả** (`event-custom.css`). | • Tạo trang **Lịch trình theo giờ/phòng** (08:00 - 17:00, 3 phòng).<br>• Tạo trang **Hồ sơ 3 Diễn giả mẫu** (ảnh, học vị, đề tài). | • Soạn mô tả Lịch trình & Diễn giả trong Báo cáo.<br>• **Thiết kế Slide PowerPoint tổng thể cho nhóm**. | `feature/agenda-speakers-ui` |
+| **TV5**<br>*(Nghiên cứu OS & Database)* | • Viết bảng kiểm kê giấy phép mở (`LICENSES.md`).<br>• Xuất và tối ưu file `database/database.sql`. | • Nhập liệu toàn bộ dữ liệu mẫu (Sự kiện, vé, bài viết, menu).<br>• Kiểm thử luồng import database không bị lệch URL. | • **Chủ trì viết Chương 1 Báo cáo (So sánh Ubuntu vs Win 11 dài 3-5 trang)**.<br>• Soạn phần Slide thuyết trình cho Phần 1. | `feature/licenses-and-database` |
+
 
 ---
 

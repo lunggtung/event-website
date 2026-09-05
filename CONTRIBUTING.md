@@ -21,13 +21,13 @@ Dự án áp dụng mô hình nhánh rút gọn:
 - **`main`**: Nhánh chính thức, chứa mã nguồn ổn định nhất để nộp bài và chấm điểm. **Không được commit trực tiếp vào `main`**.
 - **Nhánh tính năng (`feature/*`)**: Mỗi thành viên tự tạo và làm việc trên nhánh riêng của mình:
 
-| Thành viên | Tên nhánh Git | Trách nhiệm |
+| Thành viên | Tên nhánh Git | Trách nhiệm chính (Phân chia cân bằng 20%) |
 | :---: | :--- | :--- |
-| **TV1** | `feature/hardening-and-docs` | Cấu hình bảo mật, rà quét WPScan, tổng hợp tài liệu |
-| **TV2** | `feature/child-theme-core` | Khởi tạo Child Theme, nạp stylesheets/scripts |
-| **TV3** | `feature/custom-shortcodes` | Lập trình PHP Shortcode, xử lý vé QR an toàn |
-| **TV4** | `feature/frontend-countdown` | Lập trình JavaScript Countdown, nút Back-to-top, CSS giao diện |
-| **TV5** | `feature/licenses-and-database` | Báo cáo Phần 1 (Ubuntu vs Windows 11), bảng License, Database dump |
+| **TV1** *(Trưởng nhóm)* | `feature/hardening-and-docs` | Cấu hình bảo mật, Hardening, chạy WPScan, viết Chương 3 Báo cáo |
+| **TV2** *(Frontend 1)* | `feature/countdown-and-map` | Code JS Countdown thời gian thực, CSS Countdown, nhúng Bản đồ |
+| **TV3** *(Backend PHP)* | `feature/custom-shortcodes-and-qr` | Lập trình Shortcode, Form tạo vé QR gửi email, cấu hình WP Mail SMTP |
+| **TV4** *(Frontend 2)* | `feature/agenda-speakers-ui` | Code JS Back-to-top, CSS & trang Lịch trình 3 phòng, 3 Diễn giả, Slide |
+| **TV5** *(Nghiên cứu & Data)* | `feature/licenses-and-database` | Viết Chương 1 Báo cáo (Ubuntu vs Win 11), bảng License, Database dump |
 
 ---
 
