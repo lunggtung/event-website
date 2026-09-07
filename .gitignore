@@ -58,3 +58,7 @@ docs/
 ai/
 *.tmp
 *.docx
+*credentials*
+*.secret*
+*.local*
+.env*
