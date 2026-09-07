@@ -6,13 +6,13 @@
 
 ## 1. Thành Viên & Phân Công Công Việc
 
-| STT | Họ và Tên | Mã Sinh Viên | Vai trò & Nhiệm vụ chính | Nhánh Git |
+| STT | Họ và Tên | Mã Sinh Viên | Vai trò & Trách nhiệm chính trong dự án | Nhánh Git |
 | :---: | :--- | :---: | :--- | :--- |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Security:** Cấu hình bảo mật, Hardening, chạy WPScan, viết báo cáo bảo mật | `feature/hardening-and-docs` |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Countdown & Map):** Code JS Countdown, CSS Countdown, nhúng Bản đồ địa điểm | `feature/countdown-and-map` |
-| 3 | **[Tên TV3]** | [MSV TV3] | **Backend PHP & Secure Code:** Code Shortcode, Form tạo vé QR qua email, cấu hình SMTP | `feature/custom-shortcodes-and-qr` |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend (Agenda & Speakers):** Code JS Back-to-top, CSS & Dựng trang Lịch trình 3 phòng, 3 Diễn giả | `feature/agenda-speakers-ui` |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu & Cơ sở dữ liệu:** Nghiên cứu so sánh HĐH, lập bảng `LICENSES.md`, xuất CSDL | `feature/licenses-and-database` |
+| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế & lập trình toàn bộ kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, scripts, CSS tokens); Quản lý Git; Gia cố bảo mật Hardening & Rà quét WPScan | `main` & `feature/hardening-and-docs` |
+| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ & Bản đồ):** Dựng giao diện Trang chủ (Hero Banner), tích hợp & tùy biến khối Countdown thời gian thực, nhúng Bản đồ địa điểm (Venue Map) OpenStreetMap | `feature/countdown-and-map` |
+| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form Vé QR & Mail SMTP):** Cài đặt & cấu hình Contact Form 7 kết nối module vé QR; cấu hình WP Mail SMTP gửi mail thật về điện thoại; minh chứng lập trình an toàn | `feature/custom-shortcodes-and-qr` |
+| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** Dựng trang Lịch trình 3 phòng theo giờ (08:00 - 17:00), dựng trang Hồ sơ 3 Diễn giả; Chủ trì thiết kế Slide thuyết trình cho nhóm | `feature/agenda-speakers-ui` |
+| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS & CSDL:** Chủ trì viết Chương 1 Báo cáo (So sánh Ubuntu Linux vs Windows 11 dài 3-5 trang); kiểm kê bảng `LICENSES.md`; nhập liệu và xuất CSDL `database.sql` | `feature/licenses-and-database` |
 
 ---
 
