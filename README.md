@@ -4,15 +4,15 @@
 
 ---
 
-## 1. Thành Viên & Phân Công Công Việc
+## 1. Thành Viên & Phân Công Công Việc 
 
 | STT | Họ và Tên | Mã Sinh Viên | Vai trò & Trách nhiệm chính trong dự án | Nhánh Git |
 | :---: | :--- | :---: | :--- | :--- |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế & lập trình toàn bộ kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, scripts, CSS tokens); Quản lý Git; Gia cố bảo mật Hardening & Rà quét WPScan | `main` & `feature/hardening-and-docs` |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ & Bản đồ):** Dựng giao diện Trang chủ (Hero Banner), tích hợp & tùy biến khối Countdown thời gian thực, nhúng Bản đồ địa điểm (Venue Map) OpenStreetMap | `feature/countdown-and-map` |
-| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form Vé QR & Mail SMTP):** Cài đặt & cấu hình Contact Form 7 kết nối module vé QR; cấu hình WP Mail SMTP gửi mail thật về điện thoại; minh chứng lập trình an toàn | `feature/custom-shortcodes-and-qr` |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** Dựng trang Lịch trình 3 phòng theo giờ (08:00 - 17:00), dựng trang Hồ sơ 3 Diễn giả; Chủ trì thiết kế Slide thuyết trình cho nhóm | `feature/agenda-speakers-ui` |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS & CSDL:** Chủ trì viết Chương 1 Báo cáo (So sánh Ubuntu Linux vs Windows 11 dài 3-5 trang); kiểm kê bảng `LICENSES.md`; nhập liệu và xuất CSDL `database.sql` | `feature/licenses-and-database` |
+| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế & lập trình toàn bộ kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, scripts, CSS tokens); Quản lý Git; Gia cố bảo mật Hardening & Rà quét WPScan; Soạn Chương 3 Báo cáo | `main` & `feature/hardening-and-docs` |
+| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** Dựng giao diện Trang chủ (Hero Banner), tích hợp & tùy biến khối Countdown thời gian thực, nhúng Bản đồ địa điểm OpenStreetMap; Soạn phần Trang chủ & Bản đồ trong Báo cáo | `feature/countdown-and-map` |
+| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form Vé QR & Mail SMTP):** Cài đặt & cấu hình Contact Form 7 kết nối module vé QR; cấu hình WP Mail SMTP gửi mail thật về điện thoại; minh chứng lập trình an toàn; Soạn phần Vé QR trong Báo cáo | `feature/custom-shortcodes-and-qr` |
+| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** Dựng trang Lịch trình 3 phòng theo giờ (08:00 - 17:00), dựng trang Hồ sơ Diễn giả; Chủ trì thiết kế Slide thuyết trình cho cả nhóm; Soạn phần Lịch trình & Diễn giả trong Báo cáo | `feature/agenda-speakers-ui` |
+| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** Chủ trì viết Chương 1 Báo cáo (So sánh Ubuntu Linux vs Windows 11 dài 3-5 trang); kiểm kê bảng `LICENSES.md`; nhập liệu và xuất CSDL `database.sql`; Làm Slide Phần 1 | `feature/licenses-and-database` |
 
 ---
 
@@ -28,7 +28,7 @@ Dự án xây dựng trang web chính thức cho **Hội nghị Khoa học & Cô
 
 ---
 
-## 3. Hướng Dẫn Cài Đặt & Chạy Thử (Dành Cho Giảng Viên)
+## 3. Hướng Dẫn Cài Đặt & Chạy Thử
 
 ### Yêu cầu môi trường
 - Máy chủ web: Apache hoặc Nginx (khuyến nghị dùng **Laragon** trên Windows hoặc XAMPP).

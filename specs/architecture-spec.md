@@ -79,11 +79,11 @@ Hệ thống được tổ chức thành 5 trang độc lập, kết nối với
 
 | STT | Tên Trang | URL Slug | Mục tiêu chính | Phân công phụ trách | Thành phần kỹ thuật chính |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Trang Chủ** | `/` | Giới thiệu tổng quan, đếm ngược, tin khẩn cấp, điểm nhấn sự kiện | TV1 (Lead Dev) | Shortcode `[event_countdown]`, `[event_alert]`, Hero banner, Bản quyền FOSS |
-| 2 | **Lịch Trình** | `/lich-trinh` | Chi tiết lịch hội thảo theo giờ cho 3 phòng họp song song | TV2 (Frontend/Content) | Bảng Timetable 3 Tracks (08:00 - 17:00), Filter theo phòng |
-| 3 | **Diễn Giả** | `/dien-gia` | Danh bạ hồ sơ diễn giả, chủ đề thuyết trình, liên kết mạng xã hội | TV3 (Frontend/Content) | Speaker Cards Grid, Modal/Chi tiết tiểu sử chuyên gia |
-| 4 | **Đăng Ký Vé** | `/dang-ky-ve` | Bảng giá các hạng vé, form đặt vé, tự động sinh mã QR gửi email | TV4 (Plugin/Backend) | Shortcode `[event_ticket_card]`, Form CF7, Hook PHP tạo QR |
-| 5 | **Địa Điểm** | `/dia-diem` | Địa chỉ tổ chức, bản đồ OpenStreetMap, hướng dẫn đi lại | TV5 (Tester/Content) | Iframe OpenStreetMap mã nguồn mở, Hướng dẫn lộ trình bus/metro |
+| 1 | **Trang Chủ** | `/` | Giới thiệu tổng quan, đếm ngược, tin khẩn cấp, điểm nhấn sự kiện | TV2 (phối hợp TV1 Lead Dev) | Shortcode `[event_countdown]`, `[event_alert]`, Hero banner, Bản quyền FOSS |
+| 2 | **Lịch Trình** | `/lich-trinh` | Chi tiết lịch hội thảo theo giờ cho 3 phòng họp song song | TV4 (Frontend 2) | Bảng Timetable 3 Tracks (08:00 - 17:00), Filter theo phòng |
+| 3 | **Diễn Giả** | `/dien-gia` | Danh bạ hồ sơ diễn giả, chủ đề thuyết trình, liên kết mạng xã hội | TV4 (Frontend 2) | Speaker Cards Grid, Modal/Chi tiết tiểu sử chuyên gia |
+| 4 | **Đăng Ký Vé** | `/dang-ky-ve` | Bảng giá các hạng vé, form đặt vé, tự động sinh mã QR gửi email | TV3 (Backend & Plugin) | Shortcode `[event_ticket_card]`, Form CF7, Hook PHP tạo QR & SMTP |
+| 5 | **Địa Điểm** | `/dia-diem` | Địa chỉ tổ chức, bản đồ OpenStreetMap, hướng dẫn đi lại | TV2 (phối hợp TV5 CSDL) | Iframe OpenStreetMap mã nguồn mở, Hướng dẫn lộ trình bus/metro |
 
 ---
 
