@@ -1,0 +1,33 @@
+/*
+Theme Name: Event Child Theme
+Theme URI: https://github.com/your-group/event-website
+Description: Child Theme cho Trang Web Quản Lý Sự Kiện & Hội Nghị Mở 2026 (Open Tech Summit). Kế thừa nền tảng Astra, tùy biến giao diện hiện đại, tối ưu bảo mật.
+Author: Nhom 2 - Mon Ma Nguon Mo
+Author URI: https://github.com/your-group
+Template: astra
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: event-child
+*/
+
+/* ==========================================================================
+   CSS CUSTOM VARIABLES & DESIGN TOKENS CHO CHILD THEME
+   ========================================================================== */
+:root {
+    --ots-primary: #0f172a;       /* Slate 900 */
+    --ots-secondary: #2563eb;     /* Royal Blue */
+    --ots-accent: #06b6d4;        /* Cyan 500 */
+    --ots-success: #10b981;       /* Emerald 500 */
+    --ots-warning: #f59e0b;       /* Amber 500 */
+    --ots-danger: #ef4444;        /* Rose 500 */
+    --ots-bg-light: #f8fafc;      /* Slate 50 */
+    --ots-card-bg: #ffffff;
+    --ots-text-main: #1e293b;
+    --ots-text-muted: #64748b;
+    --ots-border: #e2e8f0;
+    --ots-radius: 12px;
+    --ots-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+/* Kế thừa toàn bộ stylesheet từ Astra Theme và nạp thêm các module con qua functions.php */
