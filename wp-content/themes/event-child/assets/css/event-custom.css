@@ -1,0 +1,237 @@
+/* ==========================================================================
+   TÙY BIẾN GIAO DIỆN HỘI NGHỊ (EVENT CUSTOM STYLES)
+   Lập trình viên phụ trách: TV4 (Frontend UI/UX)
+   ========================================================================== */
+
+/* 1. KHỐI ĐỒNG HỒ ĐẾM NGƯỢC (COUNTDOWN TIMER) */
+.ots-countdown-container {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 36px 24px;
+    margin: 30px auto;
+    max-width: 820px;
+    text-align: center;
+    box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ots-countdown-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+}
+
+.ots-countdown-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ots-cd-box {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    min-width: 85px;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ots-cd-box:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.ots-cd-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #38bdf8;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.ots-cd-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    margin-top: 6px;
+}
+
+.ots-cd-separator {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.ots-cd-expired {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4ade80;
+}
+
+/* 2. HỘP THÔNG BÁO KHẨN CẤP (ALERT BOX) */
+.ots-alert {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-left: 5px solid;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.ots-alert-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+}
+
+.ots-alert-info {
+    background-color: #f0f9ff;
+    border-color: #0284c7;
+    color: #0369a1;
+}
+
+.ots-alert-warning {
+    background-color: #fffbeb;
+    border-color: #d97706;
+    color: #b45309;
+}
+
+.ots-alert-success {
+    background-color: #f0fdf4;
+    border-color: #16a34a;
+    color: #15803d;
+}
+
+.ots-alert-danger {
+    background-color: #fef2f2;
+    border-color: #dc2626;
+    color: #b91c1c;
+}
+
+/* 3. THẺ VÉ HỘI NGHỊ (TICKET CARDS) */
+.ots-ticket-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.25s ease;
+    position: relative;
+    max-width: 320px;
+    margin: 20px auto;
+}
+
+.ots-ticket-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #2563eb;
+}
+
+.ots-ticket-badge {
+    display: inline-block;
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    margin-bottom: 12px;
+}
+
+.ots-ticket-type {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.ots-ticket-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #2563eb;
+    margin: 12px 0;
+}
+
+.ots-ticket-slots {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.ots-btn-register {
+    display: block;
+    background: #2563eb;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.ots-btn-register:hover {
+    background: #1d4ed8;
+}
+
+/* 4. NÚT BACK-TO-TOP TÙY BIẾN */
+#ots-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    background-color: #0f172a;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+    border: none;
+}
+
+#ots-back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#ots-back-to-top:hover {
+    background-color: #2563eb;
+    transform: translateY(-3px);
+}
+
+/* 5. ĐIỀU CHỈNH GIAO DIỆN DI ĐỘNG (RESPONSIVE) */
+@media (max-width: 640px) {
+    .ots-cd-box {
+        min-width: 65px;
+        padding: 10px 8px;
+    }
+    .ots-cd-number {
+        font-size: 1.6rem;
+    }
+    .ots-cd-separator {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+}
