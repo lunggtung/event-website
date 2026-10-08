@@ -6,13 +6,14 @@
 
 ## 👥 Danh Sách Thành Viên & Bảng Phân Công (WBS)
 
-| STT | Họ và Tên | Mã Sinh Viên | Vai trò chính | Nhánh Git phụ trách |
+| STT | Họ và Tên | Mã Sinh Viên | Vai trò & Trách nhiệm chính (Phân chia cân bằng) | Nhánh Git phụ trách |
 | :---: | :--- | :---: | :--- | :--- |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Security:** Quản lý Repo Git, Hardening, chạy WPScan, viết Báo cáo Phần 3 | `feature/hardening-and-docs` |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Core Theme Backend:** Cấu hình Child Theme, `style.css`, nạp scripts trong `functions.php` | `feature/child-theme-core` |
-| 3 | **[Tên TV3]** | [MSV TV3] | **PHP Logic & Secure Code:** Viết Shortcode, xử lý Form sinh mã vé QR, lọc dữ liệu an toàn | `feature/custom-shortcodes` |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI/UX:** Countdown thời gian thực, nút Back-to-top, CSS giao diện sự kiện | `feature/frontend-countdown` |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Data & Báo cáo HĐH:** Soạn Báo cáo Phần 1 (Ubuntu vs Windows 11), lập bảng `LICENSES.md`, xuất Database | `feature/licenses-and-database` |
+| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Security:** Quản lý Repo Git, Hardening, cấu hình `.htaccess`, chạy WPScan, viết Chương 3 Báo cáo | `feature/hardening-and-docs` |
+| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend 1 (Countdown & Map):** Code JS Countdown, CSS Countdown, nhúng Bản đồ địa điểm, soạn Slide & Báo cáo | `feature/countdown-and-map` |
+| 3 | **[Tên TV3]** | [MSV TV3] | **Backend PHP & Secure Code:** Code Shortcode, Form tạo vé QR qua email, cấu hình WP Mail SMTP, viết Báo cáo Code | `feature/custom-shortcodes-and-qr` |
+| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend 2 (Agenda & Speakers):** Code JS Back-to-top, CSS & Dựng trang Lịch trình 3 phòng, 3 Diễn giả, Thiết kế Slide tổng | `feature/agenda-speakers-ui` |
+| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS & CSDL:** Chủ trì viết Chương 1 Báo cáo (Ubuntu vs Win 11 dài 3-5 trang), kiểm kê `LICENSES.md`, xuất CSDL | `feature/licenses-and-database` |
+
 
 ---
 
@@ -27,7 +28,7 @@ Hệ thống được xây dựng trên nền tảng **WordPress (Self-hosted)**
 
 ---
 
-## 🛠️ Hướng Dẫn Cài Đặt & Chạy Dự Án Cục Bộ (Dành Cho Giảng Viên & Nhóm)
+## 🛠️ Hướng Dẫn Cài Đặt & Chạy Dự Án Cục Bộ
 
 Dự án được khuyến nghị chạy trên môi trường **Laragon** (Windows) hoặc **Docker / LocalWP**.
 
