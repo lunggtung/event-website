@@ -1,9 +1,5 @@
 /**
- * Real-time Countdown Timer
- * 
- * Lập trình viên phụ trách: TV4 (Frontend UI/UX)
- * Chức năng: Đếm ngược thời gian thực (Ngày, Giờ, Phút, Giây) đến ngày khai mạc sự kiện.
- * Giấy phép: MIT License
+ * Countdown Timer
  */
 
 document.addEventListener('DOMContentLoaded', function () {
