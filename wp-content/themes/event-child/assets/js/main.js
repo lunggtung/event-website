@@ -1,9 +1,5 @@
 /**
- * Interactive UI Scripts & Back-to-Top
- * 
- * Lập trình viên phụ trách: TV4 (Frontend UI/UX)
- * Chức năng: Xử lý nút cuộn mượt mà lên đầu trang (Back-to-top) và hiệu ứng cuộn trang.
- * Giấy phép: MIT License
+ * UI Scripts & Back to Top
  */
 
 document.addEventListener('DOMContentLoaded', function () {
