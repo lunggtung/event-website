@@ -1,9 +1,8 @@
 /* ==========================================================================
-   TÙY BIẾN GIAO DIỆN HỘI NGHỊ (EVENT CUSTOM STYLES)
-   Lập trình viên phụ trách: TV4 (Frontend UI/UX)
+   Giao diện tùy biến sự kiện (Event Custom Styles)
    ========================================================================== */
 
-/* 1. KHỐI ĐỒNG HỒ ĐẾM NGƯỢC (COUNTDOWN TIMER) */
+/* 1. Đồng hồ đếm ngược (Countdown Timer) */
 .ots-countdown-container {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: #ffffff;
