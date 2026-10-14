@@ -6,11 +6,11 @@
 
 ## 1. MỤC TIÊU VÀ PHẠM VI NGHIỆP VỤ
 
-Tài liệu này đặc tả chi tiết các yêu cầu chức năng cho toàn bộ **6 trang thành phần** thuộc Cổng thông tin Hội nghị Khoa học & Công nghệ Mở 2026. Mỗi trang đảm nhiệm một phân hệ nghiệp vụ độc lập, phục vụ khách tham dự, diễn giả và ban tổ chức hội nghị.
+Tài liệu này đặc tả chi tiết các yêu cầu chức năng cho toàn bộ **5 trang thành phần** thuộc Cổng thông tin Hội nghị Khoa học & Công nghệ Mở 2026. Mỗi trang đảm nhiệm một phân hệ nghiệp vụ độc lập, phục vụ khách tham dự, diễn giả và ban tổ chức hội nghị. Thông tin bản quyền phần mềm mã nguồn mở được thể hiện tại Footer toàn hệ thống.
 
 ---
 
-## 2. ĐẶC TẢ CHI TIẾT 6 TRANG CHỨC NĂNG
+## 2. ĐẶC TẢ CHI TIẾT 5 TRANG CHỨC NĂNG
 
 ### TRANG 1: TRANG CHỦ (HOME PAGE)
 - **Đường dẫn (URL):** `/` (Trang tĩnh chính, thiết lập tại `Settings > Reading > A static page`)
@@ -114,20 +114,10 @@ Tài liệu này đặc tả chi tiết các yêu cầu chức năng cho toàn b
 
 ---
 
-### TRANG 6: GIỚI THIỆU & GIẤY PHÉP BẢN QUYỀN (ABOUT & LICENSES)
-- **Đường dẫn (URL):** `/gioi-thieu`
-- **Mục tiêu:** Tuyên bố sứ mệnh của hội nghị, giới thiệu ban tổ chức, và công khai minh bạch toàn bộ các giấy phép mã nguồn mở (FOSS Licenses) được ứng dụng trong dự án.
-- **Các khối giao diện & Yêu cầu chức năng:**
-  1. **Sứ mệnh & Giá trị cốt lõi (Mission & Vision):**
-     - Thúc đẩy việc nghiên cứu, ứng dụng và phát triển phần mềm mã nguồn mở tại Việt Nam.
-     - Tạo không gian kết nối bình đẳng giữa sinh viên, giảng viên, nhà nghiên cứu và doanh nghiệp công nghệ.
-  2. **Đội ngũ Ban tổ chức & Hội đồng chuyên môn:**
-     - Giới thiệu thành phần Ban Giám hiệu, Khoa CNTT và các nhóm chuyên trách.
-  3. **Bảng đối chiếu Giấy phép Mã Nguồn Mở (FOSS License Compliance):**
-     - Trích xuất và trình bày rõ ràng thông tin từ tệp `LICENSES.md` của dự án:
-       + *WordPress Core:* GNU General Public License v2 (GPLv2).
-       + *Theme cha Astra:* GNU General Public License v2 (GPLv2).
-       + *Child Theme (Mã nguồn Nhóm 2 tùy biến):* GNU General Public License v2 (GPLv2).
-       + *Các thư viện JavaScript/CSS bổ trợ:* Giấy phép MIT / Apache License 2.0.
-       + *Nội dung văn bản và hình ảnh minh họa:* Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
-     - Phân tích quyền và nghĩa vụ theo quy định giấy phép copyleft (đảm bảo tính minh bạch, không giữ độc quyền mã phái sinh).
+### 3. THÔNG TIN BẢN QUYỀN MÃ NGUỒN MỞ & BAN TỔ CHỨC (TÍCH HỢP FOOTER)
+Thay vì tạo riêng một trang giới thiệu độc lập, toàn bộ thông tin về Ban tổ chức và Bảng minh bạch giấy phép bản quyền phần mềm mã nguồn mở (từ tệp `LICENSES.md`) được hiển thị cố định tại **Footer chung toàn trang** và một phân đoạn súc tích trên **Trang Chủ**:
+- **WordPress Core:** GNU General Public License v2 (GPLv2).
+- **Theme cha Astra:** GNU General Public License v2 (GPLv2).
+- **Event Child Theme (Nhóm 2):** GNU General Public License v2 (GPLv2).
+- **Các plugin tích hợp (Contact Form 7, WP Mail SMTP, WPS Hide Login):** GPLv2.
+- **Nội dung & Kỷ yếu hội nghị:** Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
