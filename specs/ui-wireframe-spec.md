@@ -36,12 +36,12 @@ Hệ thống sử dụng bảng màu mang phong cách hiện đại, thanh lịc
 
 ---
 
-## 2. BỐ CỤC WIREFRAME CHI TIẾT 6 TRANG
+## 2. BỐ CỤC WIREFRAME CHI TIẾT 5 TRANG
 
 ### 2.1. HEADER CHUNG & THANH ĐIỀU HƯỚNG TOÀN HỆ THỐNG
 ```text
 +-----------------------------------------------------------------------------------------+
-| [LOGO OTS2026]     [Trang Chủ]  [Lịch Trình]  [Diễn Giả]  [Địa Điểm]  [Giới Thiệu]  [VÉ NGAY] |
+| [LOGO OTS2026]     [Trang Chủ]  [Lịch Trình]  [Diễn Giả]  [Địa Điểm]  [ĐĂNG KÝ VÉ NGAY]     |
 +-----------------------------------------------------------------------------------------+
 ```
 
@@ -162,35 +162,14 @@ Hệ thống sử dụng bảng màu mang phong cách hiện đại, thanh lịc
 
 ---
 
-### 2.7. WIREFRAME TRANG GIỚI THIỆU & GIẤY PHÉP (`/gioi-thieu`)
-```text
-+-----------------------------------------------------------------------------------------+
-|                                SỨ MỆNH & GIÁ TRỊ CỐT LÕI                                |
-|        Lan toả tri thức mở - Kết nối cộng đồng - Minh bạch công nghệ số                 |
-+-----------------------------------------------------------------------------------------+
-|                               BAN TỔ CHỨC HỘI NGHỊ                                      |
-|    Khoa Công Nghệ Thông Tin | Nhóm Nghiên Cứu Phần Mềm Tự Do Nguồn Mở | Đối tác Công nghệ|
-+-----------------------------------------------------------------------------------------+
-|                       BẢNG ĐỐI CHIẾU GIẤY PHÉP MÃ NGUỒN MỞ (FOSS)                       |
-|   Thành phần hệ thống        | Giấy phép áp dụng    | Điều kiện phân phối & Bản quyền   |
-|   WordPress Core             | GNU GPLv2            | Tự do phân phối, mở nguồn kế thừa |
-|   Theme cha Astra            | GNU GPLv2            | Kế thừa GPL, không cài mã độc     |
-|   Event Child Theme (Nhóm 2) | GNU GPLv2            | Tự do cải tiến, tôn trọng tác giả |
-|   Contact Form 7 & Plugins   | GNU GPLv2 / MIT      | Minh bạch thư viện bên thứ 3      |
-|   Tài liệu & Kỷ yếu hội nghị | CC BY-SA 4.0         | Chia sẻ tương đương có ghi nguồn  |
-+-----------------------------------------------------------------------------------------+
-```
-
----
-
-### 2.8. FOOTER CHUNG TOÀN HỆ THỐNG
+### 2.7. FOOTER CHUNG TOÀN HỆ THỐNG (TÍCH HỢP BẢN QUYỀN MÃ NGUỒN MỞ)
 ```text
 +-----------------------------------------------------------------------------------------+
 | [LOGO OTS2026]              [LIÊN KẾT NHANH]            [BẢN QUYỀN & MÃ NGUỒN MỞ]       |
 | Cổng thông tin Hội nghị     - Lịch trình hội nghị       Toàn bộ mã nguồn mở theo giấy   |
 | Khoa học & Công nghệ Mở     - Danh bạ diễn giả          phép GNU GPLv2.                 |
 | Liên hệ: btc@ots2026.vn     - Đăng ký vé tham dự        Thực hiện bởi: Nhóm 2           |
-| Điện thoại: (024) 3888-xxxx - Giấy phép phần mềm        Môn học: Mã Nguồn Mở            |
+| Điện thoại: (024) 3888-xxxx - Địa điểm tổ chức          Môn học: Mã Nguồn Mở            |
 +-----------------------------------------------------------------------------------------+
 | (c) 2026 Open Tech Summit. All rights reserved under GPLv2 & CC BY-SA 4.0.              |
 +-----------------------------------------------------------------------------------------+

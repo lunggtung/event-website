@@ -64,28 +64,26 @@ Hệ thống được thiết kế theo mô hình **Website Đa Trang (Multi-Pag
 
 ## 2. KIẾN TRÚC THÔNG TIN & SITEMAP ĐA TRANG (INFORMATION ARCHITECTURE)
 
-Hệ thống được tổ chức thành 6 trang độc lập, kết nối với nhau qua Menu điều hướng chính (Primary Header Navigation) và Footer liên kết nhanh.
+Hệ thống được tổ chức thành 5 trang độc lập, kết nối với nhau qua Menu điều hướng chính (Primary Header Navigation) và Footer liên kết nhanh. Thông tin bản quyền phần mềm mã nguồn mở và ban tổ chức được tích hợp tại Footer chung toàn hệ thống.
 
 ```text
                                   TRANG CHỦ (/)
                                        │
-        ┌──────────────┬───────────────┼───────────────┬──────────────┐
-        ▼              ▼               ▼               ▼              ▼
-   LỊCH TRÌNH      DIỄN GIẢ        ĐĂNG KÝ VÉ       ĐỊA ĐIỂM      GIỚI THIỆU &
-  (/lich-trinh)   (/dien-gia)     (/dang-ky-ve)    (/dia-diem)      GIẤY PHÉP
-                                                                  (/gioi-thieu)
+        ┌──────────────┬───────────────┴───────────────┬──────────────┐
+        ▼              ▼                               ▼              ▼
+   LỊCH TRÌNH      DIỄN GIẢ                        ĐĂNG KÝ VÉ       ĐỊA ĐIỂM
+  (/lich-trinh)   (/dien-gia)                     (/dang-ky-ve)    (/dia-diem)
 ```
 
-### Bảng phân tích phân cấp trang & vai trò kỹ thuật:
+### Bảng phân tích phân cấp 5 trang & vai trò kỹ thuật:
 
 | STT | Tên Trang | URL Slug | Mục tiêu chính | Phân công phụ trách | Thành phần kỹ thuật chính |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | **Trang Chủ** | `/` | Giới thiệu tổng quan, đếm ngược, tin khẩn cấp, điểm nhấn | TV1 (Lead Dev) | Shortcode `[event_countdown]`, `[event_alert]`, Hero banner |
+| 1 | **Trang Chủ** | `/` | Giới thiệu tổng quan, đếm ngược, tin khẩn cấp, điểm nhấn sự kiện | TV1 (Lead Dev) | Shortcode `[event_countdown]`, `[event_alert]`, Hero banner, Bản quyền FOSS |
 | 2 | **Lịch Trình** | `/lich-trinh` | Chi tiết lịch hội thảo theo giờ cho 3 phòng họp song song | TV2 (Frontend/Content) | Bảng Timetable 3 Tracks (08:00 - 17:00), Filter theo phòng |
 | 3 | **Diễn Giả** | `/dien-gia` | Danh bạ hồ sơ diễn giả, chủ đề thuyết trình, liên kết mạng xã hội | TV3 (Frontend/Content) | Speaker Cards Grid, Modal/Chi tiết tiểu sử chuyên gia |
 | 4 | **Đăng Ký Vé** | `/dang-ky-ve` | Bảng giá các hạng vé, form đặt vé, tự động sinh mã QR gửi email | TV4 (Plugin/Backend) | Shortcode `[event_ticket_card]`, Form CF7, Hook PHP tạo QR |
 | 5 | **Địa Điểm** | `/dia-diem` | Địa chỉ tổ chức, bản đồ OpenStreetMap, hướng dẫn đi lại | TV5 (Tester/Content) | Iframe OpenStreetMap mã nguồn mở, Hướng dẫn lộ trình bus/metro |
-| 6 | **Giới Thiệu** | `/gioi-thieu` | Tôn chỉ hội nghị, đội ngũ tổ chức, Bảng minh bạch giấy phép FOSS | Cả nhóm phối hợp | Bảng đối chiếu bản quyền FOSS (GPL, MIT, Apache) từ LICENSES.md |
 
 ---
 
