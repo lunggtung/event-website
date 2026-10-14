@@ -45,6 +45,9 @@ Desktop.ini
 
 # 7. Cho phép theo dõi các thư mục quan trọng nộp bài
 !database/
+!database/**
+!specs/
+!specs/**
 !README.md
 !LICENSES.md
 
@@ -58,3 +61,7 @@ docs/
 ai/
 *.tmp
 *.docx
+*credentials*
+*.secret*
+*.local*
+.env*
