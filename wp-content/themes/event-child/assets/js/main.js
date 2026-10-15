@@ -1,5 +1,8 @@
 /**
- * UI Scripts & Back to Top
+ * UI Scripts & Tương tác giao diện người dùng
+ * Dự án: Hội nghị Khoa học & Công nghệ Mở 2026
+ *
+ * @package Event_Child_Theme
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -47,4 +50,55 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // 5. XỬ LÝ CHUYỂN TAB NGÀY TRONG TRANG LỊCH TRÌNH
+    const scheduleTabs = document.querySelectorAll('.event-tab-btn');
+    if (scheduleTabs.length > 0) {
+        scheduleTabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                const targetDay = this.getAttribute('data-day');
+
+                // Bỏ trạng thái active của các tabs khác
+                scheduleTabs.forEach(function (t) { t.classList.remove('active'); });
+                this.classList.add('active');
+
+                // Ẩn/hiện nội dung panel tương ứng
+                const allPanels = document.querySelectorAll('.event-schedule-day-panel');
+                allPanels.forEach(function (panel) {
+                    panel.style.display = 'none';
+                    panel.classList.remove('active');
+                });
+
+                const activePanel = document.getElementById(targetDay);
+                if (activePanel) {
+                    activePanel.style.display = 'block';
+                    activePanel.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // 6. XỬ LÝ BỘ LỌC CHỦ ĐỀ TRANG DIỄN GIẢ
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const speakerCards = document.querySelectorAll('.event-speaker-card');
+
+    if (filterButtons.length > 0 && speakerCards.length > 0) {
+        filterButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const filter = this.getAttribute('data-filter');
+
+                filterButtons.forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                speakerCards.forEach(function (card) {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
