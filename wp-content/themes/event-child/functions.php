@@ -15,11 +15,19 @@ define( 'EVENT_CHILD_VERSION', '1.0.0' );
  * 1. Nạp Stylesheet & Script
  */
 function event_child_enqueue_scripts() {
+    // Nạp Phông chữ Công Nghệ (Plus Jakarta Sans & JetBrains Mono)
+    wp_enqueue_style(
+        'event-tech-fonts',
+        'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
+        array(),
+        null
+    );
+
     // CSS Theme Cha (Astra)
     wp_enqueue_style(
         'astra-parent-theme-css',
         get_template_directory_uri() . '/style.css',
-        array(),
+        array( 'event-tech-fonts' ),
         EVENT_CHILD_VERSION
     );
 
