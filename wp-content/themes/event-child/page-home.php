@@ -69,32 +69,50 @@ get_header();
                 </div>
             </div>
 
-            <!-- Terminal Code Box Display (Vibe Công Nghệ Cực Mạnh) -->
-            <div class="tech-terminal-box">
-                <div class="terminal-header">
-                    <div class="terminal-dots">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                    </div>
-                    <span class="terminal-title">bash &mdash; ots2026-connect &bull; 80&times;24</span>
+            <!-- Summit Executive Overview Card (Phong cách chuyên nghiệp chuẩn Vietnam Tech Summit) -->
+            <div class="summit-highlight-card">
+                <div class="summit-card-header">
+                    <span class="summit-card-kicker">TỔNG QUAN HỘI NGHỊ</span>
+                    <span class="summit-card-status"><span class="status-dot"></span> Đang Mở Đăng Ký</span>
                 </div>
-                <div class="terminal-body">
-                    <div class="cli-line"><span class="cli-prompt">developer@server:~$</span> <span class="cli-cmd">curl -s https://ots2026.vn/api/summit-status</span></div>
-                    <div class="cli-output json-output">
-{
-  <span class="json-key">"status"</span>: <span class="json-str">"ACTIVE_REGISTRATION"</span>,
-  <span class="json-key">"event"</span>: <span class="json-str">"Open Tech Summit 2026"</span>,
-  <span class="json-key">"date"</span>: <span class="json-str">"2026-11-20T08:00:00+07:00"</span>,
-  <span class="json-key">"venue"</span>: <span class="json-str">"National Convention Center Hanoi"</span>,
-  <span class="json-key">"tracks"</span>: [<span class="json-str">"Open-AI"</span>, <span class="json-str">"Linux-Cloud"</span>, <span class="json-str">"Cyber-Security"</span>],
-  <span class="json-key">"license"</span>: <span class="json-str">"GNU General Public License v2"</span>,
-  <span class="json-key">"tickets_left"</span>: <span class="json-num">482</span>
-}
+                <h3 class="summit-card-title">3 Ngày Trọng Điểm &bull; 20+ Phiên Chuyên Đề</h3>
+                <div class="summit-tracks-preview">
+                    <div class="track-mini-item">
+                        <div class="track-mini-icon track-icon-ai">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <div class="track-mini-text">
+                            <strong>Hội Trường A: Trí Tuệ Nhân Tạo &amp; Dữ Liệu Mở</strong>
+                            <span>OpenLLMs, LangChain, RAG cục bộ &amp; Open Weights</span>
+                        </div>
                     </div>
-                    <div class="cli-line"><span class="cli-prompt">developer@server:~$</span> <span class="cli-cmd">ots-cli ticket --register --tier=Standard</span></div>
-                    <div class="cli-output success-text">[OK] Verified GPL compliance. Ticket ID generated: OTS2026-DEMO</div>
-                    <div class="cli-line"><span class="cli-prompt">developer@server:~$</span> <span class="cli-cursor">_</span></div>
+                    <div class="track-mini-item">
+                        <div class="track-mini-icon track-icon-cloud">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                        </div>
+                        <div class="track-mini-text">
+                            <strong>Phòng B: Điện Toán Đám Mây &amp; Nhân Linux</strong>
+                            <span>Kubernetes Microservices, Ceph Storage &amp; Proxmox</span>
+                        </div>
+                    </div>
+                    <div class="track-mini-item">
+                        <div class="track-mini-icon track-icon-security">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="track-mini-text">
+                            <strong>Phòng C: An Toàn Thông Tin &amp; Bản Quyền GPL</strong>
+                            <span>Rà quét WPScan, Hardening máy chủ &amp; Giấy phép FOSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="summit-card-footer">
+                    <div class="summit-stat-mini">
+                        <span class="stat-mini-num">1.500+</span>
+                        <span class="stat-mini-label">Đại biểu xác nhận</span>
+                    </div>
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-card-register">
+                        Nhận Vé 0đ (Mã QR) &rarr;
+                    </a>
                 </div>
             </div>
         </div>
