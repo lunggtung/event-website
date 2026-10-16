@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'EVENT_CHILD_VERSION', '1.0.0' );
+define( 'EVENT_CHILD_VERSION', '2.3.0' );
 
 /**
  * 1. Nạp Stylesheet & Script
