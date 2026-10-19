@@ -38,16 +38,14 @@ get_header();
             <!-- Speaker 1 -->
             <div class="event-speaker-card" data-category="security">
                 <div class="speaker-avatar-wrapper">
-                    <div class="speaker-avatar-placeholder avatar-1">
-                        <span class="avatar-initials">NA</span>
-                    </div>
+                    <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-nguyen-van-a.jpg' ); ?>" alt="GS. Nguyễn Văn A" class="speaker-avatar-img">
                     <span class="speaker-badge">KEYNOTE SPEAKER</span>
                 </div>
                 <div class="speaker-info">
-                    <h3 class="speaker-name">GS. Nguyễn Văn A</h3>
+                    <h3 class="speaker-name">GS. Nguyễn Văn A <span class="speaker-degree">Ph.D</span></h3>
                     <div class="speaker-title">Viện Trưởng &bull; Viện An Toàn Thông Tin &amp; Hệ Thống Mở</div>
                     <div class="speaker-topic">
-                        <strong>Chủ đề tham luận:</strong><br>
+                        <strong>Chủ đề tham luận:</strong>
                         "Chiến Lược Phòng Thủ Chiều Sâu &amp; Rà Quét Lỗ Hổng Cho Nền Tảng Mã Nguồn Mở"
                     </div>
                     <p class="speaker-bio">
@@ -63,16 +61,14 @@ get_header();
             <!-- Speaker 2 -->
             <div class="event-speaker-card" data-category="cloud">
                 <div class="speaker-avatar-wrapper">
-                    <div class="speaker-avatar-placeholder avatar-2">
-                        <span class="avatar-initials">TB</span>
-                    </div>
+                    <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-tran-thi-b.jpg' ); ?>" alt="ThS. Trần Thị B" class="speaker-avatar-img">
                     <span class="speaker-badge badge-blue">CHUYÊN GIA FOSS</span>
                 </div>
                 <div class="speaker-info">
-                    <h3 class="speaker-name">ThS. Trần Thị B</h3>
+                    <h3 class="speaker-name">ThS. Trần Thị B <span class="speaker-degree">M.Sc</span></h3>
                     <div class="speaker-title">Kiến Trúc Sư Trưởng &bull; Hiệp Hội Phần Mềm Tự Do Nguồn Mở</div>
                     <div class="speaker-topic">
-                        <strong>Chủ đề tham luận:</strong><br>
+                        <strong>Chủ đề tham luận:</strong>
                         "Kiến Trúc Nhân Linux Monolithic &amp; Pháp Lý Giấy Phép Bản Quyền Copyleft GPL"
                     </div>
                     <p class="speaker-bio">
@@ -88,16 +84,14 @@ get_header();
             <!-- Speaker 3 -->
             <div class="event-speaker-card" data-category="ai">
                 <div class="speaker-avatar-wrapper">
-                    <div class="speaker-avatar-placeholder avatar-3">
-                        <span class="avatar-initials">LC</span>
-                    </div>
+                    <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-le-van-c.jpg' ); ?>" alt="KS. Lê Văn C" class="speaker-avatar-img">
                     <span class="speaker-badge badge-green">KỸ SƯ HỆ THỐNG</span>
                 </div>
                 <div class="speaker-info">
-                    <h3 class="speaker-name">KS. Lê Văn C</h3>
+                    <h3 class="speaker-name">KS. Lê Văn C <span class="speaker-degree">Eng.</span></h3>
                     <div class="speaker-title">Kỹ Sư Trưởng AI &amp; Cloud &bull; Open Cloud Infrastructure</div>
                     <div class="speaker-topic">
-                        <strong>Chủ đề tham luận:</strong><br>
+                        <strong>Chủ đề tham luận:</strong>
                         "Triển Khai Mô Hình Ngôn Ngữ Lớn Nguồn Mở Tự Trị Trên Cụm Kubernetes"
                     </div>
                     <p class="speaker-bio">
