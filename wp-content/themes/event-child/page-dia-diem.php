@@ -61,10 +61,10 @@ get_header();
                 <span class="map-source-tag">Nền tảng Mã Nguồn Mở &bull; OpenStreetMap</span>
             </div>
             <div class="map-responsive-container">
-                <!-- Nhúng OpenStreetMap Iframe mã nguồn mở chuẩn toạ độ NCC Hà Nội -->
+                <!-- Bản đồ vị trí Trung tâm Hội nghị Quốc gia Hà Nội -->
                 <iframe 
-                    title="Bản đồ Trung tâm Hội nghị Quốc gia Hà Nội trên OpenStreetMap"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=105.7800%2C21.0000%2C105.7980%2C21.0120&amp;layer=mapnik&amp;marker=21.0062%2C105.7891" 
+                    title="Bản đồ Trung tâm Hội nghị Quốc gia Hà Nội"
+                    src="https://maps.google.com/maps?q=Trung+t%C3%A2m+H%E1%BB%99i+ngh%E1%BB%8B+Qu%E1%BB%91c+gia+H%C3%A0+N%E1%BB%99i&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
                     loading="lazy" 
                     class="event-osm-iframe">
                 </iframe>
