@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Trang Chủ Sự Kiện
- * Description: Mẫu giao diện chuyên trang chính thức chuẩn công nghệ cao cho Open Tech Summit 2026
+ * Description: Giao diện chuyên trang chính thức chuẩn quốc tế cho Hội Nghị Khoa Học & Công Nghệ Mở 2026 (Open Tech Summit 2026)
  *
  * @package Event_Child_Theme
  */
@@ -14,285 +14,192 @@ get_header();
 ?>
 
 <main id="primary" class="site-main event-page event-page-home">
-    <!-- 1. LIVE TECH ANNOUNCEMENT TICKER -->
-    <div class="tech-ticker-bar">
-        <div class="event-container ticker-inner">
-            <span class="ticker-badge"><span class="pulse-indicator"></span> TRỰC TUYẾN</span>
-            <span class="ticker-text">Cổng đăng ký vé đại biểu <strong>Open Tech Summit 2026</strong> đã chính thức mở. Hội nghị diễn ra từ ngày 20 &ndash; 22/11/2026 tại NCC Hà Nội.</span>
-            <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="ticker-link">Đăng ký giữ chỗ &rarr;</a>
+    <!-- 1. HERO BANNER CINEMATIC -->
+    <section class="summit-hero">
+        <div class="summit-hero-bg">
+            <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/hero-bg.jpg' ); ?>" alt="Hội Trường Hội Nghị Quốc Gia" class="hero-bg-img">
+            <div class="hero-overlay"></div>
         </div>
-    </div>
 
-    <!-- 2. HERO BANNER SECTION (TECH GRID MATRIX BACKGROUND) -->
-    <section class="tech-hero-section">
-        <div class="tech-grid-overlay"></div>
-        <div class="event-container tech-hero-container">
-            <div class="tech-hero-content">
-                <div class="hero-top-tag">
-                    <svg class="tech-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span>HỘI NGHỊ KHOA HỌC &amp; CÔNG NGHỆ THƯỜNG NIÊN 2026</span>
+        <div class="event-container hero-inner">
+            <div class="hero-content">
+                <div class="hero-status-pill">
+                    <span class="pulse-dot"></span>
+                    <span>CỔNG ĐĂNG KÝ VÉ ĐẠI BIỂU ĐANG MỞ &bull; VÉ MIỄN PHÍ 0Đ (GPL)</span>
                 </div>
 
-                <h1 class="tech-hero-title">
+                <h1 class="hero-title">
                     Hội Nghị Khoa Học &amp;<br>
                     <span class="gradient-text">Công Nghệ Mở 2026</span>
                 </h1>
 
-                <p class="tech-hero-lead">
-                    Định hình tương lai số với <strong>Nền tảng Mã Nguồn Mở</strong>, <strong>Trí Tuệ Nhân Tạo Tự Chủ</strong> và <strong>Hạ Tầng Đám Mây Độc Lập</strong>. Nơi hội tụ hơn 1.500 chuyên gia, kỹ sư và nhà nghiên cứu công nghệ hàng đầu Việt Nam.
+                <p class="hero-lead">
+                    Định hình tương lai số với <strong>Nền tảng Mã Nguồn Mở</strong>, <strong>Trí Tuệ Nhân Tạo Tự Chủ</strong> và <strong>Hạ Tầng Đám Mây Độc Lập</strong>. Nơi quy tụ hơn 1.500 kỹ sư, nhà khoa học và chuyên gia công nghệ hàng đầu Việt Nam.
                 </p>
 
-                <div class="tech-hero-info-pills">
-                    <div class="info-pill">
-                        <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        <span><strong>Thời gian:</strong> 20 &ndash; 22 Tháng 11, 2026</span>
+                <div class="hero-meta-bar">
+                    <div class="meta-item">
+                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <div>
+                            <span class="meta-label">THỜI GIAN</span>
+                            <span class="meta-val">20 &ndash; 22 Tháng 11, 2026</span>
+                        </div>
                     </div>
-                    <div class="info-pill">
-                        <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        <span><strong>Địa điểm:</strong> Trung tâm Hội nghị Quốc gia, Hà Nội</span>
+                    <div class="meta-item">
+                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <div>
+                            <span class="meta-label">ĐỊA ĐIỂM</span>
+                            <span class="meta-val">Trung tâm Hội nghị Quốc gia, Hà Nội</span>
+                        </div>
                     </div>
-                    <div class="info-pill">
-                        <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        <span><strong>Tiêu chuẩn:</strong> 100% Mã Nguồn Mở GPLv2</span>
+                    <div class="meta-item">
+                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <div>
+                            <span class="meta-label">TIÊU CHUẨN</span>
+                            <span class="meta-val">100% Nguồn Mở GPLv2</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tech-hero-actions">
-                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-glow-accent">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                        Đăng Ký Nhận Vé Điện Tử (Mã QR)
+                <div class="hero-actions">
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-brand-cta">
+                        <span>Đăng Ký Nhận Vé Điện Tử (0đ QR) &rarr;</span>
                     </a>
-                    <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="btn-glass-primary">
-                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-                        Khám Phá Lịch Trình 3 Phòng
+                    <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="btn-glass-outline">
+                        <span>Khám Phá Lịch Trình 3 Phòng</span>
                     </a>
                 </div>
-            </div>
 
-            <!-- Summit Executive Overview Card (Phong cách chuyên nghiệp chuẩn Vietnam Tech Summit) -->
-            <div class="summit-highlight-card">
-                <div class="summit-card-header">
-                    <span class="summit-card-kicker">TỔNG QUAN HỘI NGHỊ</span>
-                    <span class="summit-card-status"><span class="status-dot"></span> Đang Mở Đăng Ký</span>
-                </div>
-                <h3 class="summit-card-title">3 Ngày Trọng Điểm &bull; 20+ Phiên Chuyên Đề</h3>
-                <div class="summit-tracks-preview">
-                    <div class="track-mini-item">
-                        <div class="track-mini-icon track-icon-ai">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                        <div class="track-mini-text">
-                            <strong>Hội Trường A: Trí Tuệ Nhân Tạo &amp; Dữ Liệu Mở</strong>
-                            <span>OpenLLMs, LangChain, RAG cục bộ &amp; Open Weights</span>
-                        </div>
-                    </div>
-                    <div class="track-mini-item">
-                        <div class="track-mini-icon track-icon-cloud">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
-                        </div>
-                        <div class="track-mini-text">
-                            <strong>Phòng B: Điện Toán Đám Mây &amp; Nhân Linux</strong>
-                            <span>Kubernetes Microservices, Ceph Storage &amp; Proxmox</span>
-                        </div>
-                    </div>
-                    <div class="track-mini-item">
-                        <div class="track-mini-icon track-icon-security">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <div class="track-mini-text">
-                            <strong>Phòng C: An Toàn Thông Tin &amp; Bản Quyền GPL</strong>
-                            <span>Rà quét WPScan, Hardening máy chủ &amp; Giấy phép FOSS</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="summit-card-footer">
-                    <div class="summit-stat-mini">
-                        <span class="stat-mini-num">1.500+</span>
-                        <span class="stat-mini-label">Đại biểu xác nhận</span>
-                    </div>
-                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-card-register">
-                        Nhận Vé 0đ (Mã QR) &rarr;
-                    </a>
+                <!-- Live Countdown Container -->
+                <div class="hero-countdown-wrap">
+                    <?php echo do_shortcode( '[event_countdown target="2026-11-20T08:00:00" title="THỜI GIAN ĐẾM NGƯỢC ĐẾN LỄ KHAI MẠC (20/11/2026)"]' ); ?>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. LIVE COUNTDOWN & URGENT ALERT -->
-    <section class="tech-countdown-section">
+    <!-- 2. THE SUMMIT OVERVIEW & KEY METRICS -->
+    <section class="section-summit-overview">
         <div class="event-container">
-            <div class="countdown-card-glass">
-                <div class="countdown-header-area">
-                    <div class="countdown-badge-live">
-                        <span class="pulse-dot-green"></span>
-                        THỜI GIAN THỰC
-                    </div>
-                    <h2 class="countdown-heading">Thời Gian Đếm Ngược Đến Lễ Khai Mạc Hội Nghị</h2>
-                    <p class="countdown-caption">Sự kiện sẽ chính thức bắt đầu vào lúc 08:00 sáng Thứ Sáu, ngày 20/11/2026 tại Hội trường Lớn A.</p>
-                </div>
-
-                <?php
-                echo do_shortcode( '[event_countdown date="2026-11-20 08:00:00" title=""]' );
-                ?>
-
-                <div class="countdown-urgent-alert">
-                    <div class="alert-icon-wrap">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                    </div>
-                    <div class="alert-content-wrap">
-                        <strong>Lưu ý quan trọng dành cho đại biểu:</strong> Cổng đăng ký vé Sinh viên (0 VNĐ) có số lượng giới hạn 500 suất. Hệ thống sẽ tự động đóng cổng đăng ký khi đủ số lượng để đảm bảo chất lượng tiếp đón và kỷ yếu.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. KEY METRICS STATS BANNER -->
-    <section class="tech-metrics-section">
-        <div class="event-container">
-            <div class="metrics-card-grid">
-                <div class="metric-box">
-                    <div class="metric-num">03</div>
-                    <div class="metric-title">Ngày Hội Thảo &amp; Lab</div>
-                    <div class="metric-sub">Từ 20/11 đến 22/11/2026</div>
-                </div>
-                <div class="metric-box">
-                    <div class="metric-num">30+</div>
-                    <div class="metric-title">Diễn Giả Đầu Ngành</div>
-                    <div class="metric-sub">Giáo sư, Tiến sĩ, Kỹ sư trưởng</div>
-                </div>
-                <div class="metric-box">
-                    <div class="metric-num">1.500+</div>
-                    <div class="metric-title">Khách Tham Dự</div>
-                    <div class="metric-sub">Đại biểu doanh nghiệp &amp; Sinh viên</div>
-                </div>
-                <div class="metric-box">
-                    <div class="metric-num">20+</div>
-                    <div class="metric-title">Phiên Chuyên Đề</div>
-                    <div class="metric-sub">Song song tại 3 Hội trường</div>
-                </div>
-                <div class="metric-box">
-                    <div class="metric-num">100%</div>
-                    <div class="metric-title">Mã Nguồn Mở</div>
-                    <div class="metric-sub">Chuẩn GNU GPLv2 &amp; MIT</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. 3 CHUYÊN ĐỀ TRỌNG ĐIỂM (THE 3 CORE TECH TRACKS) -->
-    <section class="tech-tracks-section">
-        <div class="event-container">
-            <div class="tech-section-header">
-                <span class="section-tag">CHƯƠNG TRÌNH NỘI DUNG</span>
-                <h2 class="section-main-title">3 Phân Hệ Hội Thảo Song Song</h2>
-                <p class="section-lead-desc">
-                    Thiết kế dành riêng cho các kỹ sư, nhà khoa học dữ liệu, quản trị viên hệ thống và sinh viên ngành CNTT.
+            <div class="overview-header">
+                <span class="section-kicker">THE SUMMIT 2026</span>
+                <h2 class="section-title">Quy Tụ Hệ Sinh Thái Công Nghệ &amp; Mã Nguồn Mở Lớn Nhất Năm</h2>
+                <p class="section-desc">
+                    Hội Nghị Khoa Học &amp; Công Nghệ Mở 2026 là diễn đàn học thuật và thực chiến chuyên sâu, nơi các công nghệ tiên tiến nhất được mổ xẻ và trình diễn trực tiếp nhằm thúc đẩy tự chủ công nghệ số quốc gia.
                 </p>
             </div>
 
-            <div class="tracks-cards-grid">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">1.500+</div>
+                    <div class="metric-label">KHÁCH THAM DỰ</div>
+                    <div class="metric-caption">Đại biểu doanh nghiệp, chuyên gia &amp; sinh viên</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">30+</div>
+                    <div class="metric-label">DIỄN GIẢ &amp; CHUYÊN GIA</div>
+                    <div class="metric-caption">Giáo sư, Tiến sĩ, Kỹ sư trưởng hệ thống lớn</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">03</div>
+                    <div class="metric-label">HỘI TRƯỜNG SONG SONG</div>
+                    <div class="metric-caption">Hội trường A, Phòng B, Phòng C liên tục 3 ngày</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">100%</div>
+                    <div class="metric-label">MÃ NGUỒN MỞ</div>
+                    <div class="metric-caption">Chuẩn giấy phép tự do GNU GPLv2 &amp; MIT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. THE 3 CORE TECH TRACKS -->
+    <section class="section-summit-tracks">
+        <div class="event-container">
+            <div class="section-header-center">
+                <span class="section-kicker">CHƯƠNG TRÌNH HỘI NGHỊ</span>
+                <h2 class="section-title">3 Phân Hệ Báo Cáo Chuyên Sâu Song Song</h2>
+                <p class="section-desc">
+                    Thiết kế dành riêng cho các kỹ sư phần mềm, nhà khoa học dữ liệu, quản trị viên hệ thống và sinh viên ngành CNTT.
+                </p>
+            </div>
+
+            <div class="tracks-grid">
                 <!-- Track 1 -->
-                <div class="track-card-tech track-ai">
-                    <div class="track-card-header">
-                        <span class="track-hall-badge hall-a">HỘI TRƯỜNG A</span>
-                        <div class="track-tech-tags">
-                            <span class="tech-chip">OpenLLM</span>
-                            <span class="tech-chip">PyTorch</span>
-                            <span class="tech-chip">RAG</span>
+                <div class="track-card track-card-ai">
+                    <div class="track-top">
+                        <span class="hall-badge hall-a">HỘI TRƯỜNG A</span>
+                        <div class="track-chips">
+                            <span>OpenLLM</span>
+                            <span>PyTorch</span>
+                            <span>RAG</span>
                         </div>
                     </div>
-                    <h3 class="track-card-title">Trí Tuệ Nhân Tạo &amp; Dữ Liệu Mở</h3>
-                    <p class="track-card-desc">
+                    <h3 class="track-title">Trí Tuệ Nhân Tạo &amp; Dữ Liệu Mở</h3>
+                    <p class="track-desc">
                         Nghiên cứu các mô hình ngôn ngữ lớn nguồn mở (Llama, Mistral), tối ưu hóa suy luận (Inference) trên máy chủ nội bộ và đạo đức bảo vệ dữ liệu.
                     </p>
-                    <div class="track-highlights-list">
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Xây dựng trợ lý AI cục bộ với Ollama &amp; LangChain</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Bản quyền dữ liệu huấn luyện &amp; Giấy phép Open Weights</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Keynote: Tương lai Trí tuệ Nhân tạo Tự chủ</span>
-                        </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-explore-link">
-                            Xem lịch trình Hội trường A &rarr;
+                    <ul class="track-points">
+                        <li>Xây dựng trợ lý AI cục bộ với Ollama &amp; LangChain</li>
+                        <li>Bản quyền dữ liệu huấn luyện &amp; Giấy phép Open Weights</li>
+                        <li>Keynote: Tương lai Trí tuệ Nhân tạo Tự chủ</li>
+                    </ul>
+                    <div class="track-link-wrap">
+                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-link">
+                            Xem Lịch Trình Hội Trường A &rarr;
                         </a>
                     </div>
                 </div>
 
                 <!-- Track 2 -->
-                <div class="track-card-tech track-cloud">
-                    <div class="track-card-header">
-                        <span class="track-hall-badge hall-b">PHÒNG HỘI THẢO B</span>
-                        <div class="track-tech-tags">
-                            <span class="tech-chip">Linux 6.x</span>
-                            <span class="tech-chip">Kubernetes</span>
-                            <span class="tech-chip">DevOps</span>
+                <div class="track-card track-card-cloud">
+                    <div class="track-top">
+                        <span class="hall-badge hall-b">PHÒNG HỘI THẢO B</span>
+                        <div class="track-chips">
+                            <span>Linux 6.x</span>
+                            <span>Kubernetes</span>
+                            <span>DevOps</span>
                         </div>
                     </div>
-                    <h3 class="track-card-title">Điện Toán Đám Mây &amp; Nhân Linux</h3>
-                    <p class="track-card-desc">
+                    <h3 class="track-title">Điện Toán Đám Mây &amp; Nhân Linux</h3>
+                    <p class="track-desc">
                         Chuyên sâu về kiến trúc nhân Linux Monolithic, quản trị tài nguyên POSIX, ảo hóa hạ tầng với Proxmox và tự động hóa điều phối cụm Kubernetes.
                     </p>
-                    <div class="track-highlights-list">
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Phân tích hiệu năng Linux Kernel vs Hybrid Windows 11</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Triển khai cụm microservices khả năng tự phục hồi (Self-healing)</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Lưu trữ phân tán Ceph Storage &amp; OpenStack</span>
-                        </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-explore-link">
-                            Xem lịch trình Phòng B &rarr;
+                    <ul class="track-points">
+                        <li>Phân tích hiệu năng Linux Kernel vs Hybrid Windows 11</li>
+                        <li>Triển khai cụm microservices khả năng tự phục hồi</li>
+                        <li>Lưu trữ phân tán Ceph Storage &amp; OpenStack</li>
+                    </ul>
+                    <div class="track-link-wrap">
+                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-link">
+                            Xem Lịch Trình Phòng B &rarr;
                         </a>
                     </div>
                 </div>
 
                 <!-- Track 3 -->
-                <div class="track-card-tech track-security">
-                    <div class="track-card-header">
-                        <span class="track-hall-badge hall-c">PHÒNG HỘI THẢO C</span>
-                        <div class="track-tech-tags">
-                            <span class="tech-chip">WPScan</span>
-                            <span class="tech-chip">Hardening</span>
-                            <span class="tech-chip">GPLv2</span>
+                <div class="track-card track-card-security">
+                    <div class="track-top">
+                        <span class="hall-badge hall-c">PHÒNG HỘI THẢO C</span>
+                        <div class="track-chips">
+                            <span>WPScan</span>
+                            <span>Hardening</span>
+                            <span>GPLv2</span>
                         </div>
                     </div>
-                    <h3 class="track-card-title">An Toàn Thông Tin &amp; Tuân Thủ FOSS</h3>
-                    <p class="track-card-desc">
+                    <h3 class="track-title">An Toàn Thông Tin &amp; Tuân Thủ FOSS</h3>
+                    <p class="track-desc">
                         Kỹ thuật phòng thủ chiều sâu, rà soát mã độc, kiểm toán bảo mật ứng dụng với WPScan, và quản trị bản quyền phần mềm nguồn mở trong chuyển đổi số.
                     </p>
-                    <div class="track-highlights-list">
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Thực hành kỹ thuật rà quét lỗ hổng với công cụ WPScan</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Gia cố máy chủ Web: Chặn XML-RPC, ẩn phiên bản, đổi URL</span>
-                        </div>
-                        <div class="highlight-row">
-                            <svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>Bảo vệ quyền sở hữu trí tuệ và giấy phép Copyleft</span>
-                        </div>
-                    </div>
-                    <div class="track-card-footer">
-                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-explore-link">
-                            Xem lịch trình Phòng C &rarr;
+                    <ul class="track-points">
+                        <li>Thực hành kỹ thuật rà quét lỗ hổng với công cụ WPScan</li>
+                        <li>Gia cố máy chủ Web: Chặn XML-RPC, ẩn phiên bản, đổi URL</li>
+                        <li>Bảo vệ quyền sở hữu trí tuệ và giấy phép Copyleft</li>
+                    </ul>
+                    <div class="track-link-wrap">
+                        <a href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>" class="track-link">
+                            Xem Lịch Trình Phòng C &rarr;
                         </a>
                     </div>
                 </div>
@@ -300,98 +207,177 @@ get_header();
         </div>
     </section>
 
-    <!-- 6. WHY ATTEND / GIÁ TRỊ CỐT LÕI (PROMOTIONAL SECTION) -->
-    <section class="tech-value-section">
+    <!-- 4. FEATURED KEYNOTE SPEAKERS (CHUẨN VIETNAM TECH SUMMIT) -->
+    <section class="section-featured-speakers">
         <div class="event-container">
-            <div class="value-box-glass">
-                <div class="value-content-col">
-                    <span class="value-subtitle">VÌ SAO BẠN NÊN THAM DỰ?</span>
-                    <h2 class="value-main-title">Kết Nối Với Hệ Sinh Thái Mã Nguồn Mở Lớn Nhất Năm</h2>
-                    <p class="value-paragraph">
-                        Hội Nghị Khoa Học &amp; Công Nghệ Mở 2026 không chỉ là một sự kiện lý thuyết, mà là một không gian học thuật thực chiến, nơi các công nghệ tiên tiến nhất được mổ xẻ và trình diễn trực tiếp:
-                    </p>
-                    <div class="value-perks-grid">
-                        <div class="perk-item">
-                            <div class="perk-icon-wrap">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                            </div>
-                            <div class="perk-text">
-                                <h4>Giao Lưu Trực Tiếp Cùng Chuyên Gia</h4>
-                                <p>Cơ hội đối thoại 1-1 với các Giáo sư đầu ngành và các Kỹ sư trưởng hệ thống lớn.</p>
-                            </div>
-                        </div>
-                        <div class="perk-item">
-                            <div class="perk-icon-wrap">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                            </div>
-                            <div class="perk-text">
-                                <h4>Kỷ Yếu Khoa Học Chuẩn ISBN</h4>
-                                <p>Nhận trọn bộ tài liệu số hóa và kỷ yếu in ấn phục vụ học tập, nghiên cứu.</p>
-                            </div>
-                        </div>
-                        <div class="perk-item">
-                            <div class="perk-icon-wrap">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                            <div class="perk-text">
-                                <h4>Chứng Nhận Điện Tử Xác Thực</h4>
-                                <p>Được cấp Giấy Chứng Nhận tham dự hội nghị khoa học có mã QR định danh.</p>
-                            </div>
-                        </div>
-                        <div class="perk-item">
-                            <div class="perk-icon-wrap">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                            </div>
-                            <div class="perk-text">
-                                <h4>Tiệc Trà &amp; Networking Lunch</h4>
-                                <p>Không gian kết nối mở rộng mạng lưới quan hệ công việc và học bổng nghiên cứu.</p>
-                            </div>
-                        </div>
+            <div class="section-header-center">
+                <span class="section-kicker">DIỄN GIẢ &amp; CHUYÊN GIA ĐẦU NGÀNH</span>
+                <h2 class="section-title">Gặp Gỡ Các Diễn Giả Khách Mời</h2>
+                <p class="section-desc">
+                    Các nhà khoa học, kiến trúc sư trưởng và chuyên gia công nghệ định hình tương lai mã nguồn mở tại Việt Nam.
+                </p>
+            </div>
+
+            <div class="speakers-grid">
+                <!-- Speaker 1 -->
+                <div class="summit-speaker-card">
+                    <div class="speaker-cover">
+                        <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-nguyen-van-a.jpg' ); ?>" alt="GS. Nguyễn Văn A" class="speaker-img">
+                        <span class="speaker-role-tag tag-keynote">KEYNOTE SPEAKER</span>
+                    </div>
+                    <div class="speaker-details">
+                        <h3 class="speaker-fullname">GS. Nguyễn Văn A <span class="degree-pill">Ph.D</span></h3>
+                        <span class="speaker-organization">Viện Trưởng &bull; Viện An Toàn Thông Tin</span>
+                        <p class="speaker-talk-title">"Chiến Lược Phòng Thủ Chiều Sâu &amp; Rà Quét Lỗ Hổng Cho Nền Tảng Mã Nguồn Mở"</p>
+                        <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>" class="speaker-bio-link">Xem Hồ Sơ Chi Tiết &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Speaker 2 -->
+                <div class="summit-speaker-card">
+                    <div class="speaker-cover">
+                        <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-tran-thi-b.jpg' ); ?>" alt="ThS. Trần Thị B" class="speaker-img">
+                        <span class="speaker-role-tag tag-foss">CHUYÊN GIA FOSS</span>
+                    </div>
+                    <div class="speaker-details">
+                        <h3 class="speaker-fullname">ThS. Trần Thị B <span class="degree-pill">M.Sc</span></h3>
+                        <span class="speaker-organization">Kiến Trúc Sư Trưởng &bull; Hiệp Hội VFOSSA</span>
+                        <p class="speaker-talk-title">"Kiến Trúc Nhân Linux Monolithic &amp; Pháp Lý Giấy Phép Bản Quyền Copyleft GPL"</p>
+                        <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>" class="speaker-bio-link">Xem Hồ Sơ Chi Tiết &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="summit-speaker-card">
+                    <div class="speaker-cover">
+                        <img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/speaker-le-van-c.jpg' ); ?>" alt="KS. Lê Văn C" class="speaker-img">
+                        <span class="speaker-role-tag tag-cloud">AI &amp; CLOUD LEAD</span>
+                    </div>
+                    <div class="speaker-details">
+                        <h3 class="speaker-fullname">KS. Lê Văn C <span class="degree-pill">Eng.</span></h3>
+                        <span class="speaker-organization">Kỹ Sư Trưởng &bull; Open Cloud Infrastructure</span>
+                        <p class="speaker-talk-title">"Triển Khai Mô Hình Ngôn Ngữ Lớn Nguồn Mở Tự Trị Trên Cụm Kubernetes"</p>
+                        <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>" class="speaker-bio-link">Xem Hồ Sơ Chi Tiết &rarr;</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 7. FOSS ECOSYSTEM PARTNERS SECTION -->
-    <section class="tech-partners-section">
-        <div class="event-container">
-            <div class="partners-header">
-                <span class="partners-subtitle">HỆ SINH THÁI ĐỒNG HÀNH</span>
-                <h3 class="partners-title">Các Cộng Đồng &amp; Tổ Chức Mã Nguồn Mở</h3>
-            </div>
-            <div class="partners-logo-grid">
-                <div class="partner-badge-card">
-                    <span class="partner-org">VFOSSA</span>
-                    <span class="partner-desc">Hiệp Hội Phần Mềm Tự Do Nguồn Mở</span>
-                </div>
-                <div class="partner-badge-card">
-                    <span class="partner-org">LINUX FOUNDATION</span>
-                    <span class="partner-desc">Cộng Đồng Nhân Linux Việt Nam</span>
-                </div>
-                <div class="partner-badge-card">
-                    <span class="partner-org">WORDPRESS.ORG</span>
-                    <span class="partner-desc">Cộng Đồng WordPress Mở GPLv2</span>
-                </div>
-                <div class="partner-badge-card">
-                    <span class="partner-org">PYTHON VIETNAM</span>
-                    <span class="partner-desc">Cộng Đồng AI &amp; Khoa Học Dữ Liệu</span>
-                </div>
+            <div class="section-bottom-action">
+                <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>" class="btn-glass-outline">
+                    <span>Xem Toàn Bộ Danh Sách Diễn Giả &rarr;</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 8. FINAL BOTTOM CTA BANNER -->
-    <section class="tech-bottom-cta">
+    <!-- 5. TICKET PASSES PREVIEW -->
+    <section class="section-summit-passes">
         <div class="event-container">
-            <div class="cta-inner-card">
-                <div class="cta-text-side">
-                    <h2 class="cta-heading">Sẵn Sàng Tham Gia Cùng Chúng Tôi?</h2>
-                    <p class="cta-subheading">Đăng ký giữ chỗ ngay hôm nay để nhận vé điện tử có mã QR check-in qua hòm thư điện tử của bạn.</p>
+            <div class="section-header-center">
+                <span class="section-kicker">THAM GIA HỘI NGHỊ</span>
+                <h2 class="section-title">Lựa Chọn Hạng Vé Phù Hợp Với Bạn</h2>
+                <p class="section-desc">
+                    Hội nghị áp dụng chính sách vé mở và tài trợ 100% chi phí cho các đại biểu đủ điều kiện học thuật.
+                </p>
+            </div>
+
+            <div class="passes-grid">
+                <!-- Pass 1 -->
+                <div class="pass-card">
+                    <div class="pass-kicker">ƯU ĐÃI HỌC THUẬT</div>
+                    <h3 class="pass-title">Vé Sinh Viên</h3>
+                    <div class="pass-price">0 <span class="currency">VNĐ</span></div>
+                    <p class="pass-desc">Dành riêng cho học sinh, sinh viên các trường Đại học &amp; Cao đẳng khối ngành CNTT.</p>
+                    <ul class="pass-features">
+                        <li>Tham dự toàn bộ 3 phòng hội thảo trong 3 ngày</li>
+                        <li>Cấp mã QR điện tử check-in qua email</li>
+                        <li>Bộ tài liệu slide tóm tắt hội thảo dạng PDF</li>
+                        <li>Yêu cầu xuất trình thẻ sinh viên tại cửa kiểm soát</li>
+                    </ul>
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-pass-select">
+                        Đăng Ký Vé Sinh Viên &rarr;
+                    </a>
                 </div>
-                <div class="cta-btn-side">
-                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-glow-accent btn-large">
-                        Đăng Ký Nhận Vé Ngay
+
+                <!-- Pass 2 (Featured) -->
+                <div class="pass-card pass-featured">
+                    <div class="pass-badge-popular">PHỔ BIẾN NHẤT</div>
+                    <div class="pass-kicker">CHUẨN MÃ NGUỒN MỞ</div>
+                    <h3 class="pass-title">Vé Tiêu Chuẩn (FOSS)</h3>
+                    <div class="pass-price">Miễn Phí <span class="currency">(GPL)</span></div>
+                    <p class="pass-desc">Dành cho kỹ sư phần mềm, nhà nghiên cứu, quản trị viên hệ thống và doanh nghiệp.</p>
+                    <ul class="pass-features">
+                        <li>Toàn quyền tham dự 3 phòng chuyên đề trong 3 ngày</li>
+                        <li>Trọn bộ Kỷ yếu số hóa đầy đủ các bài báo cáo khoa học</li>
+                        <li>Cấp Giấy Chứng Nhận tham dự hội nghị điện tử có mã QR</li>
+                        <li>Tiệc trà Teabreak giao lưu giữa các phiên thảo luận</li>
+                    </ul>
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-brand-cta w-full">
+                        Đăng Ký Vé Tiêu Chuẩn &rarr;
+                    </a>
+                </div>
+
+                <!-- Pass 3 -->
+                <div class="pass-card">
+                    <div class="pass-kicker">TOÀN QUYỀN VIP</div>
+                    <h3 class="pass-title">Vé Khách Mời VIP</h3>
+                    <div class="pass-price">Đặc Biệt <span class="currency">Pass</span></div>
+                    <p class="pass-desc">Dành cho lãnh đạo doanh nghiệp, đại diện viện nghiên cứu và diễn giả khách mời.</p>
+                    <ul class="pass-features">
+                        <li>Toàn bộ quyền lợi của Vé Tiêu Chuẩn</li>
+                        <li>Hàng ghế danh dự hàng đầu tại Hội Trường Lớn A</li>
+                        <li>Tham dự Tiệc trưa Networking Lunch cùng dàn diễn giả</li>
+                        <li>Nhận Kỷ yếu in ấn đóng bìa cứng có chỉ số ISBN</li>
+                    </ul>
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-pass-select">
+                        Đăng Ký Vé VIP &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOSS ECOSYSTEM PARTNERS -->
+    <section class="section-summit-partners">
+        <div class="event-container">
+            <div class="section-header-center">
+                <span class="section-kicker">HỆ SINH THÁI ĐỒNG HÀNH</span>
+                <h3 class="section-title">Các Tổ Chức &amp; Cộng Đồng Mã Nguồn Mở</h3>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-org-name">VFOSSA</div>
+                    <div class="partner-org-desc">Hiệp Hội Phần Mềm Tự Do Nguồn Mở</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-org-name">LINUX FOUNDATION</div>
+                    <div class="partner-org-desc">Cộng Đồng Nhân Linux Việt Nam</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-org-name">WORDPRESS.ORG</div>
+                    <div class="partner-org-desc">Cộng Đồng WordPress Mở GPLv2</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-org-name">PYTHON VIETNAM</div>
+                    <div class="partner-org-desc">Cộng Đồng AI &amp; Khoa Học Dữ Liệu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FINAL BOTTOM CTA BANNER -->
+    <section class="section-final-cta">
+        <div class="event-container">
+            <div class="final-cta-card">
+                <div class="final-cta-text">
+                    <h2 class="final-cta-title">Sẵn Sàng Định Hình Tương Lai Công Nghệ Mở?</h2>
+                    <p class="final-cta-sub">
+                        Cổng đăng ký vé điện tử hoàn toàn miễn phí. Đăng ký ngay hôm nay để nhận thẻ đại biểu và mã QR check-in qua hòm thư điện tử.
+                    </p>
+                </div>
+                <div class="final-cta-action">
+                    <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="btn-brand-cta btn-large">
+                        <span>Đăng Ký Nhận Vé Điện Tử Ngay &rarr;</span>
                     </a>
                 </div>
             </div>
