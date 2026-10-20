@@ -1,64 +1,64 @@
 <?php
-/**
- * Ticket Registration & QR Code Generation Module
- *
- * @package Event_Child_Theme
- */
+/** Local QR generation and ticket email. */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-/**
- * Tự động tạo mã vé và chèn mã QR vào email xác nhận khi khách gửi Contact Form 7
- */
-function event_child_attach_qr_to_email( $components, $form, $mail ) {
-    $submission = WPCF7_Submission::get_instance();
-
-    if ( $submission ) {
-        $posted_data = $submission->get_posted_data();
-
-        // Lọc dữ liệu đầu vào
-        $attendee_name  = isset( $posted_data['your-name'] ) ? sanitize_text_field( $posted_data['your-name'] ) : 'Quý khách';
-        $attendee_email = isset( $posted_data['your-email'] ) ? sanitize_email( $posted_data['your-email'] ) : '';
-        $ticket_type    = isset( $posted_data['ticket-type'] ) ? sanitize_text_field( $posted_data['ticket-type'] ) : 'Vé Tiêu Chuẩn';
-
-        // 2. SINH MÃ VÉ ĐỊNH DANH DUY NHẤT (UNIQUE TICKET CODE)
-        // Cấu trúc mã: OTS2026-XXXXXX (Ví dụ: OTS2026-A8F3K9)
-        $random_hash = strtoupper( wp_generate_password( 6, false, false ) );
-        $ticket_id   = 'OTS2026-' . $random_hash;
-
-        // 3. TẠO DỮ LIỆU CHỨA TRONG MÃ QR (QR PAYLOAD)
-        // Chuỗi dữ liệu để máy quét tại bàn check-in đọc được
-        $qr_payload = sprintf(
-            "EVENT: Open Tech Summit 2026\nTICKET_ID: %s\nNAME: %s\nTYPE: %s\nDATE: 20-11-2026",
-            $ticket_id,
-            $attendee_name,
-            $ticket_type
-        );
-
-        // Tạo đường dẫn ảnh QR Code kích thước 250x250 (Sử dụng chuẩn QR Code mã nguồn mở)
-        $qr_api_url = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' . rawurlencode( $qr_payload );
-
-        // 4. TẠO KHỐI NỘI DUNG VÉ ĐIỆN TỬ CHÈN VÀO EMAIL
-        $ticket_html  = "\n\n------------------------------------------------------------\n";
-        $ticket_html .= "🎉 CHÚC MỪNG BẠN ĐÃ ĐĂNG KÝ VÉ THÀNH CÔNG!\n";
-        $ticket_html .= "HỘI NGHỊ KHOA HỌC & CÔNG NGHỆ MỞ 2026 (OPEN TECH SUMMIT)\n";
-        $ticket_html .= "------------------------------------------------------------\n";
-        $ticket_html .= "• Mã số vé: " . esc_html( $ticket_id ) . "\n";
-        $ticket_html .= "• Họ và tên: " . esc_html( $attendee_name ) . "\n";
-        $ticket_html .= "• Loại vé: " . esc_html( $ticket_type ) . "\n";
-        $ticket_html .= "• Thời gian: 08:00 - 17:00, Ngày 20/11/2026\n";
-        $ticket_html .= "• Địa điểm: Trung tâm Hội nghị Quốc gia, Hà Nội\n\n";
-        $ticket_html .= "📌 MÃ QR CHECK-IN CỦA BẠN:\n";
-        $ticket_html .= "Vui lòng mở liên kết sau để xuất trình mã QR tại bàn tiếp tân:\n";
-        $ticket_html .= esc_url( $qr_api_url ) . "\n";
-        $ticket_html .= "------------------------------------------------------------\n";
-
-        // Gộp nội dung vé vào phần thân email gửi cho khách
-        $components['body'] .= $ticket_html;
+function event_child_ticket_qr_png( $code ) {
+    if ( ! preg_match( '/^OTS2026-[A-F0-9]{12}$/', $code ) ) { return new WP_Error( 'qr_code', 'Mã vé không hợp lệ.' ); }
+    $autoload = __DIR__ . '/qr/vendor/autoload.php';
+    if ( ! file_exists( $autoload ) ) { return new WP_Error( 'qr_library', 'Thư viện QR chưa sẵn sàng.' ); }
+    require_once $autoload;
+    try {
+        $qr = new \Endroid\QrCode\QrCode( $code );
+        $qr->setSize( 360 );
+        $qr->setMargin( 24 );
+        return ( new \Endroid\QrCode\Writer\PngWriter() )->write( $qr )->getString();
+    } catch ( \Throwable $exception ) {
+        return new WP_Error( 'qr_render', 'Chưa thể tạo mã QR.' );
     }
-
-    return $components;
 }
-add_filter( 'wpcf7_mail_components', 'event_child_attach_qr_to_email', 10, 3 );
+
+function event_child_mail_is_local() {
+    $settings = get_option( 'event_child_smtp', array() );
+    $host = (string) ( $settings['host'] ?? '' );
+    if ( $host !== '' ) { return in_array( strtolower( $host ), array( 'localhost', '127.0.0.1', '::1' ), true ); }
+    return stripos( (string) ini_get( 'sendmail_path' ), 'mailpit' ) !== false || in_array( ini_get( 'SMTP' ), array( 'localhost', '127.0.0.1' ), true );
+}
+
+function event_child_send_ticket( $id ) {
+    $ticket = event_child_get_ticket( $id );
+    if ( ! $ticket ) { return new WP_Error( 'ticket_missing', 'Không tìm thấy vé.' ); }
+    $png = event_child_ticket_qr_png( $ticket['ticket_code'] );
+    if ( is_wp_error( $png ) ) { return $png; }
+    $file = wp_tempnam( $ticket['ticket_code'] . '.png' );
+    if ( ! $file || file_put_contents( $file, $png ) === false ) { return new WP_Error( 'ticket_file', 'Chưa thể tạo tệp vé.' ); }
+    $types = event_child_ticket_types();
+    $tier = $types[ $ticket['tier'] ]['label'] ?? $ticket['tier'];
+    $event = event_child_event_data();
+    $subject = 'Vé tham dự Open Tech Summit 2026 — ' . $ticket['ticket_code'];
+    $body = '<!doctype html><html lang="vi"><body style="margin:0;background:#f5f3ed;font-family:Arial,sans-serif;color:#20231f"><div style="max-width:580px;margin:32px auto;background:#fff;padding:36px;border-top:5px solid #b9472b">';
+    $body .= '<p style="font-size:12px;letter-spacing:2px">OPEN TECH SUMMIT / 2026</p><h1 style="font-size:28px">Vé tham dự của bạn</h1>';
+    $body .= '<p>Chào ' . esc_html( $ticket['attendee_name'] ) . ',</p><p>Thông tin đăng ký của bạn đã được lưu. Ảnh QR được đính kèm trong thư này.</p>';
+    $body .= '<p><strong>Mã vé:</strong> ' . esc_html( $ticket['ticket_code'] ) . '<br><strong>Hạng vé:</strong> ' . esc_html( $tier ) . '<br><strong>Thời gian:</strong> 20–22/11/2026<br><strong>Địa điểm:</strong> ' . esc_html( $event['venue'] ) . '</p>';
+    $body .= '<p>Vui lòng lưu ảnh QR để xuất trình khi đến. Giữ riêng mã vé và không chia sẻ công khai.</p><hr style="border:0;border-top:1px solid #ddd"><p style="font-size:12px;color:#666">Đây là vé minh họa cho website thực hành Open Tech Summit 2026, không phải vé của một sự kiện thương mại.</p></div></body></html>';
+    $sent = wp_mail( $ticket['email'], $subject, $body, array( 'Content-Type: text/html; charset=UTF-8' ), array( $file ) );
+    wp_delete_file( $file );
+    $status = $sent ? ( event_child_mail_is_local() ? 'local' : 'sent' ) : 'failed';
+    global $wpdb;
+    $wpdb->update( event_child_ticket_table(), array( 'mail_status' => $status, 'sent_at' => $sent ? current_time( 'mysql', true ) : null ), array( 'id' => (int) $id ), array( '%s', '%s' ), array( '%d' ) );
+    return $sent ? $status : new WP_Error( 'mail_failed', 'Vé đã được lưu nhưng email chưa gửi được.' );
+}
+
+function event_child_configure_smtp( $mailer ) {
+    $settings = get_option( 'event_child_smtp', array() );
+    if ( empty( $settings['host'] ) ) { return; }
+    $mailer->isSMTP();
+    $mailer->Host = $settings['host'];
+    $mailer->Port = absint( $settings['port'] ?? 587 );
+    $mailer->SMTPSecure = $settings['encryption'] ?? 'tls';
+    $mailer->SMTPAuth = ! empty( $settings['username'] );
+    $mailer->Username = $settings['username'] ?? '';
+    $mailer->Password = function_exists( 'event_child_decrypt_smtp_password' ) ? event_child_decrypt_smtp_password( $settings['password'] ?? '' ) : '';
+    $mailer->Timeout = 15;
+    if ( ! empty( $settings['from'] ) ) { $mailer->setFrom( $settings['from'], 'Open Tech Summit 2026', false ); }
+}
+add_action( 'phpmailer_init', 'event_child_configure_smtp', 20 );
