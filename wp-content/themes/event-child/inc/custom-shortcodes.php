@@ -64,6 +64,7 @@ function event_child_countdown_shortcode( $atts ) {
         array(
             'title'  => 'Thời Gian Đếm Ngược Đến Khai Mạc',
             'target' => '2026-11-20T08:00:00',
+            'date'   => '',
         ),
         $atts,
         'event_countdown'
@@ -71,7 +72,8 @@ function event_child_countdown_shortcode( $atts ) {
 
     // Lọc dữ liệu đầu vào
     $clean_title  = sanitize_text_field( $raw_atts['title'] );
-    $clean_target = sanitize_text_field( $raw_atts['target'] );
+    $raw_target   = ! empty( $raw_atts['date'] ) ? $raw_atts['date'] : $raw_atts['target'];
+    $clean_target = str_replace( ' ', 'T', sanitize_text_field( $raw_target ) );
 
     // Xử lý dữ liệu an toàn
     $safe_title  = esc_html( $clean_title );
