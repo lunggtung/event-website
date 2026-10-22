@@ -1,179 +1,47 @@
 <?php
 /**
  * Template Name: Lịch Trình Hội Nghị
- * Description: Mẫu giao diện thời gian biểu 3 phòng họp song song từ 08:00 đến 17:00
- *
  * @package Event_Child_Theme
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$days = event_child_schedule();
+$speakers = event_child_speakers();
+$room_keys = array( 'Hội trường A' => 'hall-a', 'Phòng B' => 'room-b', 'Phòng C' => 'room-c', 'Sảnh chung' => 'common' );
 get_header();
 ?>
-
-<main id="primary" class="site-main event-page event-page-schedule">
-    <!-- Page Header Banner -->
-    <section class="event-page-header">
-        <div class="event-container">
-            <h1 class="event-page-title">Lịch Trình Hội Nghị Chi Tiết</h1>
-            <p class="event-page-subtitle">
-                Chương trình 3 ngày hội nghị với hơn 20 phiên báo cáo chuyên sâu tại 3 phòng hội thảo song song.
-            </p>
+<main id="primary" class="summit-main summit-schedule-page">
+    <section class="summit-page-heading"><div class="summit-container"><p class="summit-eyebrow">Open Tech Summit 2026 / 20–22.11</p><h1>Chương trình hội nghị</h1><p class="summit-page-lead">Báo cáo, workshop và thảo luận trong ba ngày. Chọn ngày và lọc phòng để tìm phiên phù hợp; các phiên cùng giờ diễn ra song song.</p><p class="summit-page-note">Chương trình minh họa · Giờ Việt Nam (UTC+7)</p></div></section>
+    <section class="summit-section summit-schedule-content"><div class="summit-container">
+        <div class="summit-day-tabs" role="tablist" aria-label="Ngày hội nghị">
+            <?php foreach ( $days as $day_id => $day ) : $selected = 'day-1' === $day_id; ?>
+                <button class="summit-day-tab<?php echo $selected ? ' is-active' : ''; ?>" id="tab-<?php echo esc_attr( $day_id ); ?>" type="button" role="tab" aria-controls="<?php echo esc_attr( $day_id ); ?>" aria-selected="<?php echo $selected ? 'true' : 'false'; ?>" tabindex="<?php echo $selected ? '0' : '-1'; ?>" data-day="<?php echo esc_attr( $day_id ); ?>"><span><?php echo esc_html( $day['label'] ); ?></span><strong><?php echo esc_html( $day['date'] ); ?></strong><small><?php echo esc_html( $day['title'] ); ?></small></button>
+            <?php endforeach; ?>
         </div>
-    </section>
-
-    <div class="event-container event-main-content">
-        <!-- Day Selection Tabs -->
-        <div class="event-schedule-tabs">
-            <button class="event-tab-btn active" data-day="day-1">
-                <span class="tab-day">NGÀY 01</span>
-                <span class="tab-date">20/11/2026 &bull; Khai Mạc &amp; Toàn Thể</span>
-            </button>
-            <button class="event-tab-btn" data-day="day-2">
-                <span class="tab-day">NGÀY 02</span>
-                <span class="tab-date">21/11/2026 &bull; Chuyên Đề Kỹ Thuật</span>
-            </button>
-            <button class="event-tab-btn" data-day="day-3">
-                <span class="tab-day">NGÀY 03</span>
-                <span class="tab-date">22/11/2026 &bull; Tọa Đàm &amp; Bế Mạc</span>
-            </button>
+        <div class="summit-room-filters" aria-label="Lọc theo phòng">
+            <span>Xem theo phòng</span>
+            <button class="summit-filter-button is-active" type="button" data-room-filter="all" aria-pressed="true">Tất cả</button>
+            <button class="summit-filter-button" type="button" data-room-filter="hall-a" aria-pressed="false">Hội trường A</button>
+            <button class="summit-filter-button" type="button" data-room-filter="room-b" aria-pressed="false">Phòng B</button>
+            <button class="summit-filter-button" type="button" data-room-filter="room-c" aria-pressed="false">Phòng C</button>
         </div>
-
-        <!-- Room Legend / Track Indicators -->
-        <div class="event-room-legend">
-            <div class="legend-item"><span class="legend-badge badge-room-a"></span> Hội Trường A (Keynotes &amp; Toàn thể)</div>
-            <div class="legend-item"><span class="legend-badge badge-room-b"></span> Phòng B (Cloud, DevOps &amp; Linux)</div>
-            <div class="legend-item"><span class="legend-badge badge-room-c"></span> Phòng C (AI, Bảo Mật &amp; FOSS Edu)</div>
-        </div>
-
-        <!-- Day 1 Schedule Content -->
-        <div id="day-1" class="event-schedule-day-panel active">
-            <div class="event-timetable">
-                <!-- 08:00 - 09:00 -->
-                <div class="timetable-row highlight-row">
-                    <div class="time-col">08:00 &ndash; 09:00</div>
-                    <div class="session-col full-width">
-                        <div class="session-title">Đón Tiếp Đại Biểu, Check-in Mã QR &amp; Phát Kỷ Yếu Hội Nghị</div>
-                        <div class="session-meta">Khu vực Tiền sảnh Đại hội &bull; Ban Tổ Chức đón tiếp</div>
-                    </div>
+        <?php foreach ( $days as $day_id => $day ) : ?>
+            <section id="<?php echo esc_attr( $day_id ); ?>" class="summit-day-panel<?php echo 'day-1' === $day_id ? ' is-active' : ''; ?>" data-day-panel role="tabpanel" aria-labelledby="tab-<?php echo esc_attr( $day_id ); ?>" tabindex="0">
+                <div class="summit-schedule-day-heading"><div><p class="summit-eyebrow"><?php echo esc_html( $day['date'] ); ?></p><h2><?php echo esc_html( $day['title'] ); ?></h2></div><span><?php echo esc_html( 'day-3' === $day_id ? '08:00–12:00' : '08:00–17:00' ); ?></span></div>
+                <div class="summit-schedule-labels" aria-hidden="true"><span>Thời gian</span><span>Không gian</span><span>Nội dung phiên</span></div>
+                <div class="summit-session-list">
+                    <?php foreach ( $day['sessions'] as $session ) : ?>
+                        <article class="summit-session" id="<?php echo esc_attr( $session['id'] ); ?>" data-room="<?php echo esc_attr( $room_keys[ $session['room'] ] ); ?>">
+                            <div class="summit-session-time"><?php echo esc_html( $session['time'] ); ?></div>
+                            <div class="summit-session-room"><span class="summit-room-label is-<?php echo esc_attr( $room_keys[ $session['room'] ] ); ?>"><?php echo esc_html( $session['room'] ); ?></span></div>
+                            <div class="summit-session-body"><h3><?php echo esc_html( $session['title'] ); ?></h3><p><?php echo esc_html( $session['description'] ); ?></p>
+                                <?php if ( isset( $speakers[ $session['speaker'] ] ) ) : ?><a class="summit-session-speaker" href="<?php echo esc_url( home_url( '/dien-gia/' ) . '#' . $session['speaker'] ); ?>"><?php echo esc_html( $speakers[ $session['speaker'] ]['name'] ); ?> <span aria-hidden="true">↗</span></a><?php else : ?><span class="summit-session-speaker">Phiên chung</span><?php endif; ?>
+                            </div>
+                        </article>
+                    <?php endforeach; ?>
                 </div>
-
-                <!-- 09:00 - 10:30 -->
-                <div class="timetable-row">
-                    <div class="time-col">09:00 &ndash; 10:30</div>
-                    <div class="session-col room-a">
-                        <span class="room-tag tag-a">Hội Trường A</span>
-                        <div class="session-title">Phiên Toàn Thể: Xu Hướng Phát Triển Mã Nguồn Mở &amp; AI Toàn Cầu</div>
-                        <div class="session-speaker">Báo cáo viên: <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>">GS. Nguyễn Văn A</a> (Viện Công Nghệ)</div>
-                        <p class="session-desc">Định hướng chiến lược nguồn mở trong hạ tầng số quốc gia và các thách thức về bảo mật.</p>
-                    </div>
-                    <div class="session-col room-b">
-                        <span class="room-tag tag-b">Phòng B</span>
-                        <div class="session-title">Kiến Trúc Nhân Linux Hiện Đại &amp; Quản Trị Module Động</div>
-                        <div class="session-speaker">Báo cáo viên: <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>">ThS. Trần Thị B</a> (FOSS Specialist)</div>
-                        <p class="session-desc">So sánh nhân Monolithic vs Hybrid Kernel và cơ chế phân quyền POSIX UGO.</p>
-                    </div>
-                    <div class="session-col room-c">
-                        <span class="room-tag tag-c">Phòng C</span>
-                        <div class="session-title">Mô Hình Ngôn Ngữ Lớn Nguồn Mở: Triển Khai Thực Tế</div>
-                        <div class="session-speaker">Báo cáo viên: <a href="<?php echo esc_url( home_url( '/dien-gia/' ) ); ?>">KS. Lê Văn C</a> (AI Architect)</div>
-                        <p class="session-desc">Xây dựng hệ thống RAG và LLMs cục bộ không phụ thuộc dịch vụ đám mây đóng.</p>
-                    </div>
-                </div>
-
-                <!-- 10:30 - 12:00 -->
-                <div class="timetable-row">
-                    <div class="time-col">10:30 &ndash; 12:00</div>
-                    <div class="session-col room-a">
-                        <span class="room-tag tag-a">Hội Trường A</span>
-                        <div class="session-title">Toạ Đàm: Giấy Phép Bản Quyền Phần Mềm (GPLv2, MIT, Apache)</div>
-                        <div class="session-speaker">Điều phối: Ban Chuyên Môn Bản Quyền FOSS</div>
-                        <p class="session-desc">Phân tích tính kế thừa Copyleft, bảo vệ quyền tác giả và nghĩa vụ công khai mã nguồn.</p>
-                    </div>
-                    <div class="session-col room-b">
-                        <span class="room-tag tag-b">Phòng B</span>
-                        <div class="session-title">Thực Hành Container Hóa Ứng Dụng Với Docker &amp; Kubernetes</div>
-                        <div class="session-speaker">Báo cáo viên: Đội ngũ Kỹ sư DevOps</div>
-                        <p class="session-desc">Triển khai cụm microservices an toàn, tự động cân bằng tải và giám sát tài nguyên.</p>
-                    </div>
-                    <div class="session-col room-c">
-                        <span class="room-tag tag-c">Phòng C</span>
-                        <div class="session-title">Gia Cố Bảo Mật Máy Chủ Web &amp; Chống Tấn Công Dò Quét</div>
-                        <div class="session-speaker">Báo cáo viên: Chuyên gia An toàn thông tin</div>
-                        <p class="session-desc">Kỹ thuật chặn XML-RPC, ẩn phiên bản CMS và rà quét lỗ hổng với công cụ WPScan.</p>
-                    </div>
-                </div>
-
-                <!-- 12:00 - 13:30 -->
-                <div class="timetable-row highlight-row">
-                    <div class="time-col">12:00 &ndash; 13:30</div>
-                    <div class="session-col full-width">
-                        <div class="session-title">Nghỉ Trưa &amp; Tiệc Giao Lưu Mạng Lưới (Networking Lunch)</div>
-                        <div class="session-meta">Nhà hàng Trung tâm Hội nghị Quốc gia &bull; Dành cho đại biểu có vé VIP và vé Tiêu chuẩn</div>
-                    </div>
-                </div>
-
-                <!-- 13:30 - 15:00 -->
-                <div class="timetable-row">
-                    <div class="time-col">13:30 &ndash; 15:00</div>
-                    <div class="session-col room-a">
-                        <span class="room-tag tag-a">Hội Trường A</span>
-                        <div class="session-title">Diễn Đàn Chuyển Đổi Số Giáo Dục Dựa Trên Nền Tảng Mở</div>
-                        <div class="session-speaker">Báo cáo viên: Đại diện các Trường Đại học khối CNTT</div>
-                        <p class="session-desc">Chia sẻ kinh nghiệm đưa hệ điều hành Linux và phần mềm tự do vào giảng dạy.</p>
-                    </div>
-                    <div class="session-col room-b">
-                        <span class="room-tag tag-b">Phòng B</span>
-                        <div class="session-title">Hạ Tầng Điện Toán Đám Mây Mở: OpenStack &amp; Ceph Storage</div>
-                        <div class="session-speaker">Báo cáo viên: Kỹ sư Hạ tầng Đám mây</div>
-                        <p class="session-desc">Tự chủ hạ tầng lưu trữ phân tán, tiết kiệm chi phí bản quyền doanh nghiệp.</p>
-                    </div>
-                    <div class="session-col room-c">
-                        <span class="room-tag tag-c">Phòng C</span>
-                        <div class="session-title">Thực Hành Lập Trình An Toàn: Lọc Dữ Liệu &amp; Chống Tấn Công XSS/SQLi</div>
-                        <div class="session-speaker">Báo cáo viên: Chuyên gia Phát triển Phần mềm An toàn</div>
-                        <p class="session-desc">Áp dụng nguyên tắc Sanitize Input, Escape Output trong kiến trúc Child Theme.</p>
-                    </div>
-                </div>
-
-                <!-- 15:00 - 17:00 -->
-                <div class="timetable-row">
-                    <div class="time-col">15:00 &ndash; 17:00</div>
-                    <div class="session-col full-width">
-                        <div class="session-title">Phiên Thảo Luận Bàn Tròn: Hỏi Đáp Với Các Chuyên Gia &amp; Tổng Kết Ngày 1</div>
-                        <div class="session-meta">Hội Trường Lớn A &bull; Toàn thể diễn giả và khách tham dự tham gia trực tiếp</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Day 2 & 3 Placeholder Panels -->
-        <div id="day-2" class="event-schedule-day-panel" style="display: none;">
-            <div class="event-alert-box">
-                <p><strong>Chương trình Ngày 02 (21/11/2026):</strong> Tập trung vào các buổi Workshop thực hành chuyên sâu (Hands-on Labs) và Hackathon Mã Nguồn Mở. Chi tiết khung giờ sẽ được cập nhật đồng bộ trước ngày khai mạc 1 tuần.</p>
-            </div>
-        </div>
-
-        <div id="day-3" class="event-schedule-day-panel" style="display: none;">
-            <div class="event-alert-box">
-                <p><strong>Chương trình Ngày 03 (22/11/2026):</strong> Tọa đàm bàn tròn lãnh đạo công nghệ, Trao giải thưởng Dự án Mã Nguồn Mở Xuất Sắc 2026 và Lễ Bế Mạc Hội Nghị.</p>
-            </div>
-        </div>
-
-        <!-- Bottom CTA -->
-        <div class="event-schedule-cta">
-            <div class="cta-box">
-                <h3>Bạn Đã Chọn Được Phiên Hội Thảo Phù Hợp?</h3>
-                <p>Đăng ký nhận vé điện tử ngay hôm nay để nhận mã QR tham dự và giữ chỗ trong hội trường.</p>
-                <a href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>" class="event-btn event-btn-accent">
-                    Đăng Ký Vé Ngay Bây Giờ
-                </a>
-            </div>
-        </div>
-    </div>
+            </section>
+        <?php endforeach; ?>
+        <div class="summit-schedule-note"><p><strong>Chuẩn bị cho workshop</strong><br>Mang laptop và bộ sạc nếu bạn dự định tham gia thực hành. Không cần tham dự liên tục tất cả các phiên.</p><a class="summit-button is-outline" href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>">Đăng ký tham dự <span aria-hidden="true">↗</span></a></div>
+    </div></section>
 </main>
-
-<?php
-get_footer();
+<?php get_footer(); ?>
