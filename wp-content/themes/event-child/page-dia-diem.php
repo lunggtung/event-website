@@ -1,124 +1,34 @@
 <?php
 /**
- * Template Name: Địa Điểm & Bản Đồ
- * Description: Mẫu giao diện thông tin địa điểm tổ chức và nhúng bản đồ OpenStreetMap
- *
+ * Template Name: Địa Điểm Hội Nghị
  * @package Event_Child_Theme
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$event = event_child_event_data();
 get_header();
 ?>
-
-<main id="primary" class="site-main event-page event-page-venue">
-    <!-- Page Header Banner -->
-    <section class="event-page-header">
-        <div class="event-container">
-            <h1 class="event-page-title">Địa Điểm Tổ Chức &amp; Bản Đồ Chỉ Dẫn</h1>
-            <p class="event-page-subtitle">
-                Trung tâm Hội nghị Quốc gia Hà Nội (NCC) &mdash; Cơ sở vật chất đẳng cấp quốc tế, thuận tiện kết nối giao thông.
-            </p>
+<main id="primary" class="summit-main summit-venue-page">
+    <section class="summit-page-heading"><div class="summit-container"><p class="summit-eyebrow">Open Tech Summit 2026 / Hà Nội</p><h1>Địa điểm & hướng dẫn tham dự</h1><p class="summit-page-lead">Địa chỉ hội nghị, bản đồ và những thông tin cần chuẩn bị trước khi đến. Chương trình được tổ chức tại Hội trường A, Phòng B và Phòng C.</p><p class="summit-page-note">Địa điểm dự kiến trong kịch bản minh họa; không phải thông báo tổ chức sự kiện thực tế.</p></div></section>
+    <section class="summit-section summit-venue-section"><div class="summit-container">
+        <div class="summit-venue-grid">
+            <div class="summit-venue-info"><p class="summit-eyebrow">Nơi diễn ra hội nghị</p><h2><?php echo esc_html( $event['venue'] ); ?></h2><p class="summit-venue-address"><?php echo esc_html( $event['address'] ); ?></p><dl class="summit-venue-facts"><div><dt>Thời gian</dt><dd><?php echo esc_html( $event['dates'] ); ?></dd></div><div><dt>Ngày 1 & 2</dt><dd>08:00–17:00</dd></div><div><dt>Ngày 3</dt><dd>08:00–12:00</dd></div><div><dt>Không gian</dt><dd>Hội trường A · Phòng B · Phòng C</dd></div></dl><a class="summit-button" href="https://www.openstreetmap.org/?mlat=21.0062&amp;mlon=105.7891#map=16/21.0062/105.7891" target="_blank" rel="noopener noreferrer">Mở bản đồ <span aria-hidden="true">↗</span></a></div>
+            <div class="summit-map"><iframe title="Bản đồ Trung tâm Hội nghị Quốc gia Hà Nội" src="https://www.openstreetmap.org/export/embed.html?bbox=105.7800%2C21.0000%2C105.8000%2C21.0130&amp;layer=mapnik&amp;marker=21.0062%2C105.7891" loading="lazy" referrerpolicy="no-referrer" allowfullscreen></iframe><p>Dữ liệu bản đồ © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>. Bản đồ cần kết nối internet.</p></div>
         </div>
-    </section>
-
-    <div class="event-container event-main-content">
-        <!-- Venue Overview Info Card -->
-        <div class="event-venue-card">
-            <div class="venue-info-block">
-                <div class="venue-badge">ĐỊA ĐIỂM CHÍNH THỨC</div>
-                <h2 class="venue-name">Trung Tâm Hội Nghị Quốc Gia Hà Nội (NCC)</h2>
-                <div class="venue-address">
-                    <span class="addr-icon">&#128205;</span>
-                    <span class="addr-text">Cổng số 1, Đại lộ Thăng Long, Phường Mễ Trì, Quận Nam Từ Liêm, TP. Hà Nội</span>
-                </div>
-                <p class="venue-desc">
-                    Tọa lạc tại vị trí đắc địa ở cửa ngõ phía Tây Thủ đô, Trung tâm Hội nghị Quốc gia là tổ hợp công trình đa năng hiện đại hàng đầu Việt Nam. Nơi đây sở hữu các hội trường lớn với hệ thống phiên dịch đa ngôn ngữ, mạng Internet cáp quang băng thông rộng và khuôn viên cây xanh thoáng đãng.
-                </p>
-                <div class="venue-highlights">
-                    <div class="highlight-item">
-                        <span class="highlight-icon">&#128101;</span>
-                        <span class="highlight-text">Sức chứa hơn 3.500 đại biểu</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">&#128246;</span>
-                        <span class="highlight-text">Mạng Wi-Fi mở diện rộng</span>
-                    </div>
-                    <div class="highlight-item">
-                        <span class="highlight-icon">&#128663;</span>
-                        <span class="highlight-text">Bãi đỗ xe ngầm 1.000 ô tô</span>
-                    </div>
-                </div>
-            </div>
+    </div></section>
+    <section class="summit-section summit-arrival-section"><div class="summit-container">
+        <div class="summit-section-heading"><div><p class="summit-eyebrow">Trước khi tham dự</p><h2>Hướng dẫn đến hội nghị</h2></div><p>Kiểm tra lộ trình, lưu vé điện tử và chuẩn bị laptop nếu bạn tham gia workshop.</p></div>
+        <div class="summit-arrival-grid">
+            <article class="summit-arrival-item"><span class="summit-arrival-number">01</span><h3>Lên kế hoạch di chuyển</h3><p>Tra cứu lộ trình đến Trung tâm Hội nghị Quốc gia trên ứng dụng bản đồ bạn thường dùng. Kiểm tra lại tuyến, điểm dừng và tình hình giao thông trước khi đi.</p></article>
+            <article class="summit-arrival-item"><span class="summit-arrival-number">02</span><h3>Chuẩn bị vé điện tử</h3><p>Lưu email và mã QR sau khi đăng ký. Bạn có thể giữ một bản trên điện thoại để mở nhanh khi cần đối chiếu thông tin.</p></article>
+            <article class="summit-arrival-item"><span class="summit-arrival-number">03</span><h3>Mang theo đồ cần thiết</h3><p>Laptop, bộ sạc và tai nghe sẽ hữu ích cho workshop. Có mặt sớm khoảng 20 phút để sẵn sàng trước phiên bạn chọn.</p></article>
         </div>
-
-        <!-- OpenStreetMap Open Source Map Section -->
-        <div class="event-map-section">
-            <div class="map-header">
-                <h3 class="map-title">Bản Đồ Tương Tác Trực Tuyến</h3>
-                <span class="map-source-tag">Nền tảng Mã Nguồn Mở &bull; OpenStreetMap</span>
-            </div>
-            <div class="map-responsive-container">
-                <!-- Bản đồ vị trí Trung tâm Hội nghị Quốc gia Hà Nội -->
-                <iframe 
-                    title="Bản đồ Trung tâm Hội nghị Quốc gia Hà Nội"
-                    src="https://maps.google.com/maps?q=Trung+t%C3%A2m+H%E1%BB%99i+ngh%E1%BB%8B+Qu%E1%BB%91c+gia+H%C3%A0+N%E1%BB%99i&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
-                    loading="lazy" 
-                    class="event-osm-iframe">
-                </iframe>
-            </div>
-            <div class="map-footer-actions">
-                <a href="https://www.openstreetmap.org/?mlat=21.0062&amp;mlon=105.7891#map=16/21.0062/105.7891" target="_blank" rel="noopener" class="event-btn event-btn-outline map-external-btn">
-                    Mở Bản Đồ Khổ Lớn Trên OpenStreetMap &#8599;
-                </a>
-            </div>
-        </div>
-
-        <!-- Transportation & Transit Guide -->
-        <div class="event-transit-guide">
-            <h3 class="guide-title">Hướng Dẫn Lộ Trình Phương Tiện Di Chuyển</h3>
-            <div class="transit-grid">
-                <!-- Bus -->
-                <div class="transit-card">
-                    <div class="transit-icon">&#128652;</div>
-                    <h4 class="transit-type">Xe Buýt Công Cộng</h4>
-                    <p class="transit-desc">Nhiều tuyến xe buýt chạy thẳng qua trạm dừng ngay trước Cổng số 1 của Trung tâm:</p>
-                    <ul class="transit-routes">
-                        <li><strong>Tuyến 50:</strong> Long Biên &ndash; Sân vận động Quốc gia Mỹ Đình</li>
-                        <li><strong>Tuyến 107:</strong> Kim Mã &ndash; Làng Văn hóa Du lịch các dân tộc</li>
-                        <li><strong>Tuyến 74:</strong> Bến xe Mỹ Đình &ndash; Xuân Khanh (dừng Đại lộ Thăng Long)</li>
-                    </ul>
-                </div>
-
-                <!-- Personal Vehicles -->
-                <div class="transit-card">
-                    <div class="transit-icon">&#128663;</div>
-                    <h4 class="transit-type">Ô Tô &amp; Xe Máy Cá Nhân</h4>
-                    <p class="transit-desc">Đại biểu di chuyển theo hướng đường Phạm Hùng hoặc Đại lộ Thăng Long:</p>
-                    <ul class="transit-routes">
-                        <li><strong>Cổng vào:</strong> Đi vào qua Cổng số 1 (mặt đường Đại lộ Thăng Long)</li>
-                        <li><strong>Bãi đỗ xe:</strong> Gửi xe tại tầng hầm tòa nhà chính hoặc bãi đỗ ngoài trời</li>
-                        <li><strong>Quy định:</strong> Xuất trình vé điện tử hội nghị để được ưu đãi gửi xe</li>
-                    </ul>
-                </div>
-
-                <!-- Accommodations -->
-                <div class="transit-card">
-                    <div class="transit-icon">&#127976;</div>
-                    <h4 class="transit-type">Lưu Trú Dành Cho Đại Biểu</h4>
-                    <p class="transit-desc">Các khách sạn tiêu chuẩn lân cận trung tâm dành cho khách tham dự ở xa:</p>
-                    <ul class="transit-routes">
-                        <li><strong>JW Marriott Hotel Hanoi:</strong> Nằm liền kề trong khuôn viên hồ điều hòa NCC</li>
-                        <li><strong>Khách sạn Mễ Trì &amp; The Garden:</strong> Cách hội trường 500m &ndash; 1km</li>
-                        <li>Liên hệ Ban Lễ Tân nếu cần hỗ trợ đặt phòng đoàn hội nghị</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div></section>
+    <section class="summit-section summit-faq-section"><div class="summit-container summit-faq-grid"><div><p class="summit-eyebrow">Thông tin tham dự</p><h2>Câu hỏi thường gặp</h2></div><div class="summit-faq-list">
+        <details><summary>Tôi có cần tham dự đủ cả ba ngày không?<span aria-hidden="true">+</span></summary><p>Không. Chương trình được chia theo ngày và phòng để bạn chọn những phiên quan tâm. Các phiên cùng giờ diễn ra song song.</p></details>
+        <details><summary>Tham dự workshop cần chuẩn bị gì?<span aria-hidden="true">+</span></summary><p>Mang laptop, bộ sạc và một trình duyệt đang hoạt động. Xem mô tả từng phiên trong lịch trình để biết nội dung thực hành.</p></details>
+        <details><summary>Tôi tìm mã QR ở đâu?<span aria-hidden="true">+</span></summary><p>Mã QR được hiển thị sau khi đăng ký hợp lệ và gửi kèm email nếu hệ thống gửi thư hoạt động. Trang xác nhận sẽ cho biết trạng thái gửi thực tế.</p></details>
+        <details><summary>Vé trên website có dùng cho một sự kiện thật không?<span aria-hidden="true">+</span></summary><p>Không. Đây là website minh họa. Chương trình, hồ sơ diễn giả và vé điện tử phục vụ trải nghiệm chức năng, không có giá trị vào cửa một sự kiện thực tế.</p></details>
+    </div></div></section>
+    <section class="summit-cta"><div class="summit-container summit-cta-inner"><div><p class="summit-eyebrow">Hẹn gặp tại Hà Nội</p><h2>Lên lịch.<br>Sẵn sàng khám phá.</h2></div><div><p>Khám phá chương trình và nhận vé trải nghiệm miễn phí.</p><a class="summit-button is-light" href="<?php echo esc_url( home_url( '/dang-ky-ve/' ) ); ?>">Đăng ký tham dự <span aria-hidden="true">↗</span></a></div></div></section>
 </main>
-
-<?php
-get_footer();
+<?php get_footer(); ?>
