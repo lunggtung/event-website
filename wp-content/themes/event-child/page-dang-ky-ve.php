@@ -1,202 +1,106 @@
 <?php
-/**
- * Template Name: Đăng Ký Vé Tham Dự
- * Description: Mẫu giao diện bảng giá vé và form đăng ký trực tuyến tự động sinh mã QR
- *
- * @package Event_Child_Theme
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
+/** Template Name: Đăng ký tham dự */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+$types = event_child_ticket_types();
+$event = event_child_event_data();
+$errors = $GLOBALS['event_registration_errors'] ?? new WP_Error();
+$values = $GLOBALS['event_registration_values'] ?? array();
+$receipt = isset( $_GET['receipt'] ) && is_string( $_GET['receipt'] ) ? sanitize_text_field( wp_unslash( $_GET['receipt'] ) ) : '';
+$ticket = $receipt !== '' ? event_child_receipt_ticket( $receipt ) : null;
+$requested_tier = isset( $_GET['tier'] ) && is_string( $_GET['tier'] ) ? sanitize_key( wp_unslash( $_GET['tier'] ) ) : 'standard';
+$value = static function ( $key, $default = '' ) use ( $values ) { return isset( $values[ $key ] ) && is_scalar( $values[ $key ] ) ? sanitize_text_field( $values[ $key ] ) : $default; };
+$selected_tier = $value( 'ticket_tier', isset( $types[ $requested_tier ] ) ? $requested_tier : 'standard' );
+$request_key = $value( 'request_key' );
+if ( ! preg_match( '/^[a-f0-9]{48}$/', $request_key ) ) { $request_key = bin2hex( random_bytes( 24 ) ); }
 get_header();
-
-// Xử lý gửi form đăng ký nội bộ nếu khách submit form
-$registration_success = false;
-$ticket_code = '';
-$attendee_name = '';
-$attendee_email = '';
-$ticket_tier = '';
-
-if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['event_register_nonce'] ) ) {
-    if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['event_register_nonce'] ) ), 'event_ticket_register' ) ) {
-        $attendee_name  = isset( $_POST['attendee_name'] ) ? sanitize_text_field( wp_unslash( $_POST['attendee_name'] ) ) : '';
-        $attendee_email = isset( $_POST['attendee_email'] ) ? sanitize_email( wp_unslash( $_POST['attendee_email'] ) ) : '';
-        $ticket_tier    = isset( $_POST['ticket_tier'] ) ? sanitize_text_field( wp_unslash( $_POST['ticket_tier'] ) ) : 'Standard';
-
-        if ( ! empty( $attendee_name ) && ! empty( $attendee_email ) && is_email( $attendee_email ) ) {
-            // Sinh mã định danh vé duy nhất
-            $ticket_code = 'OTS2026-' . strtoupper( wp_generate_password( 6, false ) );
-            $registration_success = true;
-        }
-    }
-}
 ?>
+<main id="primary" class="summit-main summit-tickets-page">
+    <header class="summit-page-header summit-container">
+        <p class="summit-eyebrow">Hẹn gặp bạn tại Hà Nội / 20–22.11.2026</p>
+        <h1>Đăng ký tham dự hội nghị</h1>
+        <p class="summit-lead">Chọn hạng vé phù hợp và để lại thông tin. Mỗi đăng ký hợp lệ có một mã vé riêng, dùng xuyên suốt ba ngày hội nghị.</p>
+    </header>
 
-<main id="primary" class="site-main event-page event-page-tickets">
-    <!-- Page Header Banner -->
-    <section class="event-page-header">
-        <div class="event-container">
-            <h1 class="event-page-title">Đăng Ký Vé Tham Dự Hội Nghị</h1>
-            <p class="event-page-subtitle">
-                Nhận vé điện tử chính thức và mã QR Code cá nhân hóa để check-in nhanh tại bàn tiếp đón đại biểu.
-            </p>
+    <?php if ( $ticket ) : ?>
+    <section class="summit-container summit-section" id="registration-result" aria-labelledby="receipt-heading" tabindex="-1">
+        <div class="summit-confirmation">
+            <div>
+                <p class="summit-eyebrow">Đăng ký đã được lưu</p>
+                <h2 id="receipt-heading">Hẹn gặp bạn,<br><?php echo esc_html( $ticket['attendee_name'] ); ?>.</h2>
+                <?php if ( $ticket['mail_status'] === 'sent' ) : ?>
+                    <p>Máy chủ thư đã tiếp nhận email gửi đến <strong><?php echo esc_html( $ticket['email'] ); ?></strong>. Hãy kiểm tra cả hộp thư rác; bạn cũng có thể tải mã QR bên dưới.</p>
+                <?php else : ?>
+                    <div class="summit-notice" role="status">Vé đã được tạo. Email chưa được chuyển tới hộp thư của bạn; hãy tải mã QR bên dưới để giữ vé.</div>
+                <?php endif; ?>
+                <dl class="summit-ticket-summary">
+                    <div><dt>Mã vé</dt><dd><code><?php echo esc_html( $ticket['ticket_code'] ); ?></code></dd></div>
+                    <div><dt>Hạng vé</dt><dd><?php echo esc_html( $types[ $ticket['tier'] ]['label'] ?? $ticket['tier'] ); ?></dd></div>
+                    <div><dt>Thời gian</dt><dd><?php echo esc_html( $event['dates'] ); ?></dd></div>
+                    <div><dt>Địa điểm</dt><dd><?php echo esc_html( $event['venue'] ); ?>, Hà Nội</dd></div>
+                </dl>
+                <div class="summit-actions">
+                    <a class="summit-button summit-button-primary" href="<?php echo esc_url( add_query_arg( array( 'action' => 'event_ticket_download', 'receipt' => $receipt ), admin_url( 'admin-post.php' ) ) ); ?>">Tải mã QR <span aria-hidden="true">↓</span></a>
+                    <a class="summit-button summit-button-secondary" href="<?php echo esc_url( home_url( '/lich-trinh/' ) ); ?>">Chọn phiên tham dự →</a>
+                </div>
+                <p class="summit-small">Liên kết xác nhận có hiệu lực trong 30 phút. Hãy lưu QR và giữ riêng mã vé của bạn.</p>
+            </div>
+            <div class="summit-qr-panel">
+                <?php $png = event_child_ticket_qr_png( $ticket['ticket_code'] ); if ( ! is_wp_error( $png ) ) : ?>
+                    <img class="summit-ticket-qr" src="data:image/png;base64,<?php echo esc_attr( base64_encode( $png ) ); ?>" width="360" height="360" alt="Mã QR vé <?php echo esc_attr( $ticket['ticket_code'] ); ?>">
+                <?php else : ?><p>Ảnh QR tạm thời chưa khả dụng. Hãy lưu mã vé và liên hệ ban tổ chức.</p><?php endif; ?>
+                <p>Vé điện tử · Open Tech Summit 2026</p>
+            </div>
+        </div>
+    </section>
+    <?php else : ?>
+
+    <?php if ( $receipt !== '' ) : ?><div class="summit-container"><p class="summit-notice" role="status">Liên kết xác nhận đã hết hạn hoặc không hợp lệ. Nếu đã đăng ký, vui lòng kiểm tra email hoặc liên hệ ban tổ chức; không cần đăng ký lại.</p></div><?php endif; ?>
+
+    <section class="summit-container summit-section summit-ticket-options" aria-labelledby="ticket-options-heading">
+        <div class="summit-section-heading"><div><p class="summit-eyebrow">Hạng vé tham dự</p><h2 id="ticket-options-heading">Chọn vé phù hợp với bạn</h2></div><p>Các hạng vé đều miễn phí trong chương trình minh họa. Một vé dùng cho cả ba ngày hội nghị.</p></div>
+        <div class="summit-ticket-grid">
+            <?php $index = 0; foreach ( $types as $key => $type ) : $index++; ?>
+            <article class="summit-ticket-option<?php echo $key === $selected_tier ? ' is-selected' : ''; ?>">
+                <p class="summit-eyebrow"><?php echo esc_html( sprintf( '%02d', $index ) ); ?> / <?php echo $key === 'standard' ? 'Dành cho mọi người' : 'Tham gia cộng đồng'; ?></p>
+                <h3><?php echo esc_html( $type['label'] ); ?></h3><p class="summit-ticket-price">Miễn phí</p>
+                <p><?php echo esc_html( $type['description'] ); ?></p>
+                <ul><?php foreach ( $type['features'] as $feature ) : ?><li><?php echo esc_html( $feature ); ?></li><?php endforeach; ?></ul>
+                <a href="#register-form-section" class="summit-button summit-button-secondary select-ticket-btn" data-tier="<?php echo esc_attr( $key ); ?>">Chọn vé <?php echo esc_html( mb_strtolower( $type['label'] ) ); ?> <span aria-hidden="true">↗</span></a>
+            </article>
+            <?php endforeach; ?>
         </div>
     </section>
 
-    <div class="event-container event-main-content">
-        <!-- Ticket Pricing Table -->
-        <div class="event-pricing-table">
-            <div class="pricing-card card-student">
-                <div class="pricing-badge">ƯU ĐÃI HỌC THUẬT</div>
-                <h3 class="pricing-title">Vé Sinh Viên</h3>
-                <div class="pricing-cost">0 <span class="currency">VNĐ</span></div>
-                <p class="pricing-desc">Dành riêng cho học sinh, sinh viên các trường Đại học &amp; Cao đẳng.</p>
-                <ul class="pricing-features">
-                    <li>&#10003; Tham dự toàn bộ các phiên hội thảo chung</li>
-                    <li>&#10003; Cấp mã QR điện tử check-in qua email</li>
-                    <li>&#10003; Tài liệu tóm tắt hội thảo dạng PDF</li>
-                    <li>&#10003; Yêu cầu xuất trình thẻ sinh viên tại cửa</li>
-                </ul>
-                <a href="#register-form-section" class="event-btn event-btn-outline select-ticket-btn" data-tier="Sinh Viên">Chọn Hạng Vé Này</a>
-            </div>
-
-            <div class="pricing-card card-standard featured">
-                <div class="pricing-badge badge-popular">PHỔ BIẾN NHẤT</div>
-                <h3 class="pricing-title">Vé Tiêu Chuẩn</h3>
-                <div class="pricing-cost">Miễn Phí <span class="currency">(GPL)</span></div>
-                <p class="pricing-desc">Dành cho kỹ sư phần mềm, giảng viên và người làm công nghệ.</p>
-                <ul class="pricing-features">
-                    <li>&#10003; Toàn quyền tham dự 3 phòng chuyên đề trong 3 ngày</li>
-                    <li>&#10003; Bộ kỷ yếu số hóa đầy đủ các bài báo cáo khoa học</li>
-                    <li>&#10003; Cấp Giấy Chứng Nhận tham dự hội nghị điện tử</li>
-                    <li>&#10003; Teabreak trà chiều giữa các phiên thảo luận</li>
-                </ul>
-                <a href="#register-form-section" class="event-btn event-btn-accent select-ticket-btn" data-tier="Tiêu Chuẩn">Chọn Hạng Vé Này</a>
-            </div>
-
-            <div class="pricing-card card-vip">
-                <div class="pricing-badge badge-gold">TOÀN QUYỀN VIP</div>
-                <h3 class="pricing-title">Vé Khách Mời VIP</h3>
-                <div class="pricing-cost">Đặc Biệt <span class="currency">Pass</span></div>
-                <p class="pricing-desc">Dành cho lãnh đạo doanh nghiệp, đại diện viện nghiên cứu và nhà tài trợ.</p>
-                <ul class="pricing-features">
-                    <li>&#10003; Toàn bộ quyền lợi của Vé Tiêu Chuẩn</li>
-                    <li>&#10003; Vị trí ghế ngồi danh dự tại hàng đầu Hội Trường A</li>
-                    <li>&#10003; Tham gia tiệc Networking Lunch cùng dàn Diễn giả</li>
-                    <li>&#10003; Nhận trọn bộ Kỷ yếu in ấn đóng bìa cứng có chỉ số ISBN</li>
-                </ul>
-                <a href="#register-form-section" class="event-btn event-btn-outline select-ticket-btn" data-tier="VIP">Chọn Hạng Vé Này</a>
-            </div>
+    <section class="summit-container summit-section" id="register-form-section" aria-labelledby="registration-heading">
+        <div class="summit-form-layout">
+            <aside class="summit-form-intro">
+                <p class="summit-eyebrow">02 / Thông tin tham dự</p>
+                <h2 id="registration-heading">Thông tin đăng ký</h2>
+                <p>Thông tin giúp chúng tôi chuẩn bị danh sách tham dự và gửi vé đến đúng người. Các mục có dấu * là bắt buộc.</p>
+                <div class="summit-attendance-note"><h3>Sau khi đăng ký</h3><ol><li>Lưu mã vé và ảnh QR được cấp.</li><li>Kiểm tra email để nhận bản sao.</li><li>Mở QR khi đến bàn đón tiếp.</li></ol></div>
+                <p class="summit-small">Website thực hành với dữ liệu sự kiện minh họa. Không thu phí hoặc yêu cầu thông tin thanh toán.</p>
+            </aside>
+            <form class="summit-form" method="post" action="<?php echo esc_url( get_permalink() . '#register-form-section' ); ?>">
+                <?php wp_nonce_field( 'event_ticket_register', 'event_register_nonce' ); ?>
+                <input type="hidden" name="request_key" value="<?php echo esc_attr( $request_key ); ?>">
+                <div class="summit-honeypot" aria-hidden="true"><label for="event-website">Để trống mục này</label><input type="text" id="event-website" name="website" value="" tabindex="-1" autocomplete="off"></div>
+                <?php if ( $errors->has_errors() ) : ?><div class="summit-notice summit-notice-error" role="alert" tabindex="-1"><strong>Chưa thể hoàn tất đăng ký.</strong><ul><?php foreach ( $errors->get_error_messages() as $message ) : ?><li><?php echo esc_html( $message ); ?></li><?php endforeach; ?></ul></div><?php endif; ?>
+                <div class="summit-form-grid">
+                <?php foreach ( array( 'attendee_name' => array( 'Họ và tên', 'text', 'name', 'Nguyễn Minh Anh', 120 ), 'attendee_email' => array( 'Email nhận vé', 'email', 'email', 'ban@example.com', 254 ), 'attendee_phone' => array( 'Số điện thoại', 'tel', 'tel', '09xx xxx xxx', 25 ), 'attendee_org' => array( 'Đơn vị / trường học', 'text', 'organization', 'Không bắt buộc', 180 ) ) as $key => $field ) :
+                    $error = $errors->get_error_message( $key ); ?>
+                    <div class="summit-field"><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field[0] ); ?><?php if ( $key !== 'attendee_org' ) : ?> <span aria-hidden="true">*</span><?php endif; ?></label>
+                    <input type="<?php echo esc_attr( $field[1] ); ?>" id="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $key ); ?>" autocomplete="<?php echo esc_attr( $field[2] ); ?>" maxlength="<?php echo esc_attr( $field[4] ); ?>" value="<?php echo esc_attr( $value( $key ) ); ?>" placeholder="<?php echo esc_attr( $field[3] ); ?>" <?php echo $key !== 'attendee_org' ? 'required' : ''; ?> <?php if ( $error ) : ?>aria-invalid="true" aria-describedby="<?php echo esc_attr( $key ); ?>-error"<?php endif; ?>>
+                    <?php if ( $error ) : ?><p class="summit-field-error" id="<?php echo esc_attr( $key ); ?>-error"><?php echo esc_html( $error ); ?></p><?php endif; ?></div>
+                <?php endforeach; ?>
+                <div class="summit-field summit-field-full"><label for="ticket_tier">Hạng vé *</label><select name="ticket_tier" id="ticket_tier" required <?php if ( $errors->get_error_message( 'ticket_tier' ) ) : ?>aria-invalid="true" aria-describedby="ticket_tier-error"<?php endif; ?>><?php foreach ( $types as $key => $type ) : ?><option value="<?php echo esc_attr( $key ); ?>" <?php selected( $selected_tier, $key ); ?>><?php echo esc_html( $type['label'] ); ?> — miễn phí</option><?php endforeach; ?></select><?php if ( $errors->get_error_message( 'ticket_tier' ) ) : ?><p id="ticket_tier-error" class="summit-field-error"><?php echo esc_html( $errors->get_error_message( 'ticket_tier' ) ); ?></p><?php endif; ?></div>
+                </div>
+                <label class="summit-consent"><input name="attendee_consent" type="checkbox" value="1" required <?php checked( $value( 'attendee_consent' ), '1' ); ?>><span>Tôi đồng ý sử dụng thông tin trên để xử lý đăng ký và gửi vé tham dự. Thông tin không được công khai trên website.</span></label>
+                <?php if ( $errors->get_error_message( 'attendee_consent' ) ) : ?><p class="summit-field-error"><?php echo esc_html( $errors->get_error_message( 'attendee_consent' ) ); ?></p><?php endif; ?>
+                <button type="submit" class="summit-button summit-button-primary">Xác nhận đăng ký <span aria-hidden="true">↗</span></button>
+                <p class="summit-small">Mỗi email đăng ký một vé cho sự kiện. Bạn có thể lưu QR ngay sau khi hoàn tất.</p>
+            </form>
         </div>
-
-        <!-- Registration Success Notice & QR Box -->
-        <?php if ( $registration_success ) : ?>
-            <div class="event-registration-success-box">
-                <div class="success-header">
-                    <span class="success-icon">&#10004;</span>
-                    <h3>ĐĂNG KÝ VÉ THÀNH CÔNG!</h3>
-                </div>
-                <p>Cảm ơn bạn <strong><?php echo esc_html( $attendee_name ); ?></strong> đã đăng ký tham dự Hội Nghị Khoa Học &amp; Công Nghệ Mở 2026.</p>
-                
-                <div class="ticket-result-card">
-                    <div class="ticket-result-details">
-                        <p><strong>Mã vé định danh:</strong> <span class="ticket-code-highlight"><?php echo esc_html( $ticket_code ); ?></span></p>
-                        <p><strong>Hạng vé:</strong> <?php echo esc_html( $ticket_tier ); ?></p>
-                        <p><strong>Email nhận vé:</strong> <?php echo esc_html( $attendee_email ); ?></p>
-                        <p><strong>Thời gian:</strong> 20 &ndash; 22/11/2026 &bull; Trung tâm Hội nghị Quốc gia</p>
-                    </div>
-                    <div class="ticket-result-qr">
-                        <?php
-                        $qr_data = 'OTS2026|CODE:' . $ticket_code . '|NAME:' . rawurlencode( $attendee_name );
-                        $qr_url  = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' . rawurlencode( $qr_data );
-                        ?>
-                        <img src="<?php echo esc_url( $qr_url ); ?>" alt="Mã QR Vé Tham Dự <?php echo esc_attr( $ticket_code ); ?>" class="ticket-qr-img">
-                        <span class="qr-caption">Xuất trình mã này tại cổng</span>
-                    </div>
-                </div>
-                <p class="success-footer-note">Hệ thống thư điện tử SMTP đã ghi nhận và gửi bản sao lưu vé điện tử kèm mã QR về hòm thư của bạn.</p>
-            </div>
-        <?php endif; ?>
-
-        <!-- Registration Form Section -->
-        <div id="register-form-section" class="event-registration-form-wrapper">
-            <div class="form-card-container">
-                <div class="form-header">
-                    <h2 class="form-title">Form Đăng Ký Nhận Vé Điện Tử &amp; Mã QR</h2>
-                    <p class="form-desc">Vui lòng điền chính xác thông tin cá nhân để ban tổ chức chuẩn bị thẻ đại biểu và gửi mã QR tham dự qua email.</p>
-                </div>
-
-                <form method="post" action="<?php echo esc_url( get_permalink() ); ?>" class="event-register-form">
-                    <?php wp_nonce_field( 'event_ticket_register', 'event_register_nonce' ); ?>
-
-                    <div class="form-row">
-                        <div class="form-group col-half">
-                            <label for="attendee_name">Họ và Tên Đại Biểu <span class="required">*</span></label>
-                            <input type="text" id="attendee_name" name="attendee_name" required placeholder="Ví dụ: Nguyễn Văn Bình" class="form-control">
-                        </div>
-                        <div class="form-group col-half">
-                            <label for="attendee_email">Địa Chỉ Email Nhận Vé <span class="required">*</span></label>
-                            <input type="email" id="attendee_email" name="attendee_email" required placeholder="nguyenbinh@gmail.com" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-half">
-                            <label for="attendee_phone">Số Điện Thoại Liên Hệ <span class="required">*</span></label>
-                            <input type="tel" id="attendee_phone" name="attendee_phone" required placeholder="0987 654 321" class="form-control">
-                        </div>
-                        <div class="form-group col-half">
-                            <label for="attendee_org">Đơn Vị Công Tác / Trường Đại Học</label>
-                            <input type="text" id="attendee_org" name="attendee_org" placeholder="Đại học Quốc Gia / Viện Nghiên Cứu..." class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ticket_tier">Lựa Chọn Hạng Vé <span class="required">*</span></label>
-                        <select id="ticket_tier" name="ticket_tier" class="form-control select-control">
-                            <option value="Sinh Viên">Vé Sinh Viên (0 VNĐ - Xuất trình thẻ SV tại cổng)</option>
-                            <option value="Tiêu Chuẩn" selected>Vé Tiêu Chuẩn (Miễn phí theo chuẩn GPL)</option>
-                            <option value="VIP">Vé VIP (Toàn quyền tham dự &amp; Tiệc Networking Lunch)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" required checked>
-                            Tôi đồng ý nhận thông tin cập nhật lịch trình và mã vé QR qua email từ Ban Tổ Chức Hội Nghị Open Tech Summit 2026.
-                        </label>
-                    </div>
-
-                    <div class="form-submit-group">
-                        <button type="submit" class="event-btn event-btn-accent form-submit-btn">
-                            Xác Nhận Đăng Ký &amp; Tạo Mã Vé QR
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </section>
+    <?php endif; ?>
 </main>
-
-<script>
-// Tự động gán loại vé khi bấm nút Chọn Hạng Vé trên bảng giá
-document.addEventListener('DOMContentLoaded', function() {
-    var selectBtns = document.querySelectorAll('.select-ticket-btn');
-    var tierSelect = document.getElementById('ticket_tier');
-    if (selectBtns && tierSelect) {
-        selectBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                var tier = this.getAttribute('data-tier');
-                if (tier) {
-                    tierSelect.value = tier;
-                }
-            });
-        });
-    }
-});
-</script>
-
-<?php
-get_footer();
+<?php get_footer(); ?>
