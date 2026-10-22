@@ -1,155 +1,64 @@
 <?php
-/**
- * Custom Shortcodes Module
- *
- * @package Event_Child_Theme
- */
-
+/** Event display shortcodes. */
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * 1. Shortcode hiển thị hộp thông báo: [event_alert]
- *
- * Cú pháp: [event_alert type="warning" title="Thông báo"]Nội dung[/event_alert]
- */
 function event_child_alert_shortcode( $atts, $content = null ) {
-    $raw_atts = shortcode_atts(
-        array(
-            'type'  => 'info',
-            'title' => 'Thông báo từ Ban Tổ Chức',
-        ),
-        $atts,
-        'event_alert'
-    );
-
-    // Lọc dữ liệu đầu vào
-    $clean_type  = sanitize_text_field( $raw_atts['type'] );
-    $clean_title = sanitize_text_field( $raw_atts['title'] );
-
-    $allowed_types = array( 'info', 'warning', 'success', 'danger' );
-    if ( ! in_array( $clean_type, $allowed_types, true ) ) {
-        $clean_type = 'info';
+    $atts = shortcode_atts( array( 'type' => 'info', 'title' => 'Thông báo' ), $atts, 'event_alert' );
+    $type = sanitize_key( $atts['type'] );
+    if ( ! in_array( $type, array( 'info', 'warning', 'success', 'danger' ), true ) ) {
+        $type = 'info';
     }
-
-    // Xử lý dữ liệu an toàn trước khi in ra HTML
-    $safe_class = 'ots-alert ots-alert-' . esc_attr( $clean_type );
-    $safe_title = esc_html( $clean_title );
-    $safe_body  = esc_html( trim( (string) $content ) );
-
-    ob_start();
-    ?>
-    <div class="<?php echo $safe_class; ?>" role="alert">
-        <div class="ots-alert-header">
-            <strong><?php echo $safe_title; ?></strong>
-        </div>
-        <div class="ots-alert-content">
-            <?php echo $safe_body; ?>
-        </div>
-    </div>
-    <?php
-    return ob_get_clean();
+    return '<aside class="summit-notice summit-notice-' . esc_attr( $type ) . '"><strong>' . esc_html( sanitize_text_field( $atts['title'] ) ) . '</strong><p>' . esc_html( trim( (string) $content ) ) . '</p></aside>';
 }
 add_shortcode( 'event_alert', 'event_child_alert_shortcode' );
 
-
-/**
- * 2. Shortcode đồng hồ đếm ngược: [event_countdown]
- *
- * Cú pháp: [event_countdown title="..." target="2026-11-20T08:00:00"]
- */
 function event_child_countdown_shortcode( $atts ) {
-    $raw_atts = shortcode_atts(
+    $atts = shortcode_atts(
         array(
-            'title'  => 'Thời Gian Đếm Ngược Đến Khai Mạc',
-            'target' => '2026-11-20T08:00:00',
+            'title'  => 'Đếm ngược đến khai mạc',
+            'target' => '2026-11-20T08:00:00+07:00',
+            'end'    => '2026-11-22T17:00:00+07:00',
             'date'   => '',
         ),
         $atts,
         'event_countdown'
     );
-
-    // Lọc dữ liệu đầu vào
-    $clean_title  = sanitize_text_field( $raw_atts['title'] );
-    $raw_target   = ! empty( $raw_atts['date'] ) ? $raw_atts['date'] : $raw_atts['target'];
-    $clean_target = str_replace( ' ', 'T', sanitize_text_field( $raw_target ) );
-
-    // Xử lý dữ liệu an toàn
-    $safe_title  = esc_html( $clean_title );
-    $safe_target = esc_attr( $clean_target );
-
+    $target = sanitize_text_field( $atts['date'] ? $atts['date'] : $atts['target'] );
+    $target = str_replace( ' ', 'T', $target );
+    if ( preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', $target ) ) {
+        $target .= '+07:00';
+    }
+    $end = sanitize_text_field( $atts['end'] );
     ob_start();
     ?>
-    <div class="ots-countdown-container" data-target="<?php echo $safe_target; ?>">
-        <h3 class="ots-countdown-title"><?php echo $safe_title; ?></h3>
-        <div class="ots-countdown-grid">
-            <div class="ots-cd-box">
-                <span id="cd-days" class="ots-cd-number">00</span>
-                <span class="ots-cd-label">Ngày</span>
-            </div>
-            <div class="ots-cd-separator">:</div>
-            <div class="ots-cd-box">
-                <span id="cd-hours" class="ots-cd-number">00</span>
-                <span class="ots-cd-label">Giờ</span>
-            </div>
-            <div class="ots-cd-separator">:</div>
-            <div class="ots-cd-box">
-                <span id="cd-minutes" class="ots-cd-number">00</span>
-                <span class="ots-cd-label">Phút</span>
-            </div>
-            <div class="ots-cd-separator">:</div>
-            <div class="ots-cd-box">
-                <span id="cd-seconds" class="ots-cd-number">00</span>
-                <span class="ots-cd-label">Giây</span>
-            </div>
+    <div class="summit-countdown" data-countdown data-target="<?php echo esc_attr( $target ); ?>" data-end="<?php echo esc_attr( $end ); ?>">
+        <p class="summit-countdown-title"><?php echo esc_html( sanitize_text_field( $atts['title'] ) ); ?></p>
+        <div class="summit-countdown-grid" data-countdown-grid role="timer" aria-label="Thời gian đến khai mạc" aria-live="off">
+            <?php foreach ( array( 'days' => 'Ngày', 'hours' => 'Giờ', 'minutes' => 'Phút', 'seconds' => 'Giây' ) as $unit => $label ) : ?>
+                <div class="summit-countdown-unit"><span data-unit="<?php echo esc_attr( $unit ); ?>">00</span><span class="summit-countdown-label"><?php echo esc_html( $label ); ?></span></div>
+            <?php endforeach; ?>
         </div>
-        <p id="cd-expired-msg" class="ots-cd-expired" style="display: none;">
-            🎉 Hội nghị Khoa học & Công nghệ Mở 2026 đang diễn ra!
-        </p>
+        <p class="summit-countdown-status" data-countdown-status role="status" hidden></p>
+        <noscript><p>Khai mạc lúc 08:00 ngày 20/11/2026, giờ Việt Nam.</p></noscript>
     </div>
     <?php
     return ob_get_clean();
 }
 add_shortcode( 'event_countdown', 'event_child_countdown_shortcode' );
 
-
-/**
- * 3. SHORTCODE: [event_ticket_card] - THẺ LOẠI VÉ HỘI NGHỊ
- *
- * Cú pháp mẫu:
- * [event_ticket_card type="VIP" price="Miễn phí" slots="50"]
- */
 function event_child_ticket_card_shortcode( $atts ) {
-    $raw_atts = shortcode_atts(
-        array(
-            'type'  => 'Tiêu Chuẩn',
-            'price' => '0 VNĐ (Miễn Phí)',
-            'slots' => '200',
-        ),
-        $atts,
-        'event_ticket_card'
-    );
-
-    // Sanitization
-    $clean_type  = sanitize_text_field( $raw_atts['type'] );
-    $clean_price = sanitize_text_field( $raw_atts['price'] );
-    $clean_slots = absint( $raw_atts['slots'] ); // Ép kiểu số nguyên dương an toàn
-
-    // Escaping
-    $safe_type  = esc_html( $clean_type );
-    $safe_price = esc_html( $clean_price );
-    $safe_slots = esc_html( (string) $clean_slots );
-
+    $atts = shortcode_atts( array( 'type' => 'Tiêu chuẩn', 'price' => 'Miễn phí', 'slots' => '' ), $atts, 'event_ticket_card' );
     ob_start();
     ?>
-    <div class="ots-ticket-card">
-        <div class="ots-ticket-badge">Vé Tham Dự</div>
-        <h4 class="ots-ticket-type"><?php echo $safe_type; ?></h4>
-        <div class="ots-ticket-price"><?php echo $safe_price; ?></div>
-        <p class="ots-ticket-slots">Số lượng chỗ giới hạn: <strong><?php echo $safe_slots; ?></strong> vé</p>
-        <a href="#register-form-section" class="ots-btn-register">Đăng Ký Nhận Vé QR</a>
-    </div>
+    <article class="summit-ticket-option">
+        <p class="summit-eyebrow">Vé tham dự</p>
+        <h3><?php echo esc_html( sanitize_text_field( $atts['type'] ) ); ?></h3>
+        <p class="summit-ticket-price"><?php echo esc_html( sanitize_text_field( $atts['price'] ) ); ?></p>
+        <?php if ( '' !== $atts['slots'] ) : ?><p>Số chỗ: <?php echo esc_html( (string) absint( $atts['slots'] ) ); ?></p><?php endif; ?>
+        <a class="summit-button is-outline" href="<?php echo esc_url( home_url( '/dang-ky-ve/#register-form-section' ) ); ?>">Đăng ký tham dự <span aria-hidden="true">↗</span></a>
+    </article>
     <?php
     return ob_get_clean();
 }
