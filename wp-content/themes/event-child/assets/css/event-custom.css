@@ -1,1463 +1,420 @@
-/* ==========================================================================
-   OPEN TECH SUMMIT 2026 - OFFICIAL DESIGN SYSTEM
-   Standard: Professional Tech Summit (Inspired by Vietnam Tech Summit)
-   Architecture: High-Performance Modular CSS, 100% DRY & Reusable
-   ========================================================================== */
-
-/* 1. TOKENS & VARIABLES */
+/* Open Tech Summit: conference identity and responsive layouts. */
 :root {
-    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-
-    /* Deep Cosmic Palette */
-    --bg-base: #060b17;
-    --bg-surface: #0a1329;
-    --bg-surface-light: #111d3d;
-    --bg-card: rgba(13, 23, 48, 0.75);
-
-    /* Electric Accents */
-    --cyan: #00f2fe;
-    --cyan-dim: rgba(0, 242, 254, 0.15);
-    --blue: #3b82f6;
-    --purple: #8b5cf6;
-    --green: #10b981;
-    --amber: #f59e0b;
-
-    /* Hairline Borders */
-    --border-hairline: rgba(255, 255, 255, 0.08);
-    --border-cyan: rgba(0, 242, 254, 0.25);
-    --border-focus: rgba(0, 242, 254, 0.6);
-
-    /* Text Hierarchy */
-    --text-white: #ffffff;
-    --text-primary: #f1f5f9;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-
-    /* Radii & Shadows */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-full: 9999px;
-    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 25px rgba(0, 242, 254, 0.25);
-
-    --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --summit-paper: #fff;
+    --summit-white: #fff;
+    --summit-ink: #142235;
+    --summit-muted: #536174;
+    --summit-line: #dce2e8;
+    --summit-accent: #254dd5;
+    --summit-accent-hover: #173aa8;
+    --summit-pale: #f3f6f9;
+    --summit-lime: #d8f36a;
+    --summit-sans: 'Segoe UI', Arial, Helvetica, sans-serif;
 }
-
-/* 2. GLOBAL RESET & BASE STYLES */
 *, *::before, *::after { box-sizing: border-box; }
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background-color: var(--bg-base) !important;
-    color: var(--text-primary) !important;
-    font-family: var(--font-main) !important;
-    font-size: 16px;
-    line-height: 1.6 !important;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
-#page, .site, .site-wrapper, #content, .site-content, .ast-container, #primary, .site-main {
-    background-color: var(--bg-base) !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-.event-container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 24px;
-    width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-white);
-    font-family: var(--font-main);
-    font-weight: 700;
-    line-height: 1.25;
-    margin: 0 0 16px;
-    letter-spacing: -0.02em;
-}
-p { margin: 0 0 16px; color: var(--text-secondary); }
-a { color: var(--cyan); text-decoration: none; transition: var(--transition); }
-a:hover { color: var(--text-white); }
-img { max-width: 100%; height: auto; display: block; }
-
-/* 3. REUSABLE UTILITIES & TYPOGRAPHY */
-.gradient-text {
-    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #8b5cf6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.section-kicker {
-    display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 12px;
-}
-.section-title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--text-white);
-    margin-bottom: 16px;
-}
-.section-desc {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 720px;
-    margin: 0 0 40px;
-}
-.section-header-center {
-    text-align: center;
-}
-.section-header-center .section-desc {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 4. BUTTON SYSTEM */
-.btn-brand-cta, .btn-glass-outline, .btn-pass-select, .form-submit-btn, .event-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 13px 28px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
-    border: none;
-    text-decoration: none !important;
-}
-.btn-brand-cta, .event-btn-accent {
-    background: linear-gradient(135deg, #00f2fe 0%, #3b82f6 50%, #6366f1 100%);
-    color: #060b17 !important;
-    font-weight: 700;
-    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.35);
-}
-.btn-brand-cta:hover, .event-btn-accent:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 242, 254, 0.55);
-    color: #000000 !important;
-}
-.btn-glass-outline, .event-btn-outline {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-white) !important;
-    border: 1px solid var(--border-hairline);
-    backdrop-filter: blur(10px);
-}
-.btn-glass-outline:hover, .event-btn-outline:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--cyan);
-    transform: translateY(-2px);
-}
-.btn-pass-select {
-    background: rgba(0, 242, 254, 0.08);
-    color: var(--cyan) !important;
-    border: 1px solid var(--border-cyan);
-    width: 100%;
-}
-.btn-pass-select:hover {
-    background: var(--cyan);
-    color: #060b17 !important;
-    font-weight: 700;
-}
-.btn-large { padding: 16px 36px; font-size: 1.05rem; }
-.w-full { width: 100%; }
-
-/* 5. SITE HEADER & NAVIGATION */
-.ots-site-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(6, 11, 23, 0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-hairline);
-    padding: 16px 0;
-}
-.ots-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.ots-brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.ots-logo-icon {
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, var(--cyan), var(--blue));
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #060b17;
-}
-.ots-logo-icon svg { width: 22px; height: 22px; }
-.ots-brand-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--text-white);
-    display: block;
-    letter-spacing: -0.01em;
-}
-.ots-brand-year {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--cyan);
-    display: block;
-    font-family: var(--font-mono);
-}
-.ots-main-navigation .ots-nav-menu {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.ots-nav-menu a {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    font-weight: 500;
-    padding: 6px 0;
-    position: relative;
-}
-.ots-nav-menu li.current-menu-item a,
-.ots-nav-menu a:hover {
-    color: var(--text-white);
-}
-.ots-nav-menu li.current-menu-item a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--cyan);
-    border-radius: 2px;
-}
-.ots-btn-header-cta {
-    background: rgba(0, 242, 254, 0.12);
-    color: var(--cyan) !important;
-    border: 1px solid var(--border-cyan);
-    padding: 9px 20px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    border-radius: var(--radius-full);
-    transition: var(--transition);
-}
-.ots-btn-header-cta:hover {
-    background: var(--cyan);
-    color: #060b17 !important;
-}
-
-/* 6. HERO SECTION CINEMATIC */
-.summit-hero {
-    position: relative;
-    padding: 90px 0 80px;
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-.summit-hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-.hero-bg-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: brightness(0.65);
-}
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(6, 11, 23, 0.7) 0%, rgba(6, 11, 23, 0.92) 80%, #060b17 100%);
-}
-.hero-inner {
-    position: relative;
-    z-index: 2;
-}
-.hero-content {
-    max-width: 860px;
-}
-.hero-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 18px;
-    background: rgba(0, 242, 254, 0.08);
-    border: 1px solid var(--border-cyan);
-    border-radius: var(--radius-full);
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 0.08em;
-    margin-bottom: 24px;
-}
-.pulse-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--green);
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-}
-.hero-title {
-    font-size: 3.8rem;
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-}
-.hero-lead {
-    font-size: 1.18rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 32px;
-}
-.hero-meta-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    padding: 18px 24px;
-    background: rgba(13, 23, 48, 0.7);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(12px);
-    margin-bottom: 36px;
-    max-width: 820px;
-}
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.meta-icon {
-    width: 24px;
-    height: 24px;
-    color: var(--cyan);
-    flex-shrink: 0;
-}
-.meta-label {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-}
-.meta-val {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-white);
-}
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 40px;
-}
-
-/* Hero Countdown */
-.hero-countdown-wrap {
-    background: rgba(10, 19, 41, 0.75);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 16px 22px;
-    max-width: 580px;
-    backdrop-filter: blur(10px);
-}
-.ots-countdown-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.ots-countdown-title {
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--cyan);
-    text-transform: uppercase;
-    margin: 0 0 6px;
-    font-family: var(--font-mono);
-}
-.ots-countdown-grid {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.ots-cd-box {
-    background: rgba(6, 11, 23, 0.95);
-    border: 1px solid var(--border-cyan);
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    text-align: center;
-    min-width: 72px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-.ots-cd-number {
-    font-size: 1.8rem;
-    font-weight: 800;
-    font-family: var(--font-mono);
-    color: var(--cyan);
-    display: block;
-    line-height: 1;
-}
-.ots-cd-label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 4px;
-    display: block;
-}
-.ots-cd-separator {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--cyan);
-    font-family: var(--font-mono);
-    opacity: 0.7;
-}
-
-/* 7. SECTION: THE SUMMIT OVERVIEW & METRICS */
-.section-summit-overview {
-    padding: 90px 0;
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border-hairline);
-    border-bottom: 1px solid var(--border-hairline);
-}
-.overview-header {
-    max-width: 820px;
-    margin-bottom: 50px;
-}
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-.metric-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 32px 24px;
-    transition: var(--transition);
-}
-.metric-card:hover {
-    border-color: var(--border-cyan);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
-}
-.metric-number {
-    font-size: 3.2rem;
-    font-weight: 800;
-    font-family: var(--font-mono);
-    line-height: 1;
-    margin-bottom: 12px;
-    background: linear-gradient(135deg, #00f2fe, #4facfe);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.metric-label {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-white);
-    letter-spacing: 0.08em;
-    margin-bottom: 8px;
-}
-.metric-caption {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-    margin: 0;
-}
-
-/* 8. SECTION: 3 TECH TRACKS */
-.section-summit-tracks {
-    padding: 100px 0;
-}
-.tracks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-}
-.track-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    transition: var(--transition);
-}
-.track-card:hover {
-    border-color: var(--cyan);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-glow);
-}
-.track-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.hall-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: var(--radius-full);
-    letter-spacing: 0.08em;
-}
-.hall-a { background: rgba(0, 242, 254, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
-.hall-b { background: rgba(59, 130, 246, 0.15); color: var(--blue); border: 1px solid var(--blue); }
-.hall-c { background: rgba(139, 92, 246, 0.15); color: var(--purple); border: 1px solid var(--purple); }
-.track-chips {
-    display: flex;
-    gap: 6px;
-}
-.track-chips span {
-    font-size: 0.7rem;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-}
-.track-title {
-    font-size: 1.45rem;
-    font-weight: 700;
-    margin-bottom: 14px;
-}
-.track-desc {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-.track-points {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-    border-top: 1px solid var(--border-hairline);
-    padding-top: 16px;
-}
-.track-points li {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    padding: 6px 0;
-    position: relative;
-    padding-left: 20px;
-}
-.track-points li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--cyan);
-    font-weight: 800;
-}
-.track-link {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--cyan);
-    display: inline-block;
-}
-.track-link:hover { text-decoration: underline; }
-
-/* 9. SECTION: FEATURED KEYNOTE SPEAKERS */
-.section-featured-speakers {
-    padding: 100px 0;
-    background: var(--bg-surface);
-}
-.speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-bottom: 40px;
-}
-.summit-speaker-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: var(--transition);
-}
-.summit-speaker-card:hover {
-    border-color: var(--border-cyan);
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-card);
-}
-.speaker-cover {
-    position: relative;
-    height: 320px;
-    overflow: hidden;
-    background: #0d1b38;
-}
-.speaker-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.4s ease;
-}
-.summit-speaker-card:hover .speaker-img {
-    transform: scale(1.05);
-}
-.speaker-role-tag {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    letter-spacing: 0.08em;
-    backdrop-filter: blur(8px);
-}
-.tag-keynote { background: rgba(0, 242, 254, 0.9); color: #060b17; }
-.tag-foss { background: rgba(59, 130, 246, 0.9); color: #ffffff; }
-.tag-cloud { background: rgba(16, 185, 129, 0.9); color: #060b17; }
-.speaker-details {
-    padding: 28px 24px;
-}
-.speaker-fullname {
-    font-size: 1.35rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.degree-pill {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-mono);
-}
-.speaker-organization {
-    display: block;
-    font-size: 0.86rem;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-}
-.speaker-talk-title {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    font-style: italic;
-    margin-bottom: 20px;
-    min-height: 58px;
-}
-.speaker-bio-link {
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--cyan);
-}
-.section-bottom-action {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* 10. SECTION: TICKET PASSES */
-.section-summit-passes {
-    padding: 100px 0;
-}
-.passes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-.pass-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: var(--transition);
-}
-.pass-card:hover {
-    border-color: var(--border-cyan);
-    transform: translateY(-5px);
-}
-.pass-featured {
-    border-color: var(--cyan);
-    background: linear-gradient(180deg, rgba(14, 30, 64, 0.85) 0%, rgba(10, 19, 41, 0.85) 100%);
-    box-shadow: 0 10px 40px rgba(0, 242, 254, 0.18);
-}
-.pass-badge-popular {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--cyan), var(--blue));
-    color: #060b17;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 5px 16px;
-    border-radius: var(--radius-full);
-    letter-spacing: 0.1em;
-}
-.pass-kicker {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-.pass-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-.pass-price {
-    font-size: 2.8rem;
-    font-weight: 800;
-    font-family: var(--font-mono);
-    color: var(--text-white);
-    line-height: 1;
-    margin-bottom: 16px;
-}
-.pass-price .currency {
-    font-size: 1rem;
-    color: var(--cyan);
-    font-weight: 600;
-}
-.pass-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-    min-height: 44px;
-}
-.pass-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 32px;
-    border-top: 1px solid var(--border-hairline);
-    padding-top: 20px;
-    flex-grow: 1;
-}
-.pass-features li {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    padding: 8px 0;
-    position: relative;
-    padding-left: 24px;
-}
-.pass-features li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--cyan);
-    font-weight: 800;
-}
-
-/* 11. SECTION: PARTNERS */
-.section-summit-partners {
-    padding: 80px 0;
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border-hairline);
-}
-.partners-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 36px;
-}
-.partner-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 24px 20px;
-    text-align: center;
-    transition: var(--transition);
-}
-.partner-card:hover {
-    border-color: var(--cyan);
-    transform: translateY(-3px);
-}
-.partner-org-name {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--text-white);
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
-}
-.partner-org-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* 12. FINAL CTA BANNER */
-.section-final-cta {
-    padding: 90px 0;
-}
-.final-cta-card {
-    background: linear-gradient(135deg, rgba(14, 28, 60, 0.95), rgba(6, 12, 28, 0.95));
-    border: 1px solid var(--border-cyan);
-    border-radius: var(--radius-lg);
-    padding: 60px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    box-shadow: var(--shadow-glow);
-}
-.final-cta-title {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-.final-cta-sub {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    max-width: 640px;
-    margin: 0;
-}
-
-/* 13. SUBPAGES: HEADER BANNER */
-.event-page-header {
-    padding: 70px 0 50px;
-    background: linear-gradient(180deg, #09152e 0%, #060b17 100%);
-    border-bottom: 1px solid var(--border-hairline);
-    text-align: center;
-}
-.event-page-title {
-    font-size: 2.8rem;
-    font-weight: 800;
-    margin-bottom: 14px;
-}
-.event-page-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 700px;
-    margin: 0 auto;
-}
-.event-main-content {
-    padding: 60px 24px;
-}
-
-/* 14. SUBPAGE: SCHEDULE (LỊCH TRÌNH 3 PHÒNG) */
-.event-schedule-tabs {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 30px;
-}
-.event-tab-btn {
-    flex: 1;
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 16px 20px;
-    cursor: pointer;
-    text-align: left;
-    transition: var(--transition);
-}
-.event-tab-btn:hover { border-color: var(--border-cyan); }
-.event-tab-btn.active {
-    border-color: var(--cyan);
-    background: rgba(0, 242, 254, 0.08);
-}
-.tab-day {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: var(--cyan);
-    letter-spacing: 0.08em;
-}
-.tab-date {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--text-white);
-    font-weight: 600;
-    margin-top: 4px;
-}
-.event-room-legend {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 24px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-.legend-badge {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-.badge-room-a { background: var(--cyan); }
-.badge-room-b { background: var(--blue); }
-.badge-room-c { background: var(--purple); }
-
-.event-timetable {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.timetable-row {
-    display: flex;
-    gap: 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 24px;
-}
-.timetable-row.highlight-row {
-    background: rgba(0, 242, 254, 0.04);
-    border-color: rgba(0, 242, 254, 0.2);
-}
-.time-col {
-    min-width: 130px;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--cyan);
-    flex-shrink: 0;
-}
-.session-col { flex: 1; }
-.session-col.full-width { width: 100%; }
-.room-tag {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-    margin-bottom: 8px;
-}
-.tag-a { background: rgba(0, 242, 254, 0.2); color: var(--cyan); }
-.tag-b { background: rgba(59, 130, 246, 0.2); color: var(--blue); }
-.tag-c { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
-.session-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-white);
-    margin-bottom: 6px;
-}
-.session-speaker {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-}
-.session-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin: 0;
-}
-
-/* 15. SUBPAGE: SPEAKERS (HỒ SƠ DIỄN GIẢ) */
-.event-filter-bar {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-.filter-btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    color: var(--text-secondary);
-    padding: 10px 22px;
-    border-radius: var(--radius-full);
-    font-size: 0.88rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-}
-.filter-btn.active, .filter-btn:hover {
-    background: var(--cyan);
-    color: #060b17;
-    font-weight: 700;
-    border-color: var(--cyan);
-}
-.event-speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-.event-speaker-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: var(--transition);
-}
-.event-speaker-card:hover {
-    border-color: var(--border-cyan);
-    transform: translateY(-5px);
-}
-.speaker-avatar-wrapper {
-    position: relative;
-    height: 320px;
-    overflow: hidden;
-}
-.speaker-avatar-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.4s ease;
-}
-.event-speaker-card:hover .speaker-avatar-img {
-    transform: scale(1.05);
-}
-.speaker-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 5px 12px;
-    border-radius: var(--radius-full);
-    background: rgba(0, 242, 254, 0.9);
-    color: #060b17;
-}
-.badge-blue { background: rgba(59, 130, 246, 0.9); color: #fff; }
-.badge-green { background: rgba(16, 185, 129, 0.9); color: #060b17; }
-.speaker-info {
-    padding: 24px;
-}
-.speaker-name {
-    font-size: 1.35rem;
-    font-weight: 800;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.speaker-degree {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-mono);
-}
-.speaker-title {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-}
-.speaker-topic {
-    font-size: 0.9rem;
-    color: var(--cyan);
-    margin-bottom: 14px;
-    line-height: 1.5;
-}
-.speaker-bio {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 16px;
-}
-.speaker-links {
-    display: flex;
-    gap: 16px;
-    font-size: 0.8rem;
-    font-family: var(--font-mono);
-}
-.event-cfp-section {
-    margin-top: 60px;
-}
-.event-cfp-card {
-    background: linear-gradient(135deg, rgba(14, 25, 52, 0.9), rgba(10, 19, 41, 0.9));
-    border: 1px solid var(--border-cyan);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-}
-.cfp-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
-.cfp-desc { color: var(--text-muted); margin-bottom: 16px; }
-.cfp-requirements span { display: inline-block; margin-right: 20px; font-size: 0.85rem; color: var(--cyan); }
-
-/* 16. SUBPAGE: VENUE (ĐỊA ĐIỂM & BẢN ĐỒ) */
-.event-venue-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 40px;
-    margin-bottom: 40px;
-}
-.venue-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--cyan);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-}
-.venue-name { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
-.venue-address {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-}
-.venue-desc { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px; }
-.venue-highlights {
-    display: flex;
-    gap: 32px;
-}
-.highlight-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: var(--text-white);
-}
-
-.event-map-section {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 30px;
-    margin-bottom: 50px;
-}
-.map-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-.map-title { font-size: 1.4rem; font-weight: 800; margin: 0; }
-.map-source-tag { font-size: 0.8rem; font-family: var(--font-mono); color: var(--cyan); }
-.map-responsive-container {
-    position: relative;
-    width: 100%;
-    height: 480px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1px solid var(--border-hairline);
-}
-.event-osm-iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-.map-footer-actions { margin-top: 16px; text-align: right; }
-
-.transit-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 24px;
-}
-.transit-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 28px 24px;
-}
-.transit-icon { font-size: 2rem; margin-bottom: 12px; }
-.transit-type { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-.transit-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; }
-.transit-routes {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-.transit-routes li { padding: 6px 0; border-bottom: 1px solid var(--border-hairline); }
-
-/* 17. SUBPAGE: TICKETS & REGISTRATION (FORM & QR RESULT) */
-.event-pricing-table {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-bottom: 60px;
-}
-.pricing-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    transition: var(--transition);
-}
-.pricing-card.featured {
-    border-color: var(--cyan);
-    box-shadow: var(--shadow-glow);
-}
-.pricing-badge {
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-}
-.badge-popular { color: var(--cyan); }
-.badge-gold { color: var(--amber); }
-.pricing-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-.pricing-cost {
-    font-size: 2.6rem;
-    font-weight: 800;
-    font-family: var(--font-mono);
-    color: var(--text-white);
-    margin-bottom: 14px;
-}
-.pricing-cost .currency { font-size: 0.9rem; color: var(--cyan); font-weight: 600; }
-.pricing-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; }
-.pricing-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 28px;
-    border-top: 1px solid var(--border-hairline);
-    padding-top: 16px;
-    flex-grow: 1;
-}
-.pricing-features li {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    padding: 6px 0;
-}
-
-/* QR Code Success Card */
-.event-registration-success-box {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(10, 24, 48, 0.9));
-    border: 1px solid var(--green);
-    border-radius: var(--radius-lg);
-    padding: 36px;
-    margin-bottom: 50px;
-    animation: fadeIn 0.4s ease;
-}
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-.success-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-.success-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--green);
-    color: #060b17;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-}
-.success-header h3 { margin: 0; color: var(--green); font-size: 1.4rem; }
-.ticket-result-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(6, 11, 23, 0.8);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-md);
-    padding: 24px 32px;
-    margin: 20px 0;
-    gap: 24px;
-}
-.ticket-code-highlight {
-    font-family: var(--font-mono);
-    font-size: 1.25rem;
-    color: var(--cyan);
-    font-weight: 800;
-}
-.ticket-result-qr { text-align: center; }
-.ticket-qr-img {
-    width: 160px;
-    height: 160px;
-    background: #fff;
-    padding: 8px;
-    border-radius: var(--radius-sm);
-    margin: 0 auto 8px;
-}
-.qr-caption { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
-
-/* Registration Form */
-.event-registration-form-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-}
-.form-card-container {
-    background: var(--bg-card);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-lg);
-    padding: 44px;
-}
-.form-header { text-align: center; margin-bottom: 32px; }
-.form-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
-.form-desc { color: var(--text-muted); font-size: 0.95rem; }
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-.col-half { flex: 1; }
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--text-white);
-    margin-bottom: 8px;
-}
-.form-group .required { color: var(--cyan); }
-.form-control {
-    width: 100%;
-    padding: 13px 18px;
-    background: rgba(6, 11, 23, 0.8);
-    border: 1px solid var(--border-hairline);
-    border-radius: var(--radius-sm);
-    color: var(--text-white);
-    font-size: 0.95rem;
-    font-family: var(--font-main);
-    transition: var(--transition);
-}
-.form-control:focus {
-    outline: none;
-    border-color: var(--cyan);
-    box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.2);
-}
-.checkbox-group label {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-weight: 400;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-.checkbox-group input { margin-top: 4px; }
-.form-submit-group { text-align: center; margin-top: 30px; }
-.form-submit-btn { width: 100%; padding: 16px; font-size: 1.05rem; }
-
-/* 18. FOOTER */
-.ots-site-footer {
-    background: #040812;
-    border-top: 1px solid var(--border-hairline);
-    padding: 80px 0 30px;
-}
-.ots-footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1.2fr 1.4fr 1.4fr;
-    gap: 40px;
-    margin-bottom: 50px;
-}
-.ots-footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-.ots-footer-brand-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--text-white);
-}
-.ots-footer-desc {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-.ots-footer-license-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    color: var(--cyan);
-    font-family: var(--font-mono);
-}
-.ots-footer-license-badge svg { width: 16px; height: 16px; }
-.ots-footer-heading {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text-white);
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-}
-.ots-footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.ots-footer-links li { margin-bottom: 10px; }
-.ots-footer-links a {
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    transition: var(--transition);
-}
-.ots-footer-links a:hover { color: var(--cyan); }
-.ots-footer-text {
-    font-size: 0.86rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-}
-.ots-footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 30px;
-    border-top: 1px solid var(--border-hairline);
-    font-size: 0.82rem;
-    color: var(--text-muted);
-}
-.footer-bottom-badge { color: var(--cyan); }
-
-/* 19. RESPONSIVE BREAKPOINTS */
-@media (max-width: 992px) {
-    .hero-title { font-size: 2.8rem; }
-    .metrics-grid, .tracks-grid, .speakers-grid, .passes-grid, .partners-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .ots-footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .final-cta-card {
-        flex-direction: column;
-        text-align: center;
-    }
-    .ots-main-navigation { display: none; }
-}
-
-@media (max-width: 768px) {
-    .hero-title { font-size: 2.2rem; }
-    .metrics-grid, .tracks-grid, .speakers-grid, .passes-grid, .partners-grid, .transit-grid, .event-pricing-table {
-        grid-template-columns: 1fr;
-    }
-    .ots-footer-grid {
-        grid-template-columns: 1fr;
-    }
-    .form-row { flex-direction: column; gap: 0; }
-    .ticket-result-card { flex-direction: column; text-align: center; }
-    .timetable-row { flex-direction: column; }
-    .time-col { min-width: auto; margin-bottom: 8px; }
-    .event-schedule-tabs { flex-direction: column; }
-    .event-cfp-card { flex-direction: column; text-align: center; }
-    .ots-footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+html { scroll-padding-top: 100px; }
+body { margin: 0; background: #fff; color: var(--summit-ink); font-family: var(--summit-sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+body, button, input, select, textarea { font-family: var(--summit-sans); }
+body #page, body .site, body #content, body .site-content { background: #fff; }
+body #content, body .ast-container, body #primary, body .site-main { width: 100%; max-width: none; margin: 0; padding: 0; }
+body .ast-container { display: block; }
+body h1, body h2, body h3, body h4 { margin: 0; color: var(--summit-ink); font-family: var(--summit-sans); font-weight: 700; line-height: 1.18; letter-spacing: -.035em; }
+body p { margin: 0 0 1.2em; }
+body a { color: inherit; text-underline-offset: 4px; }
+body a:hover { color: var(--summit-accent); }
+body button { cursor: pointer; }
+body img { display: block; max-width: 100%; height: auto; }
+body [hidden] { display: none !important; }
+body :focus-visible { outline: 3px solid #668cff; outline-offset: 5px; }
+em { font-style: normal; }
+.summit-container { width: min(1240px, calc(100% - 96px)); margin-inline: auto; }
+.summit-small, .summit-section-footnote, .summit-page-note { color: var(--summit-muted); font-size: 13px; line-height: 1.6; }
+.summit-skip-link { position: fixed; top: 10px; left: 20px; z-index: 10000; padding: 12px 20px; background: var(--summit-ink); color: white; transform: translateY(-180%); }
+.summit-skip-link:focus { transform: none; color: #fff; }
+.summit-header { position: relative; z-index: 40; background: #fff; border-bottom: 1px solid var(--summit-line); }
+.summit-header-inner { display: flex; min-height: 88px; align-items: center; justify-content: space-between; gap: 24px; }
+.summit-brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; text-decoration: none; }
+.summit-brand-mark { display: grid; place-items: center; width: 47px; height: 47px; background: var(--summit-accent); color: #fff; font: 700 25px/1 Consolas, monospace; letter-spacing: -3px; padding-right: 3px; }
+.summit-brand-copy { display: block; font-size: 13px; line-height: 1.3; font-weight: 800; letter-spacing: -.2px; }
+.summit-brand-copy strong { display: block; margin-top: 5px; color: var(--summit-muted); font-size: 10px; letter-spacing: 1.6px; font-weight: 600; }
+.summit-brand-copy strong span { margin-left: 5px; color: var(--summit-accent); }
+.summit-nav-list { display: flex; align-items: center; gap: 29px; margin: 0; padding: 0; list-style: none; }
+.summit-nav-list a { position: relative; display: block; padding: 10px 0; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.summit-nav-list a[aria-current='page'] { color: var(--summit-accent); }
+.summit-nav-list a[aria-current='page']::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: currentColor; }
+.summit-menu-toggle { display: none; }
+body .summit-button { display: inline-flex; align-items: center; justify-content: center; gap: 22px; min-height: 48px; padding: 12px 21px; border: 1px solid var(--summit-accent); border-radius: 3px; background: var(--summit-accent); color: #fff; font-size: 14px; font-weight: 650; line-height: 1.5; text-decoration: none; transition: background .18s, color .18s; }
+body .summit-button:hover { background: var(--summit-accent-hover); color: #fff; }
+body .summit-button.is-small { min-height: 44px; padding: 10px 18px; font-size: 13px; }
+body .summit-button.is-outline, body .summit-button-secondary { background: #fff; color: var(--summit-ink); border-color: #bac6d3; }
+body .summit-button.is-outline:hover, body .summit-button-secondary:hover { background: var(--summit-pale); border-color: var(--summit-accent); color: var(--summit-accent); }
+body .summit-button:disabled { opacity: .6; cursor: wait; }
+.summit-nav-list .summit-button[aria-current='page'] { color: #fff; }
+.summit-nav-list .summit-button[aria-current='page']::after { display: none; }
+.summit-eyebrow { margin: 0 0 17px; color: var(--summit-accent); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.summit-text-link { display: inline-flex; align-items: center; gap: 14px; color: var(--summit-accent); font-size: 14px; font-weight: 650; text-decoration: none; }
+.summit-text-link:hover { text-decoration: underline; }
+.summit-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+.summit-hero { padding: 65px 0 56px; background: #14263d; color: #fff; }
+.summit-hero-grid { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 62px; }
+.summit-hero .summit-eyebrow { color: var(--summit-lime); font-size: 11px; letter-spacing: 1.7px; }
+body .summit-hero-title { margin: 0 0 25px; color: #fff; font-size: clamp(54px, 5.7vw, 81px); line-height: .99; font-weight: 800; letter-spacing: -4px; }
+.summit-hero-title span { color: var(--summit-lime); }
+.summit-hero-lead { max-width: 500px; margin-bottom: 26px; color: #c8d4e2; font-size: 16px; line-height: 1.75; }
+.summit-hero-details { display: flex; gap: 35px; margin: 0 0 28px; }
+.summit-hero-details dt { color: #9cacc0; font-size: 11px; }
+.summit-hero-details dd { margin: 4px 0 0; color: #fff; font-size: 13px; font-weight: 600; }
+.summit-hero .summit-button { background: var(--summit-lime); border-color: var(--summit-lime); color: #172538; }
+.summit-hero .summit-button:hover { background: #e5ff8c; }
+.summit-hero .summit-text-link { color: #fff; font-size: 13px; }
+.summit-hero-note { margin: 17px 0 0; color: #a8bacd; font-size: 12px; }
+.summit-hero-visual { position: relative; align-self: stretch; margin: 0; min-width: 0; background: #243b52; }
+.summit-hero-visual > img { width: 100%; height: 100%; min-height: 440px; max-height: 510px; object-fit: cover; object-position: 52% center; }
+.summit-hero-date { position: absolute; top: 0; right: 0; min-width: 170px; padding: 18px 23px; background: var(--summit-lime); color: var(--summit-ink); }
+.summit-hero-date strong { display: block; font-size: 34px; letter-spacing: -1px; line-height: 1.1; }
+.summit-hero-date span { display: block; margin-top: 7px; font-size: 9px; letter-spacing: 1.5px; font-weight: 700; }
+.summit-hero-visual figcaption { position: absolute; bottom: 0; left: 0; right: 0; padding: 15px 20px; background: #0f2039e8; color: #dce8f3; font: 11px/1.5 Consolas, monospace; letter-spacing: 1.6px; }
+.summit-countdown-strip { background: #eef3f8; padding: 26px 0; border-bottom: 1px solid var(--summit-line); }
+.summit-countdown-inner { display: flex; justify-content: space-between; align-items: center; gap: 35px; }
+.summit-countdown-inner .summit-eyebrow { margin-bottom: 7px; font-size: 10px; }
+.summit-countdown-inner h2 { font-size: 22px; letter-spacing: -.5px; }
+.summit-countdown-title { margin: 0 0 9px; color: var(--summit-muted); font-size: 11px; }
+.summit-countdown-grid { display: flex; gap: 24px; }
+.summit-countdown-unit { display: flex; flex-direction: column; min-width: 45px; }
+.summit-countdown-unit [data-unit] { color: var(--summit-ink); font: 650 29px/1.2 Consolas, monospace; font-variant-numeric: tabular-nums; }
+.summit-countdown-label { margin-top: 4px; color: var(--summit-muted); font-size: 10px; }
+.summit-countdown-status { color: var(--summit-accent); font-size: 14px; }
+.summit-section { padding: 72px 0; }
+.summit-section + .summit-section { border-top: 1px solid var(--summit-line); }
+.summit-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 50px; margin-bottom: 35px; }
+.summit-section-heading h2 { font-size: clamp(28px, 3vw, 39px); max-width: 640px; }
+.summit-section-heading > p, .summit-section-heading > div:last-child > p { max-width: 360px; margin-bottom: 0; color: var(--summit-muted); font-size: 14px; }
+.summit-section-heading .summit-text-link { margin-top: 13px; }
+.summit-programme-preview { border-top: 1px solid var(--summit-line); }
+.summit-day-preview { display: grid; grid-template-columns: 150px 1fr 1.3fr 145px; align-items: center; gap: 30px; padding: 28px 0; border-bottom: 1px solid var(--summit-line); color: var(--summit-ink); text-decoration: none; }
+.summit-day-preview:hover { color: var(--summit-ink); background: var(--summit-pale); }
+.summit-day-preview-top { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--summit-muted); }
+.summit-day-preview-top span:first-child { color: var(--summit-accent); font-size: 15px; font-weight: 700; }
+.summit-day-preview h3 { font-size: 22px; }
+.summit-day-preview p { margin: 0; color: var(--summit-muted); font-size: 13px; }
+.summit-day-preview .summit-text-link { font-size: 12px; }
+.summit-section-footnote { margin: 20px 0 0; font-size: 12px; }
+.summit-speakers-section { background: var(--summit-pale); }
+.summit-speaker-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; }
+.summit-speaker-card { color: var(--summit-ink); text-decoration: none; min-width: 0; }
+.summit-speaker-image { position: relative; overflow: hidden; margin-bottom: 19px; background: #dfe5eb; }
+.summit-speaker-image img { width: 100%; aspect-ratio: 1.18; object-fit: cover; object-position: 50% 25%; }
+.summit-site #page .summit-speaker-card:hover .summit-speaker-name { color: var(--summit-accent); }
+.summit-speaker-card:hover .summit-speaker-arrow { background: var(--summit-accent-hover); }
+.summit-speaker-arrow { position: absolute; bottom: 0; right: 0; width: 42px; height: 42px; display: grid; place-items: center; color: #fff; background: var(--summit-accent); font-size: 22px; }
+.summit-speaker-copy .summit-eyebrow { margin-bottom: 8px; font-size: 10px; }
+.summit-speaker-name { margin-bottom: 8px; font-size: 25px; }
+.summit-speaker-topic { margin: 0; color: var(--summit-muted); font-size: 14px; }
+.summit-attend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+.summit-attend-grid h2 { margin-bottom: 20px; font-size: 36px; }
+.summit-attend-grid > div > p:not(.summit-eyebrow) { max-width: 440px; color: var(--summit-muted); font-size: 14px; }
+.summit-attend-steps { list-style: none; margin: 0; padding: 0; }
+.summit-attend-steps li { display: flex; gap: 25px; border-top: 1px solid var(--summit-line); padding: 20px 0; }
+.summit-attend-steps li > span { padding-top: 3px; color: var(--summit-accent); font: 14px/1.5 Consolas,monospace; }
+.summit-attend-steps h3 { margin-bottom: 7px; font-size: 18px; }
+.summit-attend-steps p { margin: 0; color: var(--summit-muted); font-size: 14px; }
+.summit-cta { padding: 44px 0; background: var(--summit-accent); color: white; }
+.summit-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.summit-cta .summit-eyebrow { color: #d4e0ff; margin-bottom: 12px; }
+.summit-cta h2 { color: #fff; font-size: 34px; max-width: 630px; }
+.summit-cta p { margin-bottom: 18px; color: #dce6ff; font-size: 14px; }
+body .summit-cta .summit-button.is-light { background: #fff; border-color: #fff; color: var(--summit-accent); }
+.summit-footer { background: #102033; padding: 49px 0 22px; color: #fff; }
+.summit-footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 60px; padding-bottom: 36px; }
+.summit-footer-brand { display: block; margin-bottom: 16px; color: #fff; font-size: 23px; font-weight: 750; text-decoration: none; letter-spacing: -.6px; }
+.summit-footer-brand span { margin-left: 7px; color: var(--summit-lime); }
+.summit-footer p { max-width: 350px; font-size: 13px; color: #acbdd0; }
+.summit-footer h2 { margin-bottom: 19px; color: #fff; font-size: 14px; letter-spacing: 0; }
+.summit-footer ul { list-style: none; margin: 0; padding: 0; }
+.summit-footer li { margin-bottom: 8px; }
+.summit-footer-links a, .summit-footer .summit-text-link { color: #cedbea; font-size: 13px; text-decoration: none; }
+.summit-footer a:hover { color: #fff; text-decoration: underline; }
+.summit-footer-bottom { display: flex; justify-content: space-between; gap: 50px; padding-top: 21px; border-top: 1px solid #304255; color: #9db0c5; font-size: 11px; }
+.summit-footer-bottom p { max-width: 640px; margin: 0; font-size: 11px; }
+.summit-page-heading, .summit-page-header { padding: 52px 0 43px; background: #eef3f8; border-bottom: 1px solid var(--summit-line); }
+.summit-page-header.summit-container { width: 100%; padding-inline: max(48px, calc((100% - 1240px)/2)); }
+.summit-page-heading h1, .summit-page-header h1 { max-width: 900px; font-size: clamp(36px,4.4vw,58px); letter-spacing: -2px; }
+.summit-page-heading em, .summit-page-header em { color: inherit; }
+.summit-page-lead, .summit-lead { max-width: 680px; margin: 20px 0 0; color: var(--summit-muted); font-size: 16px; }
+.summit-page-note { margin-top: 13px; margin-bottom: 0; font-size: 12px; }
+.summit-day-tabs { display: flex; gap: 0; margin-bottom: 27px; border: 1px solid var(--summit-line); }
+body .summit-day-tab { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; padding: 22px 28px; border: 0; border-right: 1px solid var(--summit-line); border-bottom: 3px solid transparent; border-radius: 0; background: white; color: var(--summit-muted); text-align: left; }
+body .summit-day-tab:last-child { border-right: 0; }
+body .summit-day-tab[aria-selected='true'] { color: var(--summit-accent); background: #eef3ff; border-bottom-color: var(--summit-accent); }
+.summit-day-tab span { font-size: 12px; }
+.summit-day-tab strong { font-size: 20px; }
+.summit-day-tab small { font-size: 12px; }
+.summit-room-filters, .summit-speaker-filters { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 35px; }
+.summit-room-filters > span { margin-right: 15px; color: var(--summit-muted); font-size: 13px; }
+body .summit-filter-button { padding: 9px 15px; border: 1px solid var(--summit-line); border-radius: 3px; background: #fff; color: var(--summit-muted); font-size: 13px; }
+body .summit-filter-button[aria-pressed='true'] { background: var(--summit-ink); border-color: var(--summit-ink); color: #fff; }
+.summit-schedule-day-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 25px; }
+.summit-schedule-day-heading h2 { font-size: 28px; }
+.summit-schedule-day-heading .summit-eyebrow { margin-bottom: 8px; }
+.summit-schedule-day-heading > span { color: var(--summit-muted); font-size: 13px; }
+.summit-schedule-labels, .summit-session { display: grid; grid-template-columns: 135px 125px minmax(0,1fr); gap: 26px; }
+.summit-schedule-labels { padding: 13px 0; border-bottom: 2px solid var(--summit-ink); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--summit-muted); }
+.summit-session { padding: 25px 0; border-bottom: 1px solid var(--summit-line); scroll-margin-top: 35px; }
+.summit-session:target { outline: 2px solid var(--summit-accent); outline-offset: 8px; }
+.summit-session-time { font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.summit-room-label { display: inline-block; padding: 4px 8px; background: var(--summit-pale); font-size: 11px; font-weight: 600; }
+.summit-room-label.is-hall-a { background: #e9efff; color: #254dd5; }
+.summit-room-label.is-room-b { background: #e6f3e9; color: #25633b; }
+.summit-room-label.is-room-c { background: #fff0e6; color: #974813; }
+.summit-session-body h3 { font-size: 20px; margin-bottom: 10px; letter-spacing: -.4px; }
+.summit-session-body p { max-width: 720px; margin-bottom: 10px; color: var(--summit-muted); font-size: 14px; }
+.summit-session-speaker, .summit-session-body a { color: var(--summit-accent); font-size: 13px; font-weight: 600; text-decoration: none; }
+.summit-schedule-note, .summit-inline-cta { display: flex; justify-content: space-between; align-items: center; gap: 35px; margin-top: 40px; padding: 27px; background: var(--summit-pale); }
+.summit-schedule-note p { max-width: 650px; margin: 0; font-size: 14px; }
+.summit-inline-cta h2 { font-size: 27px; }
+.summit-inline-cta .summit-eyebrow { margin-bottom: 10px; }
+.summit-speaker-profile { display: grid; grid-template-columns: 300px minmax(0,1fr); align-items: start; gap: 65px; padding: 45px 0; border-bottom: 1px solid var(--summit-line); scroll-margin-top: 30px; }
+.summit-speaker-profile:first-child { padding-top: 0; }
+.summit-speaker-profile-image { position: relative; }
+.summit-speaker-profile-image img { width: 100%; aspect-ratio: .93; object-fit: cover; object-position: center top; }
+.summit-speaker-profile-image > span { position: absolute; bottom: 0; left: 0; padding: 7px 12px; background: #102033e8; color: #fff; font-size: 10px; }
+.summit-speaker-profile-copy h2 { font-size: 36px; margin-bottom: 15px; }
+.summit-speaker-profile-topic { color: var(--summit-ink); font-size: 19px; font-weight: 600; }
+.summit-speaker-profile-copy > p:not(.summit-eyebrow):not(.summit-speaker-profile-topic) { max-width: 700px; font-size: 14px; color: var(--summit-muted); }
+.summit-speaker-profile-copy h3 { margin: 25px 0 15px; font-size: 15px; }
+.summit-speaker-sessions { list-style: none; padding: 0; margin: 0; }
+.summit-speaker-sessions li { padding: 12px 0; border-top: 1px solid var(--summit-line); }
+.summit-speaker-sessions li > span { display: block; color: var(--summit-muted); font-size: 11px; margin-bottom: 4px; }
+.summit-speaker-sessions a { color: var(--summit-accent); font-size: 14px; font-weight: 600; text-decoration: none; }
+.summit-venue-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 65px; }
+.summit-venue-info h2 { max-width: 400px; font-size: 35px; margin-bottom: 20px; }
+.summit-venue-address { color: var(--summit-muted); font-size: 15px; }
+.summit-venue-facts { margin: 27px 0; }
+.summit-venue-facts > div { display: grid; grid-template-columns: 115px 1fr; gap: 15px; padding: 12px 0; border-top: 1px solid var(--summit-line); font-size: 13px; }
+.summit-venue-facts dt { color: var(--summit-muted); }
+.summit-venue-facts dd { margin: 0; font-weight: 600; }
+.summit-map iframe { display: block; width: 100%; height: 420px; border: 1px solid var(--summit-line); background: var(--summit-pale); }
+.summit-map > p { margin-top: 10px; color: var(--summit-muted); font-size: 11px; }
+.summit-map .surecookie-placeholder { border: 1px solid var(--summit-line); border-radius: 3px; box-shadow: none; }
+.summit-map .surecookie-placeholder-content { background: var(--summit-pale) !important; }
+.summit-map .surecookie-placeholder-text { max-width: 350px; margin-inline: auto; color: var(--summit-muted) !important; font-size: 14px; }
+.summit-map .surecookie-placeholder-button { margin-top: 15px; border: 0; border-radius: 3px; background: var(--summit-accent) !important; color: #fff !important; font: 600 13px/1.5 var(--summit-sans); padding: 12px 20px; }
+.summit-arrival-section { background: var(--summit-pale); }
+.summit-arrival-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 45px; }
+.summit-arrival-number { display: block; margin-bottom: 22px; color: var(--summit-accent); font: 22px/1.2 Consolas, monospace; }
+.summit-arrival-item h3 { font-size: 20px; margin-bottom: 15px; }
+.summit-arrival-item p { color: var(--summit-muted); font-size: 14px; }
+.summit-faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+.summit-faq-grid h2 { font-size: 35px; }
+.summit-faq-list details { padding: 20px 0; border-top: 1px solid var(--summit-line); }
+.summit-faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; font-size: 15px; font-weight: 600; list-style: none; }
+.summit-faq-list summary::-webkit-details-marker { display: none; }
+.summit-faq-list summary span { color: var(--summit-accent); font-size: 22px; }
+.summit-faq-list details[open] summary span { transform: rotate(45deg); }
+.summit-faq-list details p { margin: 15px 0 0; font-size: 14px; color: var(--summit-muted); }
+.summit-ticket-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+.summit-ticket-option { display: flex; flex-direction: column; align-items: flex-start; padding: 27px; border: 1px solid var(--summit-line); background: #fff; }
+.summit-ticket-option.is-selected { border-color: var(--summit-accent); border-top: 4px solid var(--summit-accent); padding-top: 24px; }
+.summit-ticket-option h3 { font-size: 26px; margin-bottom: 17px; }
+.summit-ticket-option > p:not(.summit-eyebrow):not(.summit-ticket-price) { color: var(--summit-muted); font-size: 14px; }
+.summit-ticket-price { margin-bottom: 20px; font-size: 20px; font-weight: 700; }
+.summit-ticket-option ul { width: 100%; margin: 0 0 25px; padding: 19px 0 0 18px; border-top: 1px solid var(--summit-line); color: var(--summit-muted); font-size: 13px; }
+.summit-ticket-option li { margin-bottom: 9px; }
+.summit-ticket-option .summit-button { margin-top: auto; width: 100%; font-size: 13px; }
+.summit-form-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: start; }
+.summit-form-intro h2 { margin-bottom: 23px; font-size: 35px; }
+.summit-form-intro > p:not(.summit-eyebrow) { color: var(--summit-muted); font-size: 14px; }
+.summit-attendance-note { margin: 27px 0; padding-top: 25px; border-top: 1px solid var(--summit-line); }
+.summit-attendance-note h3 { font-size: 16px; margin-bottom: 15px; }
+.summit-attendance-note ol { padding-left: 20px; color: var(--summit-muted); font-size: 14px; }
+.summit-attendance-note li { padding-bottom: 8px; }
+.summit-form { position: relative; padding: 32px; background: var(--summit-pale); border: 1px solid var(--summit-line); }
+.summit-form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 23px; }
+.summit-field { min-width: 0; }
+.summit-field-full { grid-column: 1 / -1; }
+.summit-field label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 650; }
+.summit-field label span { color: #ad312c; }
+body .summit-field input, body .summit-field select { display: block; width: 100%; min-height: 47px; border: 1px solid #b9c4d0; border-radius: 3px; background: #fff; padding: 11px 12px; font-size: 14px; color: var(--summit-ink); box-shadow: none; }
+body .summit-field input:focus, body .summit-field select:focus { border-color: var(--summit-accent); outline: 2px solid #9ab1ff; outline-offset: 1px; }
+.summit-field input::placeholder { color: #6e7a88; }
+.summit-consent { display: flex; gap: 11px; align-items: flex-start; margin: 24px 0; font-size: 12px; color: var(--summit-muted); }
+.summit-consent input { width: 17px; height: 17px; flex-shrink: 0; margin-top: 3px; accent-color: var(--summit-accent); }
+.summit-form > .summit-button { width: 100%; }
+.summit-form > .summit-small { margin: 15px 0 0; font-size: 12px; }
+.summit-honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.summit-field-error { color: #a22727; margin: 5px 0 0; font-size: 12px; }
+body .summit-field [aria-invalid='true'] { border-color: #b52f2f; }
+.summit-notice { margin-bottom: 24px; padding: 17px 20px; background: #eaf0fa; border-left: 3px solid var(--summit-accent); font-size: 14px; }
+.summit-notice-error { background: #fff0ed; border-color: #aa3530; }
+.summit-notice ul { margin-bottom: 0; padding-left: 20px; }
+.summit-confirmation { display: grid; grid-template-columns: 1.25fr .75fr; gap: 50px; padding: 38px; border: 1px solid var(--summit-line); background: var(--summit-pale); }
+.summit-confirmation h2 { margin-bottom: 20px; font-size: 36px; }
+.summit-confirmation p { color: var(--summit-muted); font-size: 14px; }
+.summit-ticket-summary { margin: 25px 0; }
+.summit-ticket-summary > div { padding: 11px 0; border-bottom: 1px solid var(--summit-line); }
+.summit-ticket-summary dt { color: var(--summit-muted); font-size: 11px; }
+.summit-ticket-summary dd { margin: 5px 0 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.summit-ticket-summary code { background: none; padding: 0; color: var(--summit-accent); }
+.summit-qr-panel { align-self: start; padding: 17px; background: #fff; border: 1px solid var(--summit-line); }
+.summit-ticket-qr { width: 100%; height: auto; }
+.summit-qr-panel p { margin: 10px 0 0; text-align: center; font-size: 11px; }
+.summit-back-to-top { position: fixed; bottom: 22px; right: 22px; width: 42px; height: 42px; padding: 0; display: grid; place-items: center; background: #fff; color: var(--summit-ink); border: 1px solid #bac6d3; border-radius: 3px; z-index: 30; font-size: 22px; }
+.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Keep the conference palette independent from imported Astra/Elementor kits. */
+body.summit-site, .summit-site #page { color: var(--summit-ink); }
+.summit-site #primary.summit-main { margin: 0; padding: 0; }
+.summit-site #page h1, .summit-site #page h2, .summit-site #page h3, .summit-site #page h4 { color: var(--summit-ink); }
+.summit-site #page a { color: inherit; }
+.summit-site #page .summit-text-link,
+.summit-site #page .summit-speaker-sessions a,
+.summit-site #page .summit-session-body a,
+.summit-site #page .summit-nav-list a[aria-current='page'] { color: var(--summit-accent); }
+.summit-site #page .summit-brand { color: var(--summit-ink); }
+.summit-site #page .summit-button,
+.summit-site #page .summit-nav-list .summit-button[aria-current='page'] { color: #fff; }
+.summit-site #page .summit-button-secondary, .summit-site #page .summit-button.is-outline { color: var(--summit-ink); }
+.summit-site #page .summit-hero-title { color: #fff; }
+.summit-site #page .summit-hero .summit-button { color: var(--summit-ink); }
+.summit-site #page .summit-hero .summit-text-link { color: #fff; }
+.summit-site #page .summit-cta h2, .summit-site #page .summit-footer h2, .summit-site #page .summit-footer-brand { color: #fff; }
+.summit-site #page .summit-cta .summit-button.is-light { color: var(--summit-accent); }
+.summit-site #page .summit-footer-links a, .summit-site #page .summit-footer .summit-text-link { color: #cedbea; }
+@media (max-width: 1050px) {
+    .summit-container { width: calc(100% - 64px); }
+    .summit-nav-list { gap: 20px; }
+    .summit-nav-list a { font-size: 13px; }
+    .summit-hero-grid { gap: 35px; }
+    body .summit-hero-title { font-size: 62px; letter-spacing: -3px; }
+    .summit-hero-details { flex-direction: column; gap: 10px; }
+    .summit-hero-visual > img { min-height: 440px; }
+    .summit-day-preview { grid-template-columns: 115px 1fr 1.2fr; gap: 22px; }
+    .summit-day-preview > .summit-text-link { grid-column: 2/-1; }
+    .summit-form-layout { gap: 35px; }
+    .summit-ticket-option { padding: 22px; }
+}
+@media (max-width: 900px) {
+    .summit-menu-toggle { display: flex; align-items: center; gap: 13px; min-height: 42px; padding: 10px 14px; border: 1px solid var(--summit-line); border-radius: 3px; background: #fff; color: var(--summit-ink); font-size: 13px; }
+    .summit-menu-lines, .summit-menu-lines::after { width: 16px; height: 2px; display: block; background: currentColor; }
+    .summit-menu-lines { position: relative; margin-top: -5px; }
+    .summit-menu-lines::after { content: ''; position: absolute; top: 6px; }
+    .summit-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: 15px 32px 24px; background: #fff; border-bottom: 1px solid var(--summit-line); box-shadow: 0 15px 20px #10203312; }
+    .summit-nav.is-open { display: block; }
+    .summit-nav-list { display: block; }
+    .summit-nav-list li { border-bottom: 1px solid var(--summit-line); }
+    .summit-nav-list a { padding: 14px 0; font-size: 15px; }
+    .summit-nav-list .summit-nav-register { border: 0; margin-top: 15px; }
+    .summit-nav-list .summit-button { display: inline-flex; padding: 10px 18px; }
+    .summit-hero-grid { grid-template-columns: 1fr 1fr; }
+    body .summit-hero-title { font-size: 52px; }
+    .summit-hero-lead { font-size: 14px; }
+    .summit-hero .summit-eyebrow { font-size: 9px; }
+    .summit-hero-date { min-width: 140px; padding: 16px; }
+    .summit-section-heading { gap: 30px; align-items: flex-start; }
+    .summit-section-heading h2 { font-size: 30px; }
+    .summit-section-heading > p, .summit-section-heading > div:last-child > p { max-width: 290px; font-size: 13px; }
+    .summit-speaker-grid { gap: 22px; }
+    .summit-speaker-copy .summit-eyebrow { font-size: 9px; }
+    .summit-attend-grid { gap: 45px; }
+    .summit-footer-grid { gap: 30px; }
+    .summit-speaker-profile { grid-template-columns: 230px 1fr; gap: 35px; }
+    .summit-ticket-grid { gap: 14px; }
+    .summit-ticket-option { padding: 20px; }
+    .summit-ticket-option h3 { font-size: 23px; }
+    .summit-form-grid { grid-template-columns: 1fr; }
+    .summit-venue-grid, .summit-faq-grid { gap: 35px; }
+}
+@media (max-width: 650px) {
+    .summit-container { width: calc(100% - 40px); }
+    .summit-header-inner { min-height: 75px; }
+    .summit-brand-mark { width: 39px; height: 39px; font-size: 22px; }
+    .summit-brand-copy { font-size: 11px; }
+    .summit-brand-copy strong { font-size: 9px; }
+    .summit-nav { padding-inline: 20px; }
+    .summit-hero { padding: 38px 0 30px; }
+    .summit-hero-grid { grid-template-columns: 1fr; gap: 30px; }
+    body .summit-hero-title { font-size: clamp(49px,12.3vw,72px); letter-spacing: -2.7px; margin-bottom: 23px; }
+    .summit-hero .summit-eyebrow { font-size: 10px; letter-spacing: 1px; }
+    .summit-hero-lead { font-size: 15px; }
+    .summit-hero-details { flex-direction: row; gap: 22px; }
+    .summit-hero-details > div { flex: 1; }
+    .summit-hero-details dd { font-size: 12px; }
+    .summit-hero .summit-actions { gap: 18px; }
+    body .summit-button { font-size: 13px; padding: 12px 16px; min-height: 46px; gap: 15px; }
+    .summit-hero-visual > img { min-height: 0; height: 260px; }
+    .summit-hero-date { padding: 13px 17px; }
+    .summit-hero-date strong { font-size: 29px; }
+    .summit-hero-visual figcaption { padding: 10px 14px; font-size: 9px; }
+    .summit-countdown-strip { padding: 23px 0; }
+    .summit-countdown-inner { display: block; }
+    .summit-countdown-inner h2 { font-size: 20px; margin-bottom: 20px; }
+    .summit-countdown-grid { justify-content: space-between; gap: 20px; }
+    .summit-countdown-title { font-size: 11px; }
+    .summit-section { padding: 43px 0; }
+    .summit-section-heading { display: block; margin-bottom: 28px; }
+    .summit-section-heading h2 { font-size: 29px; }
+    .summit-section-heading > p, .summit-section-heading > div:last-child > p { max-width: 100%; margin-top: 18px; font-size: 14px; }
+    .summit-day-preview { grid-template-columns: 80px 1fr; gap: 13px 18px; padding: 23px 0; }
+    .summit-day-preview h3 { font-size: 20px; }
+    .summit-day-preview p, .summit-day-preview > .summit-text-link { grid-column: 2; }
+    .summit-day-preview p { font-size: 13px; }
+    .summit-day-preview-top { align-self: start; font-size: 10px; }
+    .summit-day-preview-top span:first-child { font-size: 13px; }
+    .summit-speaker-grid { grid-template-columns: 1fr; gap: 30px; }
+    .summit-speaker-image img { aspect-ratio: 1.28; object-position: 50% 24%; }
+    .summit-speaker-copy .summit-eyebrow { font-size: 10px; }
+    .summit-attend-grid, .summit-venue-grid, .summit-faq-grid { grid-template-columns: 1fr; gap: 30px; }
+    .summit-attend-grid h2, .summit-venue-info h2, .summit-faq-grid h2 { font-size: 29px; }
+    .summit-cta { padding: 35px 0; }
+    .summit-cta-inner { display: block; }
+    .summit-cta h2 { font-size: 28px; margin-bottom: 20px; }
+    .summit-footer { padding-top: 35px; }
+    .summit-footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .summit-footer-intro p { margin-bottom: 0; }
+    .summit-footer-bottom { display: block; }
+    .summit-footer-bottom p { margin-top: 12px; }
+    .summit-page-heading, .summit-page-header { padding: 35px 0; }
+    .summit-page-header.summit-container { padding-inline: 20px; }
+    .summit-page-heading h1, .summit-page-header h1 { font-size: 36px; letter-spacing: -1px; }
+    .summit-page-lead, .summit-lead { font-size: 15px; }
+    .summit-day-tab small { display: none; }
+    body .summit-day-tab { padding: 15px 10px; }
+    .summit-day-tab strong { font-size: 13px; }
+    .summit-day-tab span { font-size: 11px; }
+    .summit-room-filters { gap: 7px; margin-bottom: 26px; }
+    .summit-room-filters > span { width: 100%; margin-bottom: 3px; }
+    body .summit-filter-button { padding: 9px 11px; font-size: 12px; }
+    .summit-schedule-day-heading h2 { font-size: 24px; }
+    .summit-schedule-day-heading > span { font-size: 11px; white-space: nowrap; }
+    .summit-schedule-labels { display: none; }
+    .summit-session { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+    .summit-session-room { text-align: right; }
+    .summit-session-body { grid-column: 1/-1; }
+    .summit-session-body h3 { font-size: 19px; }
+    .summit-schedule-note, .summit-inline-cta { display: block; padding: 23px; }
+    .summit-schedule-note .summit-button, .summit-inline-cta .summit-button { margin-top: 22px; }
+    .summit-speaker-profile { grid-template-columns: 1fr; gap: 25px; padding: 32px 0; }
+    .summit-speaker-profile-image { max-width: 330px; }
+    .summit-speaker-profile-image img { aspect-ratio: 1.1; object-position: center 22%; }
+    .summit-speaker-profile-copy h2 { font-size: 30px; }
+    .summit-map iframe { height: 320px; }
+    .summit-arrival-grid { grid-template-columns: 1fr; gap: 25px; }
+    .summit-arrival-item { border-bottom: 1px solid var(--summit-line); padding-bottom: 20px; }
+    .summit-arrival-number { margin-bottom: 12px; }
+    .summit-ticket-grid { grid-template-columns: 1fr; gap: 17px; }
+    .summit-ticket-option { padding: 25px; }
+    .summit-ticket-option.is-selected { padding-top: 22px; }
+    .summit-form-layout { grid-template-columns: 1fr; gap: 30px; }
+    .summit-form-intro h2 { font-size: 28px; }
+    .summit-form { padding: 23px 20px; }
+    .summit-confirmation { grid-template-columns: 1fr; gap: 25px; padding: 23px 20px; }
+    .summit-confirmation h2 { font-size: 29px; }
+    .summit-qr-panel { max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+    .summit-header, .summit-footer, .summit-back-to-top, .summit-form, .summit-day-tabs, .summit-room-filters { display: none; }
+    .summit-container { width: 100%; }
+    .summit-section { padding-block: 20px; }
+    body .summit-day-panel[hidden] { display: block !important; }
+    .summit-confirmation { background: #fff; }
 }
