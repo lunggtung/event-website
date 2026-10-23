@@ -1,49 +1,56 @@
-/** Countdown values are scoped to each instance. */
+/**
+ * Countdown Timer
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[data-countdown], .ots-countdown-container').forEach(function (container) {
-        const start = Date.parse(container.getAttribute('data-target') || '');
-        const end = Date.parse(container.getAttribute('data-end') || '');
-        const grid = container.querySelector('[data-countdown-grid]');
-        const status = container.querySelector('[data-countdown-status]');
-        let timer = null;
+    const countdownContainer = document.querySelector('.ots-countdown-container');
+    if (!countdownContainer) {
+        return;
+    }
 
-        function showStatus(message) {
-            if (grid) grid.hidden = true;
-            if (status) {
-                status.textContent = message;
-                status.hidden = false;
-            }
+    // Lấy mốc thời gian mục tiêu từ thuộc tính data-target (hoặc dùng mặc định: 20/11/2026 08:00:00)
+    const targetDateAttr = countdownContainer.getAttribute('data-target') || '2026-11-20T08:00:00';
+    const targetTime = new Date(targetDateAttr).getTime();
+
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minutesEl = document.getElementById('cd-minutes');
+    const secondsEl = document.getElementById('cd-seconds');
+    const expiredMsg = document.getElementById('cd-expired-msg');
+    const countdownGrid = document.querySelector('.ots-countdown-grid');
+
+    function padZero(num) {
+        return num < 10 ? '0' + num : num;
+    }
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetTime - now;
+
+        // Nếu đã qua thời gian khai mạc
+        if (distance <= 0) {
+            clearInterval(timerInterval);
+            if (countdownGrid) countdownGrid.style.display = 'none';
+            if (expiredMsg) expiredMsg.style.display = 'block';
+            return;
         }
 
-        function update() {
-            if (!Number.isFinite(start)) {
-                showStatus('Thời gian khai mạc đang được cập nhật.');
-                return false;
-            }
-            const now = Date.now();
-            const remaining = start - now;
-            if (remaining <= 0) {
-                showStatus(Number.isFinite(end) && now > end ? 'Hội nghị đã kết thúc. Cảm ơn bạn đã theo dõi.' : 'Hội nghị đang diễn ra. Xem lịch trình để chọn phiên tham dự.');
-                return false;
-            }
-            if (grid) grid.hidden = false;
-            if (status) status.hidden = true;
-            const values = {
-                days: Math.floor(remaining / 86400000),
-                hours: Math.floor(remaining / 3600000) % 24,
-                minutes: Math.floor(remaining / 60000) % 60,
-                seconds: Math.floor(remaining / 1000) % 60
-            };
-            Object.keys(values).forEach(function (unit) {
-                const element = container.querySelector('[data-unit="' + unit + '"]');
-                if (element) element.textContent = String(values[unit]).padStart(2, '0');
-            });
-            return true;
-        }
-        if (update()) {
-            timer = window.setInterval(function () {
-                if (!update()) window.clearInterval(timer);
-            }, 1000);
-        }
-    });
+        // Tính toán Ngày, Giờ, Phút, Giây
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Cập nhật DOM
+        if (daysEl) daysEl.textContent = padZero(days);
+        if (hoursEl) hoursEl.textContent = padZero(hours);
+        if (minutesEl) minutesEl.textContent = padZero(minutes);
+        if (secondsEl) secondsEl.textContent = padZero(seconds);
+    }
+
+    // Chạy lần đầu ngay khi nạp trang
+    updateCountdown();
+
+    // Thiết lập lặp lại mỗi giây
+    const timerInterval = setInterval(updateCountdown, 1000);
 });
