@@ -1,0 +1,63 @@
+# =============================================================================
+# Gia cố máy chủ Apache - Open Tech Summit 2026
+# -----------------------------------------------------------------------------
+# Cách dùng: dán phần dưới (khối "GIA CO MAY CHU") vào TRƯỚC khối
+# "# BEGIN WordPress" trong file .htaccess nằm ở thư mục gốc WordPress.
+#
+# Điều kiện: Apache 2.4 với "AllowOverride All" cho thư mục gốc website.
+# Kiểm tra nhanh:  curl -I http://<domain>/
+# =============================================================================
+
+# --- GIA CO MAY CHU ---
+# 1. Tat duyet thu muc (Directory Browsing)
+Options -Indexes
+
+# 2. Chan doc cac tep cau hinh nhay cam
+<FilesMatch "^(wp-config\.php|wp-config-sample\.php|readme\.html|license\.txt|php\.ini|\.user\.ini|\.htaccess|\.gitignore|\.git)$">
+    Require all denied
+</FilesMatch>
+
+# 3. Tat XML-RPC va endpoint binh luan (website su kien khong dung kenh nay)
+<Files "xmlrpc.php">
+    Require all denied
+    Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'; sandbox"
+</Files>
+<Files "wp-comments-post.php">
+    Require all denied
+    Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'; sandbox"
+</Files>
+
+# 4. Go bo cac tieu chuan tiet lo phien ban o muc HTTP
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+    Header unset X-Pingback
+    Header always unset X-Pingback
+    Header unset X-Runtime
+    Header always unset X-Runtime
+</IfModule>
+
+# 5. Dat tieu chuan bao mat cho MOI phan hoi (ke ca file tinh: CSS/JS/hinh anh)
+#    "unset" bo header do PHP sinh ra, "always set" dat header cho ca file tinh.
+<IfModule mod_headers.c>
+    Header unset X-Content-Type-Options
+    Header always set X-Content-Type-Options "nosniff"
+    Header unset X-Frame-Options
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header unset Referrer-Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 6. Chan thu muc va tep khong can thiet cho website cong khai
+<IfModule mod_rewrite.c>
+    RedirectMatch 404 ^/wp-content/uploads/.*\.php$
+    RedirectMatch 404 ^/wp-content/cache/.*\.php$
+</IfModule>
+# --- HET GIA CO MAY CHU ---
+
+# =============================================================================
+# Gia co thu muc wp-content/uploads (dat file .htaccess rieng trong thu muc do)
+# =============================================================================
+# <FilesMatch "\.(?i:php[0-9]?|phtml|phar|pl|py|cgi|asp|aspx)$">
+#     Require all denied
+# </FilesMatch>
