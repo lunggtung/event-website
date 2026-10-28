@@ -1,39 +1,71 @@
-# 📜 BẢNG THỐNG KÊ GIẤY PHÉP MÃ NGUỒN MỞ (OPEN SOURCE LICENSES)
-> **Dự án:** Trang web Quản lý Sự kiện & Hội nghị (Nhóm 2)  
-> **Học phần:** Mã nguồn mở  
-> **Người phụ trách:** TV5 (Kiểm kê & Báo cáo)
+# GIẤY PHÉP SỬ DỤNG THÀNH PHẦN PHẦN MỀM (LICENSES)
+
+> **Dự án:** Hội Nghị Khoa Học & Công Nghệ Mở 2026 — Website Quản lý Sự kiện (Nhóm 2)  
+> **Cập nhật:** 29/10/2026 — đối chiếu với cài đặt thực tế trên máy build.
 
 ---
 
-## 1. Bảng Kiểm Kê Tổng Hợp Thành Phần Hệ Thống
+## 1. Mã nguồn do Nhóm 2 tự viết (được phân phối trong repo này)
 
-| STT | Thành phần | Tên phần mềm / Gói | Phiên bản | Mục đích sử dụng | Loại Giấy phép (License) | Nguồn lưu trữ mã nguồn |
-| :---: | :--- | :--- | :---: | :--- | :--- | :--- |
-| 1 | **Core CMS** | WordPress | 6.x | Hệ quản trị nội dung mã nguồn mở làm nền tảng toàn bộ website | **GPLv2 (hoặc mới hơn)** | [WordPress Trac / GitHub](https://github.com/WordPress/WordPress) |
-| 2 | **Parent Theme** | Astra | 4.x | Giao diện gốc chuẩn SEO, tối ưu tốc độ và hỗ trợ hook cho Child Theme | **GPLv2** | [Brainstorm Force / WP Repository](https://wordpress.org/themes/astra/) |
-| 3 | **Child Theme** | Event Child Theme | 1.0.0 | Giao diện và mã nguồn tùy biến mở rộng do Nhóm 2 tự lập trình | **GPLv2 (hoặc mới hơn)** | *Public Repo GitHub của Nhóm 2* |
-| 4 | **Plugin Nghiệp vụ** | Contact Form 7 | 5.9+ | Xây dựng biểu mẫu đăng ký tham dự hội nghị và thu thập thông tin | **GPLv2 (hoặc mới hơn)** | [Rock Lobster / WP Repository](https://wordpress.org/plugins/contact-form-7/) |
-| 5 | **Plugin Tiện ích** | WP Mail SMTP | 4.x | Cấu hình giao thức gửi email xác nhận và vé điện tử qua Google SMTP | **GPLv2** | [WPForms / WP Repository](https://wordpress.org/plugins/wp-mail-smtp/) |
-| 6 | **Plugin Bảo mật** | WPS Hide Login | 1.9+ | Đổi đường dẫn đăng nhập mặc định (`/wp-login.php`) chống dò quét tự động | **GPLv2** | [WPServeur / WP Repository](https://wordpress.org/plugins/wps-hide-login/) |
-| 7 | **Plugin Bảo mật** | Wordfence Security | 7.x | Cung cấp tường lửa ứng dụng web (WAF) và ngăn chặn tấn công Brute-force | **GPLv2** | [Defiant / WP Repository](https://wordpress.org/plugins/wordfence/) |
-| 8 | **Thư viện JS** | Vanilla JS Countdown | Custom | Script đếm ngược thời gian thực do nhóm tự viết | **MIT License** | *Nằm trong `assets/js/countdown.js`* |
+| Thành phần | Bản | Giấy phép | Vị trí |
+|---|---|---|---|
+| Event Child Theme | 3.1.1 | GNU General Public License v2 or later | `wp-content/themes/event-child/` |
+
+Child theme kế thừa từ theme cha **Astra**; toàn bộ mã PHP/JS/CSS do Nhóm 2 viết
+trong khu vực `wp-content/themes/event-child/` (không sửa trực tiếp theme cha).
 
 ---
 
-## 2. Phân Tích Ý Nghĩa Các Loại Giấy Phép Được Sử Dụng
+## 2. Thư viện PHP đóng gói kèm trong child theme
 
-### 2.1. Giấy phép GNU General Public License v2 (GPLv2)
-- **Bản chất:** Giấy phép có tính chất **Copyleft (mã nguồn mở lan truyền)** mạnh mẽ.
-- **Quyền hạn:** Cho phép người dùng tự do sao chép, phân phối, sửa đổi mã nguồn.
-- **Ràng buộc:** Mọi tác phẩm phái sinh (Derivative Works) từ phần mềm sử dụng GPLv2 (bao gồm Child Theme của Nhóm 2 kế thừa từ WordPress Core và Astra) **bắt buộc cũng phải được phát hành dưới giấy phép GPLv2 hoặc tương thích**, không được đóng mã nguồn thương mại độc quyền.
+Thư viện được cài đặt qua Composer và commit kèm vào repo để website chạy được
+ngay sau khi clone, không cần mạng:
 
-### 2.2. Giấy phép MIT License
-- **Bản chất:** Giấy phép mã nguồn mở có tính chất **Cấp phép dễ dãi (Permissive License)**.
-- **Quyền hạn:** Cho phép sử dụng, sửa đổi, sáp nhập, xuất bản, phân phối và thậm chí bán lại mã nguồn mà hầu như không có bất kỳ ràng buộc nào, chỉ cần giữ nguyên dòng thông báo bản quyền và miễn trừ trách nhiệm pháp lý gốc.
-- **Áp dụng:** Nhóm sử dụng cho các module JavaScript giao diện tự viết (`countdown.js`, `main.js`) để đảm bảo tính gọn nhẹ và tự do tái sử dụng.
+| Thư viện | Bản | Giấy phép | Bản quyền | Vị trí |
+|---|---|---|---|---|
+| [endroid/qr-code](https://github.com/endroid/qr-code) | 5.x | MIT | Copyright 2023 Jeroen van den Enden | `inc/qr/vendor/endroid/qr-code/` |
+| [bacon/bacon-qr-code](https://github.com/Bacon/BaconQrCode) | 4.x | BSD-2-Clause | Copyright (c) 2017-present, Ben Scholzen 'DASPRiD' | `inc/qr/vendor/bacon/bacon-qr-code/` |
+| [dasprid/enum](https://github.com/DASPRiD/enum) | 1.x | BSD-2-Clause | Copyright (c) 2017, Ben Scholzen 'DASPRiD' | `inc/qr/vendor/dasprid/enum/` |
+
+Bản quyền gốc của các thư viện nằm trong thư mục tương ứng (file `LICENSE`).
+Các thư viện này **không** phải của Nhóm 2 và được giữ nguyên giấy phép gốc.
 
 ---
 
-## 3. Cam Kết Tuân Thủ Bản Quyền Của Nhóm 2
-- 100% các thành phần Theme, Plugin và Thư viện được tích hợp trong dự án đều là phần mềm mã nguồn mở chính thống, được tải trực tiếp từ kho chính thức `WordPress.org`.
-- Tuyệt đối không sử dụng các bản lậu (Nulled Plugins/Themes), tránh rủi ro chứa Backdoor, mã độc và vi phạm đạo đức trong phát triển phần mềm mã nguồn mở.
+## 3. Theme cha và plugin được cài đặt trên máy chủ (KHÔNG nằm trong repo)
+
+Các thành phần dưới đây được cài từ kho WordPress.org, không commit mã nguồn vào
+repo. Repo này chỉ chứa child theme, file cấu hình máy chủ và file `.sql`.
+
+| Thành phần | Bản | Giấy phép | Vai trò trong dự án |
+|---|---|---|---|
+| [WordPress](https://wordpress.org/) | 7.1.3 | GPLv2 | Nền tảng CMS |
+| [Astra](https://wordpress.org/themes/astra/) | 4.13.10 | GPLv2 | Theme cha |
+| [Astra Starter Templates](https://wordpress.org/plugins/astra-sites/) | 4.7.6 | GPLv2 | Bộ khung mẫu trang |
+| [Elementor](https://wordpress.org/plugins/elementor/) | 4.2.4 | GPLv3 | Trình dựng trang |
+| [Header Footer Elementor](https://wordpress.org/plugins/header-footer-elementor/) | 2.9.4 | GPLv3 | Header/Footer dùng chung |
+| [SureCookie](https://wordpress.org/plugins/surecookie/) | 1.5.0 | GPL-2.0-or-later | Thông báo cookie |
+| [SureForms](https://wordpress.org/plugins/sureforms/) | 2.12.6 | GPLv2 or later | Biểu mẫu liên hệ |
+| [SureRank](https://wordpress.org/plugins/surerank/) | 1.10.1 | GPLv2 or later | Tối ưu SEO |
+| [Wordfence Security](https://wordpress.org/plugins/wordfence/) | 9.0.2 | GPLv3 | **Plugin bảo mật** (WAF, chống brute-force, quét mã độc) |
+
+---
+
+## 4. Công cụ dùng để kiểm thử và đánh giá bảo mật
+
+| Công cụ | Bản | Giấy phép | Mục đích |
+|---|---|---|---|
+| [OWASP ZAP](https://www.zaproxy.org/) | 2.17.0 | Apache-2.0 | Quét lỗ hổng (thành phần 3.2) |
+
+ZAP được tải về dưới dạng bản portable và chạy ngoài hệ thống, **không** phân
+phối lại trong repo.
+
+---
+
+## 5. Ghi chú
+
+- Giấy phép của toàn bộ plugin WordPress.org nằm trong file `readme.txt` /
+  `license.txt` của chính thư mục plugin sau khi cài đặt.
+- Child theme kế thừa giấy phép của theme cha: **GPLv2 or later**.
+- Khi phân phối lại website, cần giữ nguyên mọi thông báo bản quyền của
+  WordPress, Astra và các plugin nêu trên.
