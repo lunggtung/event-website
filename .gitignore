@@ -42,6 +42,14 @@ node_modules/
 Thumbs.db
 Desktop.ini
 .DS_Store
+.playwright-mcp/
+.playwright-cli/
+ai/
+output/
+
+# 6b. Bo qua anh chup man hinh va ket qua kiem thuc sinh ra khi phat trien
+test-*.png
+*.local.png
 
 # 7. Cho phép theo dõi các thư mục quan trọng nộp bài
 !database/
