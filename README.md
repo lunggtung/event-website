@@ -1,89 +1,238 @@
-# Trang Web Quản Lý Sự Kiện & Hội Nghị - Open Tech Summit 2026
+# Trang Web Quản Lý Sự Kiện & Hội Nghị — Open Tech Summit 2026
 > **Bài tập nhóm môn:** Mã nguồn mở  
 > **Nhóm thực hiện:** Nhóm 2  
+> **Trạng thái:** website đã dựng xong, đã gia cố bảo mật và đã quét kiểm định bằng OWASP ZAP.
 
 ---
 
-## 1. Thành Viên & Phân Công Công Việc 
+## 1. Thành viên & phân công công việc
 
-| STT | Họ và Tên | Mã Sinh Viên | Vai trò & Trách nhiệm chính trong dự án | Nhánh Git |
+| STT | Họ và tên | Mã sinh viên | Vai trò & trách nhiệm chính | Nhánh Git |
 | :---: | :--- | :---: | :--- | :--- |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế & lập trình toàn bộ kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, scripts, CSS tokens); Quản lý Git; Gia cố bảo mật Hardening & Rà quét WPScan; Soạn Chương 3 Báo cáo | `main` & `feature/hardening-and-docs` |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** Dựng giao diện Trang chủ (Hero Banner), tích hợp & tùy biến khối Countdown thời gian thực, nhúng Bản đồ địa điểm OpenStreetMap; Soạn phần Trang chủ & Bản đồ trong Báo cáo | `feature/countdown-and-map` |
-| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form Vé QR & Mail SMTP):** Cài đặt & cấu hình Contact Form 7 kết nối module vé QR; cấu hình WP Mail SMTP gửi mail thật về điện thoại; minh chứng lập trình an toàn; Soạn phần Vé QR trong Báo cáo | `feature/custom-shortcodes-and-qr` |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** Dựng trang Lịch trình 3 phòng theo giờ (08:00 - 17:00), dựng trang Hồ sơ Diễn giả; Chủ trì thiết kế Slide thuyết trình cho cả nhóm; Soạn phần Lịch trình & Diễn giả trong Báo cáo | `feature/agenda-speakers-ui` |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** Chủ trì viết Chương 1 Báo cáo (So sánh Ubuntu Linux vs Windows 11 dài 3-5 trang); kiểm kê bảng `LICENSES.md`; nhập liệu và xuất CSDL `database.sql`; Làm Slide Phần 1 | `feature/licenses-and-database` |
+| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/hardening-and-docs` |
+| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `feature/countdown-and-map` |
+| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `feature/custom-shortcodes-and-qr` |
+| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `feature/agenda-speakers-ui` |
+| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `feature/licenses-and-database` |
 
 ---
 
-## 2. Giới Thiệu Đề Tài & Các Chức Năng Chính
+## 2. Giới thiệu đề tài & các chức năng chính
 
-Dự án xây dựng trang web chính thức cho **Hội nghị Khoa học & Công nghệ Mở 2026 (Open Tech Summit)** dựa trên nền tảng **WordPress (Self-hosted)** kết hợp **Astra Theme** và **Child Theme (`event-child`)** tự phát triển:
+Website chính thức cho **Hội Nghị Khoa Học & Công Nghệ Mở 2026 (Open Tech Summit)**,
+xây dựng trên **WordPress self-hosted** + theme cha **Astra** + **Child Theme `event-child`**
+do Nhóm 2 tự phát triển.
 
-- **Đồng hồ đếm ngược (Countdown Timer):** Hiển thị thời gian thực (Ngày : Giờ : Phút : Giây) đến ngày khai mạc 20/11/2026.
-- **Lịch trình hội nghị theo giờ & phòng (Agenda):** Lịch trình chi tiết từ 08:00 - 17:00 chia theo 3 phòng (Hội trường A, Phòng Hội thảo B, Phòng Hội thảo C).
-- **Hồ sơ diễn giả (Speakers):** Danh sách diễn giả khách mời, học hàm/học vị và chủ đề tham luận.
-- **Bản đồ địa điểm (Venue Map):** Nhúng bản đồ OpenStreetMap dẫn đường tới trung tâm tổ chức hội nghị.
-- **Form đăng ký nhận vé QR qua Email:** Tự động sinh mã định danh vé (`OTS2026-XXXXXX`), tạo ảnh mã QR và gửi email xác nhận cho người tham dự.
+| Trang | Đường dẫn | Nội dung |
+|---|---|---|
+| Trang chủ | `/` | Hero banner, đồng hồ đếm ngược tới khai mạc **20/11/2026**, thông tin nổi bật, CTA đăng ký vé |
+| Lịch trình | `/lich-trinh/` | Lịch trình 3 phòng (Hội trường A, Hội thảo B, Hội thảo C) từ 08:00 → 17:00 |
+| Diễn giả | `/dien-gia/` | Hồ sơ diễn giả khách mời: học hàm/học vị, chủ đề tham luận, ảnh đại diện |
+| Địa điểm | `/dia-diem/` | Bản đồ OpenStreetMap nhúng, địa chỉ và hướng dẫn đi lại |
+| Đăng ký vé | `/dang-ky-ve/` | Form đăng ký (họ tên, email, SĐT, tổ chức, hạng vé, đồng ý) → sinh mã vé `OTS2026-XXXXXX`, tạo ảnh **QR** và gửi email xác nhận |
 
----
-
-## 3. Hướng Dẫn Cài Đặt & Chạy Thử
-
-### Yêu cầu môi trường
-- Máy chủ web: Apache hoặc Nginx (khuyến nghị dùng **Laragon** trên Windows hoặc XAMPP).
-- PHP: Phiên bản 8.0 trở lên.
-- MySQL / MariaDB: 5.7+ hoặc 10.4+.
-
-### Các bước cài đặt
-1. **Tải mã nguồn:**
-   - Clone kho lưu trữ về thư mục `www` của Laragon:
-     ```bash
-     git clone https://github.com/lunggtung/event-website.git
-     ```
-2. **Cài đặt WordPress & Theme:**
-   - Cài đặt bản WordPress mới nhất vào thư mục trên (giữ nguyên thư mục `wp-content/themes/event-child/`).
-   - Cài đặt theme cha **Astra** từ kho giao diện WordPress.
-   - Kích hoạt giao diện **Event Child Theme**.
-3. **Phục hồi Cơ sở dữ liệu mẫu:**
-   - Tạo một database mới tên là `event_db` trong phpMyAdmin hoặc HeidiSQL.
-   - Nhập tệp tin `database/database.sql` vào cơ sở dữ liệu `event_db`.
-   - Cấu hình thông số trong `wp-config.php`:
-     ```php
-     define( 'DB_NAME', 'event_db' );
-     define( 'DB_USER', 'root' );
-     define( 'DB_PASSWORD', '' );
-     define( 'DB_HOST', 'localhost' );
-     ```
-4. **Kích hoạt các Plugin:**
-   - Kích hoạt các plugin mã nguồn mở theo danh mục trong [LICENSES.md](LICENSES.md): *Contact Form 7*, *WP Mail SMTP*, *WPS Hide Login*, *Wordfence Security*.
-
-### Tài khoản quản trị mẫu
-- **Tên đăng nhập:** `ots_admin`
-- **Mật khẩu:** `OpenTechSummit@2026!`
-- **Đường dẫn đăng nhập quản trị:** `/wp-login.php` (hoặc `/event-portal-admin/` khi bật WPS Hide Login).
+**Công nghệ dùng trong repo:** PHP 8.3, WordPress 7.1.3, MySQL 8.4, Apache 2.4 (Laragon),
+thư viện QR `endroid/qr-code` (đóng gói kèm qua Composer).
 
 ---
 
-## 4. Cấu Trúc Mã Nguồn
+## 3. Hướng dẫn cài đặt & chạy thử
+
+### 3.1. Yêu cầu môi trường
+
+| Thành phần | Phiên bản | Ghi chú |
+|---|---|---|
+| PHP | 8.0 trở lên (đã kiểm thử 8.3.33) | Cần `mbstring`, `gd` (sinh ảnh QR) |
+| MySQL / MariaDB | 5.7+ / 10.4+ (đã kiểm thử MySQL 8.4.3) | |
+| Apache | 2.4 với `AllowOverride All` | Cần cho `mod_rewrite` + `mod_headers` |
+| WordPress | 6.5 trở lên (đã kiểm thử 7.1.3) | |
+
+### 3.2. Các bước cài đặt
+
+**Bước 1 — Tải mã nguồn**
+
+```bash
+git clone https://github.com/lunggtung/event-website.git
+```
+
+**Bước 2 — Cài WordPress + theme**
+
+1. Tạo thư mục web (ví dụ `C:\laragon\www\event-website`) và cài WordPress vào đó.
+2. Chép thư mục `wp-content/themes/event-child/` từ repo vào `wp-content/themes/`.
+3. Cài theme cha **Astra** (khuyến nghị bản **Pro** để có Header/Footer Builder mà child theme đang dùng), rồi kích hoạt **Event Child Theme**.
+
+> Child theme đã khai báo `Template: astra`; **không** sửa trực tiếp theme cha.
+
+**Bước 3 — Phục hồi cơ sở dữ liệu**
+
+```bash
+mysql -u root -p -e "CREATE DATABASE event_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p event_db < database/database.sql
+```
+
+Sau đó sửa thông số trong `wp-config.php`:
+
+```php
+define( 'DB_NAME', 'event_db' );
+define( 'DB_USER', 'root' );
+define( 'DB_PASSWORD', '' );
+define( 'DB_HOST', 'localhost' );
+```
+
+Chi tiết (kể cả cách sửa đường dẫn domain khi cài trên máy khác): [`database/README.md`](database/README.md).
+
+**Bước 4 — Đặt mật khẩu tài khoản quản trị**
+
+Bản xuất `database.sql` **không chứa mật khẩu đăng nhập dùng được** (chỉ có chuỗi ngẫu nhiên),
+để không làm lộ thông tin đăng nhập khi công bố mã nguồn. Chạy:
+
+```bash
+php database/set-admin-password.php 'MatKhauCuaBan@2026'
+```
+
+Lệnh này dùng `wp_set_password()` nên mật khẩu được băm đúng chuẩn WordPress.
+
+**Bước 5 — Kích hoạt plugin**
+
+| Plugin | Vai trò |
+|---|---|
+| Astra Starter Templates | bộ khung mẫu trang |
+| Elementor | trình dựng trang |
+| Header Footer Elementor (UAE) | header/footer dùng chung |
+| SureCookie | thông báo cookie |
+| SureForms | biểu mẫu liên hệ |
+| SureRank | tối ưu SEO |
+| **Wordfence Security** | **plugin bảo mật: WAF, chống brute-force, quét mã độc** |
+
+Phiên bản và giấy phép: [`LICENSES.md`](LICENSES.md).
+
+**Bước 6 — Áp dụng cấu hình gia cố máy chủ**
+
+Nội dung khối gia cố nằm trong [`security/apache-hardening.htaccess`](security/apache-hardening.htaccess).
+Dán vào **trước** khối `# BEGIN WordPress` trong `.htaccess` ở thư mục gốc WordPress.
+
+Khối này: tắt duyệt thư mục, chặn đọc `wp-config.php`/`readme.html`/`license.txt`,
+chặn `xmlrpc.php` và `wp-comments-post.php`, gỡ header `X-Powered-By`, và đặt
+`X-Content-Type-Options` / `X-Frame-Options` / `Referrer-Policy` cho **mọi** phản hồi
+(kể cả file tĩnh CSS/JS).
+
+Ngoài `.htaccess`, nên bổ sung trong `httpd.conf`:
+
+```apache
+ServerTokens Prod
+ServerSignature Off
+```
+
+và trong `php.ini`:
+
+```ini
+expose_php = Off
+display_errors = Off
+```
+
+**Bước 7 — Cấu hình gửi email (tuỳ chọn)**
+
+Form đăng ký vé dùng `wp_mail()`. Trên môi trường local, Laragon có sẵn **Mailpit**
+(`http://localhost:8025`) để bắt email. Khi triển khai thật, cần cấu hình SMTP thật
+(Gmail/Google Workspace hoặc SMTP relay của nhà trường) — **không** nhúng thông tin
+đăng nhập SMTP vào mã nguồn hay vào file `.sql` trong repo.
+
+### 3.3. Đường dẫn đăng nhập quản trị
+
+Child theme đã đổi đường dẫn đăng nhập mặc định:
+
+| Đường dẫn | Kết quả |
+|---|---|
+| `/dang-nhap-noi-bo/` | ✅ trang đăng nhập thật |
+| `/wp-login.php` | ❌ HTTP **403** (đã chặn) |
+
+Đường dẫn cũng được hiển thị trong thông báo quản trị sau khi đăng nhập.
+
+---
+
+## 4. Cấu trúc mã nguồn
 
 ```text
 event-website/
-├── .gitignore                          # Cấu hình loại trừ WordPress Core
-├── README.md                           # Hướng dẫn cài đặt & tổng quan dự án
-├── LICENSES.md                         # Bảng kiểm kê giấy phép phần mềm mã nguồn mở
+├── .gitignore                                 # Loại trừ WordPress core, vendor cục bộ, tài liệu nội bộ
+├── README.md                                  # Tài liệu này
+├── LICENSES.md                                # Kiểm kê giấy phép toàn bộ thành phần
+├── CONTRIBUTING.md                            # Quy ước commit / đóng góp
 ├── database/
-│   └── database.sql                    # Bản sao lưu cơ sở dữ liệu hoàn chỉnh
-└── wp-content/themes/event-child/      # Mã nguồn Child Theme tự phát triển
-    ├── style.css                       # Khai báo Child Theme kế thừa Astra
-    ├── functions.php                   # Nạp stylesheet/scripts và hook bảo mật
+│   ├── database.sql                           # Bản xuất CSDL đã lành sạch (import được)
+│   ├── set-admin-password.php                 # Đặt lại mật khẩu quản trị sau khi import
+│   └── README.md                              # Hướng dẫn import & khôi phục CSDL
+├── security/
+│   └── apache-hardening.htaccess              # Khối gia cố máy chủ (dán vào .htaccess gốc)
+└── wp-content/themes/event-child/             # Mã nguồn child theme tự phát triển
+    ├── style.css                              # Khai báo child theme kế thừa Astra
+    ├── functions.php                          # Nạp stylesheet/script + nạp các module
+    ├── header.php / footer.php                 # Khung trang
+    ├── page-home.php / page-lich-trinh.php    # Template 5 trang chức năng
+    ├── page-dien-gia.php / page-dia-diem.php
+    ├── page-dang-ky-ve.php
     ├── inc/
-    │   ├── custom-shortcodes.php       # Shortcode thông báo và vé (áp dụng sanitize/escape)
-    │   └── custom-ticket-qr.php        # Logic sinh mã vé duy nhất và mã QR qua email
+    │   ├── event-content.php                  # Nội dung mặc định của 5 trang
+    │   ├── custom-shortcodes.php              # Shortcode thông báo & vé (sanitize/escape)
+    │   ├── custom-ticket-qr.php               # Sinh mã vé + ảnh QR
+    │   ├── ticket-registration.php            # Xử lý đăng ký, nonce, CSRF, gửi mail
+    │   ├── ticket-admin.php                   # Màn hình quản trị danh sách vé
+    │   ├── security-hardening.php             # Lớp gia cố bảo mật của child theme
+    │   └── qr/                                # Thư viện QR đóng gói kèm (Composer)
     └── assets/
-        ├── css/
-        │   └── event-custom.css        # CSS giao diện Countdown, Lịch trình, Diễn giả
-        └── js/
-            ├── countdown.js            # Script đếm ngược thời gian thực
-            └── main.js                 # Script nút Back-to-top và cuộn trang
+        ├── css/event-custom.css               # Giao diện countdown, lịch trình, diễn giả
+        ├── js/countdown.js                    # Đếm ngược thời gian thực
+        ├── js/main.js                         # Back-to-top, cuộn trang, hiệu ứng giao diện
+        └── images/                            # Ảnh diễn giả, banner
 ```
+
+---
+
+## 5. Gia cố bảo mật đã áp dụng
+
+| Nhóm | Nội dung | Nơi thực hiện |
+|---|---|---|
+| Đường dẫn đăng nhập | `/wp-login.php` → 403; form đăng nhập thật ở `/dang-nhap-noi-bo/` | `inc/security-hardening.php` |
+| Chống brute-force | khóa 5 lần sai / 15 phút theo IP + tài khoản | `inc/security-hardening.php` + Wordfence |
+| Mật khẩu mạnh | ≥ 12 ký tự, có hoa/thường/số/ký tự đặc biệt | `inc/security-hardening.php` + Wordfence |
+| Ẩn phiên bản | gỡ `<meta generator>`, `X-Powered-By`, version trong `Server` | `inc/security-hardening.php` + `.htaccess` + `httpd.conf` + `php.ini` |
+| XML-RPC | chặn ở cả tầng PHP và tầng Apache | `inc/security-hardening.php` + `.htaccess` |
+| Duyệt thư mục | `Options -Indexes` | `.htaccess` |
+| Header bảo mật | `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `CSP` | `inc/security-hardening.php` + `.htaccess` |
+| Dò tài khoản | chặn `?author=`, chặn `REST /wp/v2/users` cho khách | `inc/security-hardening.php` |
+| Sửa mã trong admin | khoá trình soạn thảo theme/plugin | `inc/security-hardening.php` |
+| Bình luận | đóng bình luận toàn site, chặn `wp-comments-post.php` | `inc/security-hardening.php` + `.htaccess` |
+| WAF | Wordfence 9.0.2 — WAF bật, quét core/plugin/theme, chặn sửa file | Wordfence |
+
+Kiểm chứng tự động: `.agents/security-smoke.php` (38 kiểm tra HTTP thật) — kết quả lưu tại
+`docs/submission/evidence/security-smoke-output.txt`.
+
+---
+
+## 6. Kết quả quét lỗ hổng (OWASP ZAP 2.17.0)
+
+| Lần quét | Trạng thái website | Số quy tắc cảnh báo | High | Medium | Low | Informational |
+|---|---|---|---|---|---|---|
+| Scan 01 | trước khi gia cố | 19 | 0 | 8 | 5 | 6 |
+| Scan 02 | sau khi gia cố | **14** | **0** | 7 | 2 | 5 |
+
+Số liệu lấy trực tiếp từ bảng *Summary of Alerts* trong `zap-report.html` của mỗi lần quét.
+
+Cảnh báo đã **đóng hoàn toàn** giữa hai lần quét (6 quy tắc): *Content Security
+Policy (CSP) Header Not Set*, *Missing Anti-clickjacking Header*, *X-Content-Type-Options
+Header Missing*, *Server Leaks Information via X-Powered-By*, *Server Leaks Version
+Information via Server*, *Cookie Poisoning*. Một quy tắc mới xuất hiện ở scan 02:
+*CSP: script-src unsafe-eval* — hệ quả trực tiếp của việc bổ sung header CSP, được
+ghi nhận trong báo cáo chứ không bị giấu bỏ.
+
+Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc phục từng cảnh báo) nằm trong
+`docs/submission/`.
+
+---
+
+## 7. Ghi chú bảo mật khi công bố mã nguồn
+
+- Repo **không** chứa thông tin đăng nhập dùng được, khoá SMTP, khoá API hay salt.
+- File `.sql` đã lược bỏ credential, transient, phiên đăng nhập và dữ liệu người tham dự.
+- Tài liệu nội bộ (báo cáo, log kiểm thử, ảnh chụp) nằm trong `docs/` và `.agents/` — hai thư mục này được `.gitignore` loại trừ, **không** push lên GitHub.
+- Nhóm cần tự tạo tài khoản GitHub và đẩy repo lên `github.com/lunggtung/event-website` trước khi nộp.
