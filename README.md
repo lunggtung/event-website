@@ -235,4 +235,4 @@ Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc 
 - Repo **không** chứa thông tin đăng nhập dùng được, khoá SMTP, khoá API hay salt.
 - File `.sql` đã lược bỏ credential, transient, phiên đăng nhập và dữ liệu người tham dự.
 - Tài liệu nội bộ (báo cáo, log kiểm thử, ảnh chụp) nằm trong `docs/` và `.agents/` — hai thư mục này được `.gitignore` loại trừ, **không** push lên GitHub.
-- Nhóm cần tự tạo tài khoản GitHub và đẩy repo lên `github.com/lunggtung/event-website` trước khi nộp.
+- Repo đã được đẩy lên `github.com/lunggtung/event-website` (nhánh `main`, public). Trước khi nộp, nhóm nên kiểm tra lại `git log` và phân bổ commit cho từng thành viên theo đúng danh tính thật.
