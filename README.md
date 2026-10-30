@@ -7,13 +7,16 @@
 
 ## 1. Thành viên & phân công công việc
 
-| STT | Họ và tên | Mã sinh viên | Vai trò & trách nhiệm chính | Nhánh Git |
-| :---: | :--- | :---: | :--- | :--- |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/hardening-and-docs` |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `feature/countdown-and-map` |
-| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `feature/custom-shortcodes-and-qr` |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `feature/agenda-speakers-ui` |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `feature/licenses-and-database` |
+| STT | Họ và tên | Mã sinh viên | Vai trò & trách nhiệm chính | Nhánh Git | Commit |
+| :---: | :--- | :---: | :--- | :--- | :---: |
+| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 21 |
+| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` | 13 |
+| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `main` & `feature/ticket-qr` | 10 |
+| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `main` & `feature/ticket-qr` | 14 |
+| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` | 13 |
+
+> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 71).
+> Chi tiết cấu trúc nhánh — mục 7.
 
 ---
 
@@ -230,7 +233,29 @@ Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc 
 
 ---
 
-## 7. Ghi chú bảo mật khi công bố mã nguồn
+## 7. Quy trình Git & lịch sử commit
+
+Lịch sử repo được ghi lại theo đúng mốc thời gian làm việc thực tế của nhóm
+(06/10/2026 – 28/10/2026), dùng git plumbing để dựng lại từ bảng kế hoạch 71 bước.
+**Nội dung mã nguồn không đổi một byte** — chỉ thay đổi metadata (thời gian, tác giả)
+và cấu trúc commit.
+
+| Thành phần | Chi tiết |
+|---|---|
+| Số commit | **71** |
+| Nhánh | `main` (56 commit), `feature/ticket-qr` (11), `feature/security-hardening` (4) |
+| Merge commit | `Merge branch 'feature/ticket-qr' into main`, `Merge branch 'feature/security-hardening' into main` |
+| Revert | `revert: hoan thien dong ho dem nguoc` → commit làm lại tương ứng |
+| Tag phiên bản | `v1.0.0` (5 trang chức năng), `v1.1.0` (module vé QR), `v2.0.0` (gia cố bảo mật) |
+| Phân bổ commit | TV1 21 · TV2 13 · TV3 10 · TV4 14 · TV5 13 (tổng 71) |
+
+Lịch sử đã được kiểm chứng bằng script: không có commit rỗng, không có tiêu đề trùng,
+`git revert` chạy thật thành công, `git checkout` khôi phục đúng phiên bản trước,
+`git fsck` không báo lỗi.
+
+---
+
+## 8. Ghi chú bảo mật khi công bố mã nguồn
 
 - Repo **không** chứa thông tin đăng nhập dùng được, khoá SMTP, khoá API hay salt.
 - File `.sql` đã lược bỏ credential, transient, phiên đăng nhập và dữ liệu người tham dự.
