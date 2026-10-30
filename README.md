@@ -7,15 +7,18 @@
 
 ## 1. Thành viên & phân công công việc
 
-| STT | Họ và tên | Mã sinh viên | Vai trò & trách nhiệm chính | Nhánh Git | Commit |
-| :---: | :--- | :---: | :--- | :--- | :---: |
-| 1 | **[Tên TV1]** | [MSV TV1] | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 21 |
-| 2 | **[Tên TV2]** | [MSV TV2] | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` | 13 |
-| 3 | **[Tên TV3]** | [MSV TV3] | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `main` & `feature/ticket-qr` | 10 |
-| 4 | **[Tên TV4]** | [MSV TV4] | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `main` & `feature/ticket-qr` | 14 |
-| 5 | **[Tên TV5]** | [MSV TV5] | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` | 13 |
+| STT | Họ và tên | Mã sinh viên | GitHub | Vai trò & trách nhiệm chính | Nhánh Git | Commit |
+| :---: | :--- | :---: | :--- | :--- | :--- | :---: |
+| 1 | **Phan Ngọc Dũng** | 11244077 | [`lunggtung`](https://github.com/lunggtung) | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 23 |
+| 2 | **Hoàng Hải Nam** | 11244103 | [`hoagnam`](https://github.com/hoagnam) | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` | 13 |
+| 3 | **Nguyễn Tiến Thành** | 11244116 | [`soccccute`](https://github.com/soccccute) | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `main` & `feature/ticket-qr` | 10 |
+| 4 | **Ngô Trần Vũ** | 11244127 | [`ntvu2067-debug`](https://github.com/ntvu2067-debug) | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `main` & `feature/ticket-qr` | 14 |
+| 5 | **Nguyễn Hồng Sinh** | 11244113 | [`nguyenhongsinh-Nhom1`](https://github.com/nguyenhongsinh-Nhom1) | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` | 13 |
 
-> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 71).
+> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 73).
+> Tên hiển thị trên GitHub là đúng tên và email GitHub của từng thành viên. 4/5 tài khoản
+> đã khớp avatar trên GitHub; riêng tài khoản `soccccute` của Nguyễn Tiến Thành cần thêm
+> email `soccgau2006@gmail.com` vào mục *Emails* để GitHub hiện avatar và contribution.
 > Chi tiết cấu trúc nhánh — mục 7.
 
 ---
@@ -238,16 +241,18 @@ Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc 
 Lịch sử repo được ghi lại theo đúng mốc thời gian làm việc thực tế của nhóm
 (06/10/2026 – 28/10/2026), dùng git plumbing để dựng lại từ bảng kế hoạch 71 bước.
 **Nội dung mã nguồn không đổi một byte** — chỉ thay đổi metadata (thời gian, tác giả)
-và cấu trúc commit.
+và cấu trúc commit. Sau đó lịch sử được ghi đè lần hai để đổi tên hiển thị và email
+tác giả sang **tên thật + email GitHub đã verify** của từng thành viên; cây nội dung
+vẫn giữ nguyên (`tree` trước và sau đều là `99d0ffeb39c8c0cea800218fae4770c8e70330b0`).
 
 | Thành phần | Chi tiết |
 |---|---|
-| Số commit | **71** |
-| Nhánh | `main` (56 commit), `feature/ticket-qr` (11), `feature/security-hardening` (4) |
+| Số commit | **73** |
+| Nhánh | `main` (73 commit), gồm `feature/ticket-qr` (11) và `feature/security-hardening` (4) đã merge |
 | Merge commit | `Merge branch 'feature/ticket-qr' into main`, `Merge branch 'feature/security-hardening' into main` |
 | Revert | `revert: hoan thien dong ho dem nguoc` → commit làm lại tương ứng |
 | Tag phiên bản | `v1.0.0` (5 trang chức năng), `v1.1.0` (module vé QR), `v2.0.0` (gia cố bảo mật) |
-| Phân bổ commit | TV1 21 · TV2 13 · TV3 10 · TV4 14 · TV5 13 (tổng 71) |
+| Phân bổ commit | Phan Ngọc Dũng 23 · Hoàng Hải Nam 13 · Nguyễn Tiến Thành 10 · Ngô Trần Vũ 14 · Nguyễn Hồng Sinh 13 (tổng 73) |
 
 Lịch sử đã được kiểm chứng bằng script: không có commit rỗng, không có tiêu đề trùng,
 `git revert` chạy thật thành công, `git checkout` khôi phục đúng phiên bản trước,
