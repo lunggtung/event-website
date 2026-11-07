@@ -204,7 +204,7 @@ function event_child_password_issues( $password ) {
     if ( strlen( $password ) < EVENT_CHILD_PASSWORD_MIN_LENGTH ) {
         $issues[] = 'ít nhất ' . EVENT_CHILD_PASSWORD_MIN_LENGTH . ' ký tự';
     }
-    if ( ! preg_match( '/[a-z]/', $password ) ) { $issues[] = 'có chữ thườơ'; }
+    if ( ! preg_match( '/[a-z]/', $password ) ) { $issues[] = 'có chữ thường'; }
     if ( ! preg_match( '/[A-Z]/', $password ) ) { $issues[] = 'có chữ hoa'; }
     if ( ! preg_match( '/[0-9]/', $password ) ) { $issues[] = 'có chữ số'; }
     if ( ! preg_match( '/[^a-zA-Z0-9]/', $password ) ) { $issues[] = 'có ký tự đặc biệt'; }

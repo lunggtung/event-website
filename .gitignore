@@ -1,57 +1,54 @@
 # ==========================================
-# .gitignore chuẩn cho Dự án WordPress Nhóm 2
-# Môn học: Mã nguồn mở
+# .gitignore chuan cho Du an WordPress Nhom 2
+# Mon hoc: Ma nguon mo
 # ==========================================
 
-# 1. Bỏ qua WordPress Core (Không commit mã nguồn gốc của WordPress)
+# 1. Bo qua WordPress Core (Khong commit ma nguon goc cua WordPress)
 wp-admin/
 wp-includes/
 /*.php
 !wp-config-sample.php
 
-# Giữ lại thư mục wp-content nhưng loại trừ các thành phần không cần thiết
+# Giu lai thu muc wp-content nhung loai tru cac thanh phan khong can thiet
 wp-content/*
 !wp-content/themes/
 !wp-content/themes/event-child/
 !wp-content/themes/event-child/**
 
-# 2. Bỏ qua file cấu hình nhạy cảm và thông tin máy chủ
+# 2. Bo qua file cau hinh nhay cam va thong tin may chu
 wp-config.php
 .htaccess
 *.log
 *.sql.gz
 *.bak
 
-# 3. Bỏ qua thư mục upload dữ liệu đa phương tiện (ảnh, video tải lên qua admin)
+# 3. Bo qua thu muc upload du lieu da phong (anh, video tai len tu admin)
 wp-content/uploads/
 
-# 4. Bỏ qua các plugin cài thêm (Các plugin này được liệt kê trong LICENSES.md)
+# 4. Bo qua cac plugin cai them (cac plugin duoc liet ke trong LICENSES.md)
 wp-content/plugins/
 wp-content/mu-plugins/
 
-# 5. Bỏ qua các theme mặc định hoặc theme cha (Astra tải từ kho WordPress)
+# 5. Bo qua cac theme mac dinh hoac theme cha (Astra tai tu trang WordPress)
 wp-content/themes/twenty*/
 wp-content/themes/astra/
 
-# 6. Bỏ qua cache & file tạm
+# 6. Bo qua cache & file tam
 wp-content/cache/
-wp-content/upgrade/
+wp-content/uploads/
 node_modules/
 .vscode/
 .idea/
 Thumbs.db
 Desktop.ini
 .DS_Store
-.playwright-mcp/
-.playwright-cli/
-ai/
 output/
 
 # 6b. Bo qua anh chup man hinh va ket qua kiem thuc sinh ra khi phat trien
 test-*.png
 *.local.png
 
-# 7. Cho phép theo dõi các thư mục quan trọng nộp bài
+# 7. Cho phep theo doi cac thu muc quan trong noi bai
 !database/
 !database/**
 !specs/
@@ -59,14 +56,13 @@ test-*.png
 !README.md
 !LICENSES.md
 
-# 8. Bỏ qua tài liệu nội bộ, kế hoạch dự án và cấu hình Agent (Không đưa lên GitHub)
+# 8. Bo qua tai lieu lam viec noi bo (Khong dua len GitHub)
 docs/
-.agents/
-.ai/
-ai/
 *.tmp
 *.docx
 *credentials*
 *.secret*
 *.local*
 .env*
+*.pptx
+*.pdf

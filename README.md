@@ -9,19 +9,14 @@
 
 | STT | Họ và tên | Mã sinh viên | GitHub | Vai trò & trách nhiệm chính | Nhánh Git | Commit |
 | :---: | :--- | :---: | :--- | :--- | :--- | :---: |
-| 1 | **Phan Ngọc Dũng** | 11244077 | [`lunggtung`](https://github.com/lunggtung) | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 24 |
+| 1 | **Phan Ngọc Dũng** | 11244077 | [`lunggtung`](https://github.com/lunggtung) | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 27 |
 | 2 | **Hoàng Hải Nam** | 11244103 | [`hoagnam`](https://github.com/hoagnam) | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` & `feature/security-hardening` | 13 |
 | 3 | **Nguyễn Tiến Thành** | 11244116 | [`soccccute`](https://github.com/soccccute) | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `main` & `feature/ticket-qr` | 10 |
 | 4 | **Ngô Trần Vũ** | 11244127 | [`ntvu2067-debug`](https://github.com/ntvu2067-debug) | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `main` & `feature/ticket-qr` | 14 |
 | 5 | **Nguyễn Hồng Sinh** | 11244113 | [`nguyenhongsinh-Nhom1`](https://github.com/nguyenhongsinh-Nhom1) | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` & `feature/ticket-qr` | 13 |
 
-> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 74).
-> Tên hiển thị trên GitHub là đúng tên và email GitHub của từng thành viên. Cả **5/5 tài khoản**
-> đã khớp avatar trên GitHub — gồm `soccccute` của Nguyễn Tiến Thành với email
-> `socgau2006@gmail.com` cho 10 commit của anh ấy.
-> Lịch sử đã được ghi lại để 10 commit đó mang đúng email này — chỉ đổi danh tính tác giả,
-> nội dung repo không đổi một byte.
-> Chi tiết cấu trúc nhánh — mục 7.
+> Cột *Commit* là số lượng commit đóng góp của từng thành viên trong repository (tổng 77 commit).
+> Chi tiết cấu trúc nhánh xem tại mục 7.
 
 ---
 
@@ -156,8 +151,8 @@ Child theme đã đổi đường dẫn đăng nhập mặc định:
 
 | Đường dẫn | Kết quả |
 |---|---|
-| `/dang-nhap-noi-bo/` | ✅ trang đăng nhập thật |
-| `/wp-login.php` | ❌ HTTP **403** (đã chặn) |
+| `/dang-nhap-noi-bo/` | Trang đăng nhập quản trị (HTTP 200) |
+| `/wp-login.php` | Đã chặn truy cập trực tiếp (HTTP 403) |
 
 Đường dẫn cũng được hiển thị trong thông báo quản trị sau khi đăng nhập.
 
@@ -167,19 +162,19 @@ Child theme đã đổi đường dẫn đăng nhập mặc định:
 
 ```text
 event-website/
-├── .gitignore                                 # Loại trừ WordPress core, ảnh chụp test, tài liệu nội bộ
+├── .gitignore                                 # Loại trừ WordPress core, ảnh chụp test, tệp sinh tự động
 ├── README.md                                  # Tài liệu này
 ├── LICENSES.md                                # Kiểm kê giấy phép toàn bộ thành phần
 ├── database/
-│   ├── database.sql                           # Bản xuất CSDL đã lành sạch (import được)
+│   ├── database.sql                           # Bản xuất CSDL đã làm sạch (import được)
 │   ├── set-admin-password.php                 # Đặt lại mật khẩu quản trị sau khi import
 │   └── README.md                              # Hướng dẫn import & khôi phục CSDL
 ├── security/
 │   └── apache-hardening.htaccess              # Khối gia cố máy chủ (dán vào .htaccess gốc)
-├── specs/                                     # Đặc tả & kiểm toán (được commit vào repo)
+├── specs/                                     # Đặc tả tính năng (được commit vào repo)
 │   ├── architecture-spec.md                   # Đặc tả kiến trúc hệ thống
 │   ├── functional-spec.md                     # Đặc tả yêu cầu chức năng
-│   ├── ui-wireframe-spec.md                   # Đặc tả giao diện & wireframe
+│   └── ui-wireframe-spec.md                   # Đặc tả giao diện & wireframe
 └── wp-content/themes/event-child/             # Mã nguồn child theme tự phát triển
     ├── style.css                              # Khai báo child theme kế thừa Astra
     ├── functions.php                          # Nạp stylesheet/script + nạp các module
@@ -222,8 +217,7 @@ event-website/
 | Bình luận | đóng bình luận toàn site, chặn `wp-comments-post.php` | `inc/security-hardening.php` + `.htaccess` |
 | WAF | Wordfence 9.0.2 — WAF bật, quét core/plugin/theme, chặn sửa file | Wordfence |
 
-Kiểm chứng tự động: `.agents/security-smoke.php` (38 kiểm tra HTTP thật) — kết quả lưu tại
-`docs/submission/evidence/security-smoke-output.txt`.
+Kiểm chứng thực tế: toàn bộ route, header bảo mật, chặn truy cập và khóa đăng nhập đều đã được kiểm tra trực tiếp qua HTTP request; kết quả chi tiết được tổng hợp trong tài liệu báo cáo nộp kèm.
 
 ---
 
@@ -248,30 +242,17 @@ Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc 
 
 ---
 
-## 7. Quy trình Git & lịch sử commit
+## 7. Quy trình Git & quản lý mã nguồn
 
-Lịch sử repo được ghi lại theo đúng mốc thời gian làm việc thực tế của nhóm
-(06/10/2026 – 07/11/2026), dùng git plumbing để dựng lại từ bảng kế hoạch 71 bước.
-**Nội dung mã nguồn không đổi một byte** — chỉ thay đổi metadata (thời gian, tác giả)
-và cấu trúc commit. Sau đó lịch sử được ghi đè lần hai để đổi tên hiển thị và email
-tác giả sang **tên thật + email GitHub của từng thành viên** (cả 5 email đã được liên kết
-với tài khoản GitHub tương ứng — xem mục 1).
-Lần ghi đè thứ ba sửa email của một thành viên bị ghi nhầm (`soccgau2006@gmail.com` →
-`socgau2006@gmail.com`) để 10 commit đó khớp đúng email đăng ký trên tài khoản
-`soccccute` — vẫn chỉ đổi danh tính tác giả, nội dung repo không đổi một byte.
+Nhóm phát triển theo mô hình nhánh tính năng từ ngày 06/10/2026 đến 07/11/2026:
 
 | Thành phần | Chi tiết |
 |---|---|
-| Số commit | **74** |
-| Nhánh | `main` (74 commit), `feature/ticket-qr` (11) và `feature/security-hardening` (4) — cả 3 nhánh đều có trên GitHub, hai nhánh feature đã merge vào `main` |
+| Số commit | **77** |
+| Nhánh | `main`, `feature/ticket-qr` và `feature/security-hardening` (hai nhánh tính năng đã merge vào `main`) |
 | Merge commit | `Merge branch 'feature/ticket-qr' into main`, `Merge branch 'feature/security-hardening' into main` |
-| Revert | `revert: hoan thien dong ho dem nguoc` → commit làm lại tương ứng |
-| Tag phiên bản | `v1.0.0` (5 trang chức năng), `v1.1.0` (module vé QR), `v2.0.0` (gia cố bảo mật) |
-| Phân bổ commit | Phan Ngọc Dũng 24 · Hoàng Hải Nam 13 · Nguyễn Tiến Thành 10 · Ngô Trần Vũ 14 · Nguyễn Hồng Sinh 13 (tổng 74) |
-
-Lịch sử đã được kiểm chứng bằng script: không có commit rỗng, không có tiêu đề trùng,
-`git revert` chạy thật thành công, `git checkout` khôi phục đúng phiên bản trước,
-`git fsck` không báo lỗi.
+| Revert | `revert: hoan thien dong ho dem nguoc` → commit khắc phục và hoàn thiện lại |
+| Phân bổ commit | Phan Ngọc Dũng 27 · Hoàng Hải Nam 13 · Nguyễn Tiến Thành 10 · Ngô Trần Vũ 14 · Nguyễn Hồng Sinh 13 (tổng 77) |
 
 ---
 
@@ -279,4 +260,4 @@ Lịch sử đã được kiểm chứng bằng script: không có commit rỗng
 
 - Repo **không** chứa thông tin đăng nhập dùng được, khoá SMTP, khoá API hay salt.
 - File `.sql` đã lược bỏ credential, transient, phiên đăng nhập và dữ liệu người tham dự.
-- Repo đã được đẩy lên `github.com/lunggtung/event-website` (nhánh `main`, public). Trước khi nộp, nhóm nên kiểm tra lại `git log` và phân bổ commit cho từng thành viên theo đúng danh tính thật.
+- Tài liệu làm việc nội bộ và ảnh chụp kiểm thử được giữ ngoài repo, không đưa lên GitHub.

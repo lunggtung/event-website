@@ -83,14 +83,14 @@ Tài liệu này đặc tả chi tiết các yêu cầu chức năng cho toàn b
      - *Hạng 1: Vé Sinh Viên (Student Pass) — 0 VNĐ:* Dành riêng cho sinh viên các trường ĐH, tiếp cận toàn bộ phiên hội thảo chung.
      - *Hạng 2: Vé Tiêu Chuẩn (Standard Pass) — Miễn phí:* Tiếp cận tất cả các phiên hội thảo, tài liệu tóm tắt dạng số.
      - *Hạng 3: Vé VIP (Full Access Pass) — Quyền lợi đặc biệt:* Tiếp cận phiên thảo luận bàn tròn với diễn giả, tiệc giao lưu networking, nhận trọn bộ kỷ yếu hội nghị có ISBN.
-  2. **Form đăng ký thông tin (Contact Form 7 Integration):**
-     - Các trường bắt buộc: Họ và tên (`text`), Email nhận vé (`email`), Số điện thoại (`tel`), Đơn vị học tập/công tác (`text`), Hạng vé chọn tham gia (`select`).
-     - Cam kết bảo mật thông tin theo nguyên tắc bảo vệ quyền riêng tư.
+  2. **Form đăng ký thông tin (`inc/ticket-registration.php`):**
+     - Các trường bắt buộc: Họ và tên (`text`), Email nhận vé (`email`), Số điện thoại (`tel`), Đơn vị học tập/công tác (`text`), Hạng vé chọn tham gia (`select`), ô đồng ý lưu trữ dữ liệu.
+     - Bảo vệ bằng `wp_nonce_field()`, honeypot và giới hạn tần suất theo IP.
   3. **Module xử lý mã vé & Sinh mã QR (`inc/custom-ticket-qr.php`):**
-     - Bắt sự kiện `wpcf7_before_send_mail`.
-     - Sinh chuỗi mã định danh duy nhất theo cú pháp: `OTS2026-XXXXXX` (trong đó X là ký tự ngẫu nhiên mã hóa an toàn).
-     - Gọi hàm tạo ảnh mã QR chứa chuỗi định danh vé.
-     - Tự động chèn thông tin mã vé và ảnh QR vào nội dung email gửi đến người đăng ký.
+     - Xử lý dữ liệu POST sau khi kiểm tra hợp lệ và chống trùng email trên bảng `wp_event_tickets`.
+     - Sinh chuỗi mã định danh duy nhất theo cú pháp: `OTS2026-` + 12 ký tự hex.
+     - Gọi thư viện `endroid/qr-code` tạo ảnh mã QR (PNG) chứa mã vé.
+     - Gửi thông tin mã vé và ảnh QR đính kèm qua `wp_mail()` đến người đăng ký.
 
 ---
 
@@ -119,5 +119,5 @@ Thay vì tạo riêng một trang giới thiệu độc lập, toàn bộ thông
 - **WordPress Core:** GNU General Public License v2 (GPLv2).
 - **Theme cha Astra:** GNU General Public License v2 (GPLv2).
 - **Event Child Theme (Nhóm 2):** GNU General Public License v2 (GPLv2).
-- **Các plugin tích hợp (Contact Form 7, WP Mail SMTP, WPS Hide Login):** GPLv2.
+- **Các plugin hỗ trợ (Elementor, Header Footer Elementor, Wordfence Security, SureForms, SureCookie, SureRank):** GPLv2 / GPLv3.
 - **Nội dung & Kỷ yếu hội nghị:** Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).

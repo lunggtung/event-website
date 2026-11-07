@@ -24,7 +24,7 @@ Hệ thống được thiết kế theo mô hình **Website Đa Trang (Multi-Pag
                                       │
                                       ▼
 +-------------------------------------------------------------------------------+
-|                           WORDPRESS 6.x CORE ENGINE                           |
+|                           WORDPRESS 7.x CORE ENGINE                           |
 |  - Quản trị nội dung (Posts, Pages, Navigation Menus, Users)                  |
 |  - API Hook System (Actions & Filters)                                        |
 +-------------------------------------------------------------------------------+
@@ -32,22 +32,24 @@ Hệ thống được thiết kế theo mô hình **Website Đa Trang (Multi-Pag
            ▼                                            ▼
 +──────────────────────────────+           +────────────────────────────────────+
 |     THEME CHA (PARENT)       |           |   HỆ THỐNG PLUGIN MÃ NGUỒN MỞ      |
-|  Astra Theme (GPLv2)         |           | - Contact Form 7 (GPLv2): Đặt vé   |
-|  - Cung cấp lưới layout nền  |           | - WP Mail SMTP (GPLv2): Gửi email  |
-|  - Reset CSS & Typography    |           | - WPS Hide Login (GPLv2): Đổi URL  |
-+──────────────────────────────+           | - Wordfence Security (GPLv2): WAF  |
-           │                               +────────────────────────────────────+
-           ▼                                                │
+|  Astra Theme (GPLv2)         |           | - Elementor & HFE (GPLv3 / GPLv2+) |
+|  - Cung cấp lưới layout nền  |           | - SureForms / SureCookie / SureRank|
+|  - Reset CSS & Typography    |           | - Wordfence Security (GPLv3): WAF  |
++──────────────────────────────+           +────────────────────────────────────+
+           │                                                │
+           ▼                                                ▼
 +───────────────────────────────────────────────────────────┴───────────────────+
 |                  CHILD THEME TÙY BIẾN (EVENT CHILD THEME)                     |
 |  wp-content/themes/event-child/                                               |
 |  ├── style.css (Định danh Child Theme, kế thừa Astra)                         |
-|  ├── functions.php (Enqueue scripts/styles, Security hooks, Module Loader)    |
+|  ├── functions.php (Enqueue scripts/styles, Module Loader)                    |
 |  ├── inc/                                                                     |
 |  │   ├── custom-shortcodes.php ([event_countdown], [event_alert], ...)        |
-|  │   └── custom-ticket-qr.php (Hook CF7, Sinh mã OTS2026, Tạo QR code vé)    |
+|  │   ├── custom-ticket-qr.php (Sinh mã OTS2026-..., Tạo ảnh QR PNG)           |
+|  │   ├── ticket-registration.php (Form đăng ký, nonce, lưu wp_event_tickets)  |
+|  │   └── security-hardening.php (Đổi URL login, khóa brute-force, headers)    |
 |  └── assets/                                                                  |
-|      ├── css/event-custom.css (Thiết kế giao diện 6 trang, responsive)        |
+|      ├── css/event-custom.css (Thiết kế giao diện 5 trang, responsive)        |
 |      └── js/countdown.js & main.js (Đếm ngược thời gian thực, Back-to-top)    |
 +───────────────────────────────────────────────────────────────────────────────+
                                       │
@@ -82,7 +84,7 @@ Hệ thống được tổ chức thành 5 trang độc lập, kết nối với
 | 1 | **Trang Chủ** | `/` | Giới thiệu tổng quan, đếm ngược, tin khẩn cấp, điểm nhấn sự kiện | TV2 (phối hợp TV1 Lead Dev) | Shortcode `[event_countdown]`, `[event_alert]`, Hero banner, Bản quyền FOSS |
 | 2 | **Lịch Trình** | `/lich-trinh` | Chi tiết lịch hội thảo theo giờ cho 3 phòng họp song song | TV4 (Frontend 2) | Bảng Timetable 3 Tracks (08:00 - 17:00), Filter theo phòng |
 | 3 | **Diễn Giả** | `/dien-gia` | Danh bạ hồ sơ diễn giả, chủ đề thuyết trình, liên kết mạng xã hội | TV4 (Frontend 2) | Speaker Cards Grid, Modal/Chi tiết tiểu sử chuyên gia |
-| 4 | **Đăng Ký Vé** | `/dang-ky-ve` | Bảng giá các hạng vé, form đặt vé, tự động sinh mã QR gửi email | TV3 (Backend & Plugin) | Shortcode `[event_ticket_card]`, Form CF7, Hook PHP tạo QR & SMTP |
+| 4 | **Đăng Ký Vé** | `/dang-ky-ve` | Bảng giá các hạng vé, form đặt vé, tự động sinh mã QR gửi email | TV3 (Backend) | Shortcode `[event_ticket_card]`, `inc/ticket-registration.php`, `endroid/qr-code`, `wp_mail()` |
 | 5 | **Địa Điểm** | `/dia-diem` | Địa chỉ tổ chức, bản đồ OpenStreetMap, hướng dẫn đi lại | TV2 (phối hợp TV5 CSDL) | Iframe OpenStreetMap mã nguồn mở, Hướng dẫn lộ trình bus/metro |
 
 ---
@@ -96,20 +98,20 @@ Quy trình đăng ký vé tham dự và xác thực mã QR tại cổng hội ng
        │
        │ 1. Truy cập /dang-ky-ve, chọn loại vé (Standard/Student/VIP)
        ▼
-[Form Đăng Ký (Contact Form 7)]
+[Form Đăng Ký tự viết (page-dang-ky-ve.php)]
        │
-       │ 2. Điền Họ tên, Email, Số điện thoại, Đơn vị công tác
+       │ 2. Điền Họ tên, Email, Số điện thoại, Đơn vị công tác, đồng ý điều khoản
        ▼
-[Xác thực dữ liệu (Child Theme Hook - custom-ticket-qr.php)]
+[Xác thực dữ liệu (inc/ticket-registration.php)]
        │
-       │ 3. Kiểm tra tính hợp lệ & Lọc dữ liệu an toàn (Sanitization)
-       │ 4. Tạo mã định danh duy nhất (Ví dụ: OTS2026-A8F2K9)
+       │ 3. Kiểm tra nonce, honeypot, sanitize_*(), kiểm tra email trùng
+       │ 4. Sinh mã vé duy nhất (OTS2026- + 12 ký tự hex) & lưu bảng wp_event_tickets
        ▼
-[Tạo mã phản hồi nhanh QR Code (QR Generation Engine)]
+[Tạo mã phản hồi nhanh QR Code (inc/custom-ticket-qr.php + endroid/qr-code)]
        │
-       │ 5. Mã hóa chuỗi định danh vé thành ảnh QR Code độ phân giải cao
+       │ 5. Mã hóa chuỗi định danh vé thành ảnh QR Code (PNG)
        ▼
-[Gửi Email Xác Nhận (WP Mail SMTP)]
+[Gửi Email Xác Nhận (wp_mail() / Mailpit trên local)]
        │
        │ 6. Gửi thư xác nhận kèm thông tin vé và ảnh mã QR vào hòm thư khách
        ▼
@@ -134,7 +136,7 @@ Hệ thống áp dụng kiến trúc phòng thủ theo chiều sâu (Defense-in-
 2. **Lớp 2 — Che giấu định danh hệ thống (Security through Obscurity):**
    - Ẩn thẻ `generator` phiên bản WordPress trên mã nguồn HTML trả về (`remove_action('wp_head', 'wp_generator');`).
    - Loại bỏ chuỗi truy vấn phiên bản `?ver=x.x.x` trên các tệp tĩnh CSS/JS để ngăn công cụ rà quét tự động nhận diện lỗ hổng theo version.
-   - Thay đổi đường dẫn đăng nhập mặc định `/wp-login.php` sang URL tùy biến bí mật bằng plugin WPS Hide Login.
+   - Thay đổi đường dẫn đăng nhập mặc định `/wp-login.php` sang `/dang-nhap-noi-bo/` trực tiếp trong `inc/security-hardening.php` (trả về HTTP 403 cho truy cập trực tiếp `/wp-login.php`).
 
 3. **Lớp 3 — Lập trình an toàn tầng Ứng dụng (Secure Application Layer):**
    - Áp dụng triệt để nguyên tắc: *"Lọc dữ liệu đầu vào (Sanitize Input), Thoát dữ liệu đầu ra (Escape Output)"*.
