@@ -39,11 +39,11 @@ repo. Repo này chỉ chứa child theme, file cấu hình máy chủ và file `
 
 | Thành phần | Bản | Giấy phép | Vai trò trong dự án |
 |---|---|---|---|
-| [WordPress](https://wordpress.org/) | 7.1.3 | GPLv2 | Nền tảng CMS |
+| [WordPress](https://wordpress.org/) | 7.1.4 | GPLv2 | Nền tảng CMS |
 | [Astra](https://wordpress.org/themes/astra/) | 4.13.10 | GPLv2 | Theme cha |
-| [Astra Starter Templates](https://wordpress.org/plugins/astra-sites/) | 4.7.6 | GPLv2 | Bộ khung mẫu trang |
+| [Astra Starter Templates](https://wordpress.org/plugins/astra-sites/) | 4.7.6 | GPLv2 or later | Bộ khung mẫu trang |
 | [Elementor](https://wordpress.org/plugins/elementor/) | 4.2.4 | GPLv3 | Trình dựng trang |
-| [Header Footer Elementor](https://wordpress.org/plugins/header-footer-elementor/) | 2.9.4 | GPLv3 | Header/Footer dùng chung |
+| [Header Footer Elementor](https://wordpress.org/plugins/header-footer-elementor/) | 2.9.4 | GPLv2 or later | Header/Footer dùng chung |
 | [SureCookie](https://wordpress.org/plugins/surecookie/) | 1.5.0 | GPL-2.0-or-later | Thông báo cookie |
 | [SureForms](https://wordpress.org/plugins/sureforms/) | 2.12.6 | GPLv2 or later | Biểu mẫu liên hệ |
 | [SureRank](https://wordpress.org/plugins/surerank/) | 1.10.1 | GPLv2 or later | Tối ưu SEO |

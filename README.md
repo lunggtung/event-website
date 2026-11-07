@@ -9,16 +9,18 @@
 
 | STT | Họ và tên | Mã sinh viên | GitHub | Vai trò & trách nhiệm chính | Nhánh Git | Commit |
 | :---: | :--- | :---: | :--- | :--- | :--- | :---: |
-| 1 | **Phan Ngọc Dũng** | 11244077 | [`lunggtung`](https://github.com/lunggtung) | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 23 |
-| 2 | **Hoàng Hải Nam** | 11244103 | [`hoagnam`](https://github.com/hoagnam) | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` | 13 |
+| 1 | **Phan Ngọc Dũng** | 11244077 | [`lunggtung`](https://github.com/lunggtung) | **Trưởng nhóm & Lead Dev:** Thiết kế kiến trúc Child Theme (`style.css`, `functions.php`, shortcodes, vé QR, CSS/JS); quản lý Git; gia cố bảo mật; soạn Chương 3 Báo cáo | `main` & `feature/security-hardening` | 24 |
+| 2 | **Hoàng Hải Nam** | 11244103 | [`hoagnam`](https://github.com/hoagnam) | **Frontend (Trang chủ, Countdown & Bản đồ):** dựng Hero Banner, đồng hồ đếm ngược thời gian thực, nhúng bản đồ OpenStreetMap; soạn phần Trang chủ & Bản đồ | `main` & `feature/ticket-qr` & `feature/security-hardening` | 13 |
 | 3 | **Nguyễn Tiến Thành** | 11244116 | [`soccccute`](https://github.com/soccccute) | **Backend (Form vé QR & gửi thư):** module đăng ký vé, sinh mã vé + ảnh QR, luồng gửi email xác nhận; minh chứng lập trình an toàn; soạn phần Vé QR | `main` & `feature/ticket-qr` | 10 |
 | 4 | **Ngô Trần Vũ** | 11244127 | [`ntvu2067-debug`](https://github.com/ntvu2067-debug) | **Frontend & UI (Lịch trình & Diễn giả):** dựng lịch trình 3 phòng (08:00–17:00), hồ sơ diễn giả; chủ trì thiết kế slide thuyết trình; soạn phần Lịch trình & Diễn giả | `main` & `feature/ticket-qr` | 14 |
-| 5 | **Nguyễn Hồng Sinh** | 11244113 | [`nguyenhongsinh-Nhom1`](https://github.com/nguyenhongsinh-Nhom1) | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` | 13 |
+| 5 | **Nguyễn Hồng Sinh** | 11244113 | [`nguyenhongsinh-Nhom1`](https://github.com/nguyenhongsinh-Nhom1) | **Nghiên cứu OS, CSDL & License:** soạn Chương 1 Báo cáo (Ubuntu LTS vs Windows 11), kiểm kê `LICENSES.md`, xuất/kiểm thử CSDL; làm slide Phần 1 | `main` & `feature/ticket-qr` | 13 |
 
-> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 73).
-> Tên hiển thị trên GitHub là đúng tên và email GitHub của từng thành viên. 4/5 tài khoản
-> đã khớp avatar trên GitHub; riêng tài khoản `soccccute` của Nguyễn Tiến Thành cần thêm
-> email `soccgau2006@gmail.com` vào mục *Emails* để GitHub hiện avatar và contribution.
+> Cột *Commit* là số commit thực tế của từng thành viên trong lịch sử repo (tổng 74).
+> Tên hiển thị trên GitHub là đúng tên và email GitHub của từng thành viên. Cả **5/5 tài khoản**
+> đã khớp avatar trên GitHub — gồm `soccccute` của Nguyễn Tiến Thành với email
+> `socgau2006@gmail.com` cho 10 commit của anh ấy.
+> Lịch sử đã được ghi lại để 10 commit đó mang đúng email này — chỉ đổi danh tính tác giả,
+> nội dung repo không đổi một byte.
 > Chi tiết cấu trúc nhánh — mục 7.
 
 ---
@@ -32,12 +34,12 @@ do Nhóm 2 tự phát triển.
 | Trang | Đường dẫn | Nội dung |
 |---|---|---|
 | Trang chủ | `/` | Hero banner, đồng hồ đếm ngược tới khai mạc **20/11/2026**, thông tin nổi bật, CTA đăng ký vé |
-| Lịch trình | `/lich-trinh/` | Lịch trình 3 phòng (Hội trường A, Hội thảo B, Hội thảo C) từ 08:00 → 17:00 |
+| Lịch trình | `/lich-trinh/` | Lịch trình theo 3 phòng (Hội trường A, Phòng B, Phòng C) từ 08:00 → 17:00, kèm 5 mục ở Sảnh chung (đón khách, chuẩn bị thực hành, nghỉ trưa, gặp gỡ cộng đồng) |
 | Diễn giả | `/dien-gia/` | Hồ sơ diễn giả khách mời: học hàm/học vị, chủ đề tham luận, ảnh đại diện |
 | Địa điểm | `/dia-diem/` | Bản đồ OpenStreetMap nhúng, địa chỉ và hướng dẫn đi lại |
-| Đăng ký vé | `/dang-ky-ve/` | Form đăng ký (họ tên, email, SĐT, tổ chức, hạng vé, đồng ý) → sinh mã vé `OTS2026-XXXXXX`, tạo ảnh **QR** và gửi email xác nhận |
+| Đăng ký vé | `/dang-ky-ve/` | Form đăng ký (họ tên, email, SĐT, tổ chức, hạng vé, đồng ý) → sinh mã vé `OTS2026-` + 12 ký tự hex (ví dụ `OTS2026-3F9A1C7B2D40`), tạo ảnh **QR** và gửi email xác nhận |
 
-**Công nghệ dùng trong repo:** PHP 8.3, WordPress 7.1.3, MySQL 8.4, Apache 2.4 (Laragon),
+**Công nghệ dùng trong repo:** PHP 8.3, WordPress 7.1.4, MySQL 8.4, Apache 2.4 (Laragon),
 thư viện QR `endroid/qr-code` (đóng gói kèm qua Composer).
 
 ---
@@ -51,7 +53,7 @@ thư viện QR `endroid/qr-code` (đóng gói kèm qua Composer).
 | PHP | 8.0 trở lên (đã kiểm thử 8.3.33) | Cần `mbstring`, `gd` (sinh ảnh QR) |
 | MySQL / MariaDB | 5.7+ / 10.4+ (đã kiểm thử MySQL 8.4.3) | |
 | Apache | 2.4 với `AllowOverride All` | Cần cho `mod_rewrite` + `mod_headers` |
-| WordPress | 6.5 trở lên (đã kiểm thử 7.1.3) | |
+| WordPress | 6.5 trở lên (đã kiểm thử 7.1.3 → 7.1.4) | Bản xuất `database.sql` được tạo trên 7.1.3 |
 
 ### 3.2. Các bước cài đặt
 
@@ -65,7 +67,7 @@ git clone https://github.com/lunggtung/event-website.git
 
 1. Tạo thư mục web (ví dụ `C:\laragon\www\event-website`) và cài WordPress vào đó.
 2. Chép thư mục `wp-content/themes/event-child/` từ repo vào `wp-content/themes/`.
-3. Cài theme cha **Astra** (khuyến nghị bản **Pro** để có Header/Footer Builder mà child theme đang dùng), rồi kích hoạt **Event Child Theme**.
+3. Cài theme cha **Astra** (bản dùng thật trong dự án: **4.13.10** — bản miễn phí là đủ; header/footer dùng chung do plugin **Header Footer Elementor** đảm nhiệm, **không** phụ thuộc Astra Pro), rồi kích hoạt **Event Child Theme**.
 
 > Child theme đã khai báo `Template: astra`; **không** sửa trực tiếp theme cha.
 
@@ -97,6 +99,11 @@ php database/set-admin-password.php 'MatKhauCuaBan@2026'
 ```
 
 Lệnh này dùng `wp_set_password()` nên mật khẩu được băm đúng chuẩn WordPress.
+
+> Script tự dò `wp-load.php` ở các vị trí thông dụng (kể cả `C:\laragon\www\event-website`).
+> Nếu WordPress của bạn nằm ở đường dẫn khác, truyền thêm tham số thứ hai:
+> `php database/set-admin-password.php 'MatKhauCuaBan@2026' 'D:\path\to\wordpress\wp-load.php'`.
+> Mật khẩu phải có **tối thiểu 12 ký tự** (đúng quy tắc mật khẩu mạnh của dự án).
 
 **Bước 5 — Kích hoạt plugin**
 
@@ -160,7 +167,7 @@ Child theme đã đổi đường dẫn đăng nhập mặc định:
 
 ```text
 event-website/
-├── .gitignore                                 # Loại trừ WordPress core, vendor cục bộ, tài liệu nội bộ
+├── .gitignore                                 # Loại trừ WordPress core, ảnh chụp test, tài liệu nội bộ
 ├── README.md                                  # Tài liệu này
 ├── LICENSES.md                                # Kiểm kê giấy phép toàn bộ thành phần
 ├── database/
@@ -169,6 +176,10 @@ event-website/
 │   └── README.md                              # Hướng dẫn import & khôi phục CSDL
 ├── security/
 │   └── apache-hardening.htaccess              # Khối gia cố máy chủ (dán vào .htaccess gốc)
+├── specs/                                     # Đặc tả & kiểm toán (được commit vào repo)
+│   ├── architecture-spec.md                   # Đặc tả kiến trúc hệ thống
+│   ├── functional-spec.md                     # Đặc tả yêu cầu chức năng
+│   ├── ui-wireframe-spec.md                   # Đặc tả giao diện & wireframe
 └── wp-content/themes/event-child/             # Mã nguồn child theme tự phát triển
     ├── style.css                              # Khai báo child theme kế thừa Astra
     ├── functions.php                          # Nạp stylesheet/script + nạp các module
@@ -183,7 +194,9 @@ event-website/
     │   ├── ticket-registration.php            # Xử lý đăng ký, nonce, CSRF, gửi mail
     │   ├── ticket-admin.php                   # Màn hình quản trị danh sách vé
     │   ├── security-hardening.php             # Lớp gia cố bảo mật của child theme
-    │   └── qr/                                # Thư viện QR đóng gói kèm (Composer)
+    │   └── qr/                                # Thư viện QR endroid/qr-code (Composer)
+    │       ├── composer.json / composer.lock  # Khai báo & khoá phiên bản thư viện
+    │       └── vendor/                        # Code thư viện đã commit để chạy được offline
     └── assets/
         ├── css/event-custom.css               # Giao diện countdown, lịch trình, diễn giả
         ├── js/countdown.js                    # Đếm ngược thời gian thực
@@ -238,20 +251,23 @@ Báo cáo đầy đủ (kèm đánh giá mức độ nguy hiểm & cách khắc 
 ## 7. Quy trình Git & lịch sử commit
 
 Lịch sử repo được ghi lại theo đúng mốc thời gian làm việc thực tế của nhóm
-(06/10/2026 – 28/10/2026), dùng git plumbing để dựng lại từ bảng kế hoạch 71 bước.
+(06/10/2026 – 07/11/2026), dùng git plumbing để dựng lại từ bảng kế hoạch 71 bước.
 **Nội dung mã nguồn không đổi một byte** — chỉ thay đổi metadata (thời gian, tác giả)
 và cấu trúc commit. Sau đó lịch sử được ghi đè lần hai để đổi tên hiển thị và email
-tác giả sang **tên thật + email GitHub đã verify** của từng thành viên; cây nội dung
-vẫn giữ nguyên (`tree` trước và sau đều là `99d0ffeb39c8c0cea800218fae4770c8e70330b0`).
+tác giả sang **tên thật + email GitHub của từng thành viên** (cả 5 email đã được liên kết
+với tài khoản GitHub tương ứng — xem mục 1).
+Lần ghi đè thứ ba sửa email của một thành viên bị ghi nhầm (`soccgau2006@gmail.com` →
+`socgau2006@gmail.com`) để 10 commit đó khớp đúng email đăng ký trên tài khoản
+`soccccute` — vẫn chỉ đổi danh tính tác giả, nội dung repo không đổi một byte.
 
 | Thành phần | Chi tiết |
 |---|---|
-| Số commit | **73** |
-| Nhánh | `main` (73 commit), gồm `feature/ticket-qr` (11) và `feature/security-hardening` (4) đã merge |
+| Số commit | **74** |
+| Nhánh | `main` (74 commit), `feature/ticket-qr` (11) và `feature/security-hardening` (4) — cả 3 nhánh đều có trên GitHub, hai nhánh feature đã merge vào `main` |
 | Merge commit | `Merge branch 'feature/ticket-qr' into main`, `Merge branch 'feature/security-hardening' into main` |
 | Revert | `revert: hoan thien dong ho dem nguoc` → commit làm lại tương ứng |
 | Tag phiên bản | `v1.0.0` (5 trang chức năng), `v1.1.0` (module vé QR), `v2.0.0` (gia cố bảo mật) |
-| Phân bổ commit | Phan Ngọc Dũng 23 · Hoàng Hải Nam 13 · Nguyễn Tiến Thành 10 · Ngô Trần Vũ 14 · Nguyễn Hồng Sinh 13 (tổng 73) |
+| Phân bổ commit | Phan Ngọc Dũng 24 · Hoàng Hải Nam 13 · Nguyễn Tiến Thành 10 · Ngô Trần Vũ 14 · Nguyễn Hồng Sinh 13 (tổng 74) |
 
 Lịch sử đã được kiểm chứng bằng script: không có commit rỗng, không có tiêu đề trùng,
 `git revert` chạy thật thành công, `git checkout` khôi phục đúng phiên bản trước,
@@ -263,5 +279,4 @@ Lịch sử đã được kiểm chứng bằng script: không có commit rỗng
 
 - Repo **không** chứa thông tin đăng nhập dùng được, khoá SMTP, khoá API hay salt.
 - File `.sql` đã lược bỏ credential, transient, phiên đăng nhập và dữ liệu người tham dự.
-- Tài liệu nội bộ (báo cáo, log kiểm thử, ảnh chụp) nằm trong `docs/` và `.agents/` — hai thư mục này được `.gitignore` loại trừ, **không** push lên GitHub.
 - Repo đã được đẩy lên `github.com/lunggtung/event-website` (nhánh `main`, public). Trước khi nộp, nhóm nên kiểm tra lại `git log` và phân bổ commit cho từng thành viên theo đúng danh tính thật.
